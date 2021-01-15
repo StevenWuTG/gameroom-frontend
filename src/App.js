@@ -1,25 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import {Route} from 'react-router-dom'
+import Header from './Containers/Header'
+import Footer from './Containers/Footer'
+import Articles from './Containers/Articles'
+import Profile from './Containers/Profile'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Navbar from './Components/Navbar'
+import Welcome from './Components/Welcome'
+import Login from './Components/Login'
+import Signup from './Components/Signup'
+import './Css/App.css';
+import { connect } from 'react-redux'
+
+export class App extends Component {
+
+  reduxSignupSubmitHandler = (userObj) => {
+    this.props.signup(userObj)
+  }
+
+
+
+  render() {
+    return (
+      <div className="grid">
+        <div className="grid-header">
+        <Header/>
+        <Navbar/>
+        </div>
+        <div className="grid-body">
+        top of app.js
+        <Route path="/articles" render={()=> <Articles/>} />
+        <Route path="/profile" render={()=> <Profile/>} />
+        <Route path="/welcome" render={()=> <Welcome/>} />
+        <Route path="/login" render={()=> <Login submitHandler={this.reduxSigninSubmitHandler}/>} />
+        <Route path="/signup" render={()=> <Signup/>} />
+        </div>
+        <div className="grid-footer">
+        
+        <Footer/> 
+        </div>
+      </div>
+
+
+    )
+  }
 }
 
-export default App;
+function msp(state){
+  // return {current_wall: state.user.wall}
+}
+
+function mdp(dispatch){
+  
+}
+
+
+export default connect(msp, mdp)(App);
