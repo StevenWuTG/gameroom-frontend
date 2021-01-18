@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import {Route} from 'react-router-dom'
+import './Css/App.css';
+
 import Header from './Containers/Header'
 import Footer from './Containers/Footer'
 import Articles from './Containers/Articles'
@@ -9,13 +11,18 @@ import Navbar from './Components/Navbar'
 import Welcome from './Components/Welcome'
 import Login from './Components/Login'
 import Signup from './Components/Signup'
-import './Css/App.css';
 import { connect } from 'react-redux'
+
+import { loginUser, signupUser, returningUser} from './Redux/actions'
 
 export class App extends Component {
 
   reduxSignupSubmitHandler = (userObj) => {
     this.props.signup(userObj)
+  }
+
+  reduxSigninSubmitHandler = (userObj) => {
+    this.props.login(userObj)
   }
 
 
@@ -33,7 +40,7 @@ export class App extends Component {
         <Route path="/profile" render={()=> <Profile/>} />
         <Route path="/welcome" render={()=> <Welcome/>} />
         <Route path="/login" render={()=> <Login submitHandler={this.reduxSigninSubmitHandler}/>} />
-        <Route path="/signup" render={()=> <Signup/>} />
+        <Route path="/signup" render={()=> <Signup submitHandler={this.reduxSignupSubmitHandler}/>} />
         </div>
         <div className="grid-footer">
         
@@ -51,7 +58,10 @@ function msp(state){
 }
 
 function mdp(dispatch){
-  
+  return {
+    login: (userObj) => dispatch(loginUser(userObj)),
+    signup: (userObj) => dispatch(signupUser(userObj)) 
+  }
 }
 
 
