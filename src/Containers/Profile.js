@@ -9,15 +9,18 @@ export class Profile extends Component {
 
     render() {
         return (
-            <div>
+            <>
                 {this.props.logged_in === false || this.props.logged_in === null ? 
+                <>
                 <h1>Please log in</h1>
+                </>
                 :
-
+                <>
                 <img alt={this.props.userObj.username} style={{ maxWidth: "70vw", maxHeight: "20vh" }}src={this.props.userObj.avatar}></img>
+                </>
                 }
 
-            </div>
+            </>
         )
     }
 }

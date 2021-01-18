@@ -8,6 +8,7 @@ import Articles from './Containers/Articles'
 import Profile from './Containers/Profile'
 
 import Navbar from './Components/Navbar'
+import ShowArticle from './Components/ShowArticle'
 import Welcome from './Components/Welcome'
 import Login from './Components/Login'
 import Signup from './Components/Signup'
@@ -37,8 +38,8 @@ export class App extends Component {
         <Navbar/>
         </div>
         <div className="grid-body">
-        top of app.js
         <Route path="/articles" render={()=> <Articles/>} />
+        <Route path="/show" render={()=> <ShowArticle />} />
         <Route path="/profile" render={()=> <Profile/>} />
         <Route path="/welcome" render={()=> <Welcome/>} />
         <Route path="/login" render={()=> <Login submitHandler={this.reduxSigninSubmitHandler}/>} />

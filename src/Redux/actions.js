@@ -1,4 +1,4 @@
-import {LOGIN, SIGNUP, LOG_OUT, REDUX_LOG_IN, REDUX_LOG_OUT} from './actionTypes'
+import {LOGIN, SIGNUP, LOG_OUT, REDUX_LOG_IN, REDUX_LOG_OUT,SHOW_POST} from './actionTypes'
 
 export function signupUser(userObj) {
 
@@ -55,6 +55,15 @@ export function reduxLogout(){
         dispatch({type: LOG_OUT, payload: null})
         
     }
-   
+    
+    
+}
 
+export function showPost(postObj){
+    
+    return function(dispatch){
+        dispatch({type: SHOW_POST, payload: postObj})
+        
+        
+    }
 }

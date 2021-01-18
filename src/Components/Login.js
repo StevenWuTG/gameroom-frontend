@@ -34,7 +34,7 @@ export class Login extends Component {
             { this.props.logged_in === true ? 
             
             <>
-            <Redirect to="/welcome"/>
+            <Redirect to="/profile"/>
             </>
             :
             <>

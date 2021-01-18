@@ -16,7 +16,9 @@ export class Navbar extends Component {
         this.props.reduxLogout()
         this.setState({clicked:true})
 
-        console.log("redirected")
+        
+
+        
 
     }
 
@@ -54,6 +56,15 @@ export class Navbar extends Component {
             <NavLink to="/login">
                 <button>Login</button>
             </NavLink>
+            { this.props.logged_in === false ? 
+            
+            <>
+            <Redirect to="/welcome"/>
+            </>
+            :
+            <>
+            </>
+            }
             </>
             }
                 

@@ -3,7 +3,8 @@ import {combineReducers} from 'redux'
 const defaultState = {
     user:null,
     counter:0,
-    logged_in: false
+    logged_in: false,
+    post: null
    
 }
 
@@ -50,10 +51,23 @@ function loginReducer(prevState= defaultState.user, action){
             return prevState
                 }
 }
+function postReducer(prevState= defaultState.post, action){
+    switch(action.type){
+        case"SHOW_POST":
+            console.log("setting article in redux post")
+            return action.payload
+        
+
+        default:
+
+            return prevState
+                }
+}
 
 const rootReducer =  combineReducers({
     user: userReducer,
-    logged_in: loginReducer
+    logged_in: loginReducer,
+    post: postReducer
 
     
    

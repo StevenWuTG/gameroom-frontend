@@ -24,9 +24,11 @@ export class Articles extends Component {
         .catch(console.log)
         
     }
+
+    
     
     renderArticles = () => {
-        return this.state.articleArray.map( article => <Article className="article-card" key={article.id} articleObj={article}  />)
+        return this.state.articleArray.map( article => <Article className="article-card" key={article.id} articleObj={article}   />)
     }
 
     render() {
@@ -35,6 +37,7 @@ export class Articles extends Component {
                 
 
                 {this.renderArticles()}
+                {this.showArticle}
             </div>
         )
     }
