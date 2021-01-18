@@ -1,9 +1,9 @@
-import {LOGIN, SIGNUP} from './actionTypes'
+import {LOGIN, SIGNUP, LOG_OUT, REDUX_LOG_IN, REDUX_LOG_OUT} from './actionTypes'
 
 export function signupUser(userObj) {
 
 
-    return function (dispatch, getState) {
+    return function (dispatch) {
         // console.log("userobj in signup",userObj)
         fetch('http://localhost:5000/users', {
             method: "POST",
@@ -19,6 +19,7 @@ export function signupUser(userObj) {
                 
                 localStorage.setItem("token", newUserObj.jwt)
                 dispatch({type: SIGNUP, payload: newUserObj.user})
+                dispatch({type: REDUX_LOG_IN, payload: true})
             
             })
             .catch(console.log)
@@ -26,7 +27,7 @@ export function signupUser(userObj) {
 }
 
 export function loginUser(userObj) {
-    return function(dispatch, getState){
+    return function(dispatch){
         fetch('http://localhost:5000/login', {
             method: "POST",
             headers: {
@@ -40,10 +41,20 @@ export function loginUser(userObj) {
                 console.log("checkedUserObj:",checkedUserObj)
                 localStorage.setItem("token", checkedUserObj.jwt)
                 dispatch({type: LOGIN, payload: checkedUserObj.user})
+                dispatch({type: REDUX_LOG_IN, payload: true})
                 
-                // console.log("checkedUserObj.posts:",checkedUserObj.user.posts)
-                // dispatch({type: ADD_POSTS, payload: checkedUserObj.user.posts})
             })
             .catch(console.log)
     }
+}
+
+export function reduxLogout(){
+    
+    return function(dispatch){
+        dispatch({type: REDUX_LOG_OUT, payload: false})
+        dispatch({type: LOG_OUT, payload: null})
+        
+    }
+   
+
 }

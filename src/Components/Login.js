@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 export class Login extends Component {
 
@@ -28,9 +30,34 @@ export class Login extends Component {
             <input type="submit" value="Login"/>
             </div>
             </form>
+
+            { this.props.logged_in === true ? 
+            
+            <>
+            <Redirect to="/welcome"/>
+            </>
+            :
+            <>
+            </>
+            }
             </div>
         )
     }
 }
 
-export default Login
+const msp = (state) => {
+    return{ 
+        logged_in: state.logged_in
+    }
+
+}
+
+function mdp(dispatch){
+    return{
+
+    
+    }
+    
+}
+
+export default connect(msp,mdp)(Login)

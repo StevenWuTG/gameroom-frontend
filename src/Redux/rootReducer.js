@@ -2,7 +2,8 @@ import {combineReducers} from 'redux'
 
 const defaultState = {
     user:null,
-    counter:0
+    counter:0,
+    logged_in: false
    
 }
 
@@ -35,8 +36,25 @@ function userReducer(prevState= defaultState.user, action){
                 }
 }
 
+function loginReducer(prevState= defaultState.user, action){
+    switch(action.type){
+        case"REDUX_LOG_IN":
+            console.log("logging in Redux")
+            return action.payload
+        case"REDUX_LOG_OUT":
+            console.log("logging in Redux")
+            return action.payload
+
+        default:
+
+            return prevState
+                }
+}
+
 const rootReducer =  combineReducers({
-    user: userReducer
+    user: userReducer,
+    logged_in: loginReducer
+
     
    
 })
