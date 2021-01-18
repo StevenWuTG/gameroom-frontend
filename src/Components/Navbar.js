@@ -36,6 +36,9 @@ export class Navbar extends Component {
             <NavLink to="/articles">
                 <button>Articles</button>
             </NavLink>
+            <NavLink to="/games">
+                <button>Games</button>
+            </NavLink>
             <NavLink to="/Profile">
                 <button>Profile</button>
             </NavLink>
@@ -46,6 +49,9 @@ export class Navbar extends Component {
 
             <NavLink to="/articles">
                 <button>Articles</button>
+            </NavLink>
+            <NavLink to="/games">
+                <button>Games</button>
             </NavLink>
             <NavLink to="/welcome">
                 <button>Welcome</button>

@@ -7,10 +7,24 @@ export class ShowArticle extends Component {
         console.log("in /show this.props.post", this.props.post)
     }
     render() {
+
+        const post = this.props.post
         return (
             <div>
-                showArticle component
-                <h1>Author: {this.props.post.author}</h1>
+                
+                {this.props.post === null?
+                <>
+                no article in redux state
+                </>
+                :
+                <>
+                <img  className="article-photo" src={post.img_url} alt={this.props.articleObj} width="300vh" height="100%" />
+                <p>{post.content}</p>
+                <h4>Author: {post.author}</h4>
+
+                </>
+            
+                }
                 
             </div>
         )

@@ -6,6 +6,7 @@ import Header from './Containers/Header'
 import Footer from './Containers/Footer'
 import Articles from './Containers/Articles'
 import Profile from './Containers/Profile'
+import GamesContainer from './Containers/GamesContainer'
 
 import Navbar from './Components/Navbar'
 import ShowArticle from './Components/ShowArticle'
@@ -39,6 +40,7 @@ export class App extends Component {
         </div>
         <div className="grid-body">
         <Route path="/articles" render={()=> <Articles/>} />
+        <Route path="/games" render={()=> <GamesContainer />} />
         <Route path="/show" render={()=> <ShowArticle />} />
         <Route path="/profile" render={()=> <Profile/>} />
         <Route path="/welcome" render={()=> <Welcome/>} />

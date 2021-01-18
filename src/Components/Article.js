@@ -21,7 +21,7 @@ export class Article extends Component {
                 <NavLink to="/show">
                 <button style={{"textAlign": "center"}} onClick={this.renderArticle}>Show</button>
                 </NavLink>
-                <button onClick={this.renderArticle}>Details</button>
+                {/* <button onClick={this.renderArticle}>Details</button> */}
                 <br></br>
                 
                 

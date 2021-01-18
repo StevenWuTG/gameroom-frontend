@@ -4,7 +4,7 @@ export class Welcome extends Component {
     render() {
         return (
             <div>
-                Welcome to the shite
+                Welcome to my bullshit website , we got games and such???
             </div>
         )
     }
