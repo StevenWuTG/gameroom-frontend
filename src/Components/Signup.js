@@ -28,6 +28,10 @@ export class Signup extends Component {
     render() {
         return (
             <div class="login-box">
+
+            Enter your credentials
+            <br></br>
+            <br></br>
             <form onSubmit = {this.submitHandler} >
             <div class="user-box">
                 

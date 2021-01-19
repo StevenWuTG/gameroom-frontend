@@ -19,6 +19,47 @@ import { loginUser, signupUser, returningUser} from './Redux/actions'
 
 export class App extends Component {
 
+  state = {
+    gamesArray: [],
+    articleArray: []
+}
+
+  componentDidMount(){
+    const apiKey = process.env.REACT_APP_API_KEY
+
+    this.fetchGameData()
+    this.fetchArticleData()
+  }
+
+  fetchGameData = () => {
+    const apiKey = process.env.REACT_APP_API_KEY
+    fetch(`https://api.rawg.io/api/games?key=${apiKey}&ordering=released&platforms=18,1,7&metacritic=90,100`)
+    .then(r => r.json())
+    .then(apiData => {
+        console.log("api data",apiData)
+        this.setState({gamesArray: apiData.results})
+    })
+
+}
+
+fetchArticleData = () => {
+  console.log("Articles CDM")
+        fetch("http://localhost:5000/articles")
+        .then(r => r.json())
+        .then (arrayOfArticles => {
+            
+            if(arrayOfArticles === null ){
+                console.log("no data fetched")
+            } else {
+    
+                console.log("fetched array of articles", arrayOfArticles)
+                this.setState({articleArray: arrayOfArticles})
+            }
+        })
+        .catch(console.log)
+
+}
+
   
 
   reduxSignupSubmitHandler = (userObj) => {
@@ -39,13 +80,16 @@ export class App extends Component {
         <Navbar/>
         </div>
         <div className="grid-body">
-        <Route path="/articles" render={()=> <Articles/>} />
-        <Route path="/games" render={()=> <GamesContainer />} />
+          <div className="center">
+
+          <Route path="/articles" render={()=> <Articles className="center" articleArray={this.state.articleArray}/>} />
+          <Route path="/games" render={()=> <GamesContainer gamesArray={this.state.gamesArray}/>} />
+          <Route path="/login" render={()=> <Login submitHandler={this.reduxSigninSubmitHandler}/>} />
+          <Route path="/signup" render={()=> <Signup submitHandler={this.reduxSignupSubmitHandler}/>} />
+          </div>
         <Route path="/show" render={()=> <ShowArticle />} />
         <Route path="/profile" render={()=> <Profile/>} />
         <Route path="/welcome" render={()=> <Welcome/>} />
-        <Route path="/login" render={()=> <Login submitHandler={this.reduxSigninSubmitHandler}/>} />
-        <Route path="/signup" render={()=> <Signup submitHandler={this.reduxSignupSubmitHandler}/>} />
         </div>
         <div className="grid-footer">
         

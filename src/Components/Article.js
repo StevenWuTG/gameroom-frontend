@@ -15,6 +15,7 @@ export class Article extends Component {
     render() {
         return (
             <>
+                <h2>{this.props.articleObj.title}</h2>
                 <img  className="article-photo" src={this.props.articleObj.img_url} alt={this.props.articleObj} width="300" height="300" />
                 {/* {this.props.articleObj.content} */}
                 <br></br>

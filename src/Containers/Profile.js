@@ -1,10 +1,33 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import AddArticle from '../Components/AddArticle'
 
 export class Profile extends Component {
+
+    state={
+        articleFormClicked: false
+    }
     componentDidMount(){
         console.log("redux userObj",this.props.userObj)
         console.log("redux loggin state :",this.props.logged_in)
+    }
+
+    renderArticleForm = () => {
+        if(this.state.articleFormClicked){
+
+            return (<AddArticle />)
+        }
+
+    }
+
+    formButtonHandler = () => {
+        if(this.state.articleFormClicked ){
+            this.setState({articleFormClicked: false})
+        } else {
+            this.setState({articleFormClicked: true})
+            
+        }
+
     }
 
     render() {
@@ -16,7 +39,35 @@ export class Profile extends Component {
                 </>
                 :
                 <>
+                <h2>
+                {this.props.userObj.username}
+                </h2>         
+                <br></br>
+                {this.props.userObj.avatar ? 
+                
                 <img alt={this.props.userObj.username} style={{ maxWidth: "70vw", maxHeight: "20vh" }}src={this.props.userObj.avatar}></img>
+                :
+                <img alt={this.props.userObj.username} style={{ maxWidth: "70vw", maxHeight: "20vh" }}src="https://twirpz.files.wordpress.com/2015/06/twitter-avi-gender-balanced-figure.png?w=640"></img>
+                
+                }
+                <br></br>
+                Most Popular Article:
+                <br></br>
+                <h5 style={{"color": "red"}}>under construction check back later</h5>
+
+                Post Article:
+                <br></br>
+                <h5 style={{"color": "orange"}}>working on it...</h5>
+                <button onClick={this.formButtonHandler}>Show form</button>
+
+                {this.renderArticleForm()}
+
+
+
+
+
+                
+
                 </>
                 }
 
