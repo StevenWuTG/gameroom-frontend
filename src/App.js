@@ -22,7 +22,7 @@ export class App extends Component {
   state = {
     gamesArray: [],
     articleArray: []
-}
+  }
 
   componentDidMount(){
     const apiKey = process.env.REACT_APP_API_KEY
@@ -31,34 +31,43 @@ export class App extends Component {
     this.fetchArticleData()
   }
 
+  // fetchGameData = () => {
+  //   const apiKey = process.env.REACT_APP_API_KEY
+  //   fetch(`https://api.rawg.io/api/games?key=${apiKey}&ordering=released&platforms=18,1,7&metacritic=90,100`)
+  //   .then(r => r.json())
+  //   .then(apiData => {
+  //       console.log("api data",apiData)
+  //       this.setState({gamesArray: apiData.results})
+  //   })
+
+  // }
+
   fetchGameData = () => {
-    const apiKey = process.env.REACT_APP_API_KEY
-    fetch(`https://api.rawg.io/api/games?key=${apiKey}&ordering=released&platforms=18,1,7&metacritic=90,100`)
+    fetch(`http://localhost:5000/games`)
     .then(r => r.json())
     .then(apiData => {
         console.log("api data",apiData)
-        this.setState({gamesArray: apiData.results})
+        this.setState({gamesArray: apiData})
     })
+  }
 
-}
+  fetchArticleData = () => {
+    console.log("Articles CDM")
+          fetch("http://localhost:5000/articles")
+          .then(r => r.json())
+          .then (arrayOfArticles => {
+              
+              if(arrayOfArticles === null ){
+                  console.log("no data fetched")
+              } else {
+      
+                  console.log("fetched array of articles", arrayOfArticles)
+                  this.setState({articleArray: arrayOfArticles})
+              }
+          })
+          .catch(console.log)
 
-fetchArticleData = () => {
-  console.log("Articles CDM")
-        fetch("http://localhost:5000/articles")
-        .then(r => r.json())
-        .then (arrayOfArticles => {
-            
-            if(arrayOfArticles === null ){
-                console.log("no data fetched")
-            } else {
-    
-                console.log("fetched array of articles", arrayOfArticles)
-                this.setState({articleArray: arrayOfArticles})
-            }
-        })
-        .catch(console.log)
-
-}
+  }
 
   
 
