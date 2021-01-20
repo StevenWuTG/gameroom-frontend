@@ -41,7 +41,10 @@ export class ShowArticle extends Component {
         let newTotal = total / articleRatings.length
 
         console.log("new Total:", newTotal )
-        return <h3>Ratings: {newTotal}</h3>
+        if(newTotal){
+
+            return <h3>Ratings: {newTotal}</h3>
+        }
     }
 
     renderRatingForm = () => {
@@ -53,20 +56,60 @@ export class ShowArticle extends Component {
     }
     
     renderRatings = () => {
-        // console.log("show article.id", this.props.articleObj.id)
-        // let id = this.props.articleObj.id
-        // fetch(`http://localhost:5000/articles/${id}`)
-        // .then(r=> r.json())
-        // .then(articleData => {
-        //     this.setState({ratingsArray: article_ratings)
-        //     console.log(articleRatings)
-        //     // articleRatings = articleData.article_ratings
-        // })
         return <h4> {this.averageRatings()}</h4>
+        
     }
 
-    render() {
+    renderRelatedGame = () => {
+       
+        if(this.props.articleObj.game === null){
+            return <div></div>
+        } else if (this.props.articleObj.game.title){
+            return <h5>{this.props.articleObj.game.title}</h5>
+        } else {
+            return <div></div>
 
+        }
+    }
+    
+    renderTitle = ()  => {
+        if(this.props.articleObj.title){
+            
+            return <h3>{this.props.articleObj.title}</h3>
+        } else {
+            return <div></div>
+
+        }
+    }
+
+    renderDate = () => {
+        if(this.props.articleObj.created_at){
+            let rawDate = this.props.articleObj.created_at
+            let formatedDate = rawDate.slice(0,10)
+            return(
+                <>
+                    <h5>Publish Date:{formatedDate}</h5>
+                </>
+            )
+                
+        }
+
+    }
+
+    renderEditButton = () => {
+        console.log("rendering edit button",this.props.articleObj.author)
+        if(this.props.userObj.username === this.props.articleObj.author){
+            return (
+                <>
+                    <button>Test</button>
+                </>
+            )
+        }
+    }
+    
+
+    render() {
+        
         const article = this.props.articleObj
         return (
             <div>
@@ -77,6 +120,11 @@ export class ShowArticle extends Component {
                 </>
                 :
                 <>
+
+                {this.renderEditButton()}
+                {this.renderTitle()}
+                {this.renderRelatedGame()}
+                <br></br>
                     {this.props.articleObj.img_url === null | this.props.articleObj.img_url === "" ? 
                     <img src={"https://pbs.twimg.com/media/EK6BEwbXYAA78Bw.jpg"} alt={this.props.articleObj.title} width="300" height="300" />
                     :
@@ -88,6 +136,7 @@ export class ShowArticle extends Component {
                 <h4>Author: {article.author}</h4>
                 
                 {this.renderRatings()}
+                {this.renderDate()}
                 
                 {this.props.userObj === null ?
                 <>

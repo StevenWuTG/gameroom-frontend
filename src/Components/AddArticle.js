@@ -42,8 +42,10 @@ export class AddArticle extends Component {
         .then(r => r.json())
         .then(newArticle => {
             console.log("created new article", newArticle)
+            
             this.props.fetchArticleData()
         })
+        
         console.log("article submit this.state", this.state)
         console.log("article submit e.target", e.target.game_id.value)
     }
@@ -74,7 +76,7 @@ export class AddArticle extends Component {
                 <input type="text" name="video_url"placeholder="Youtube_url" value={this.state.video_url} onChange={this.inputHandler}/>
                 <br></br>
                 <select name="game_id"  value={this.state.game_id} onChange={this.inputHandler}>
-                    <option value={"nil"}>Select Game</option>
+                    <option value={""}>Select Game</option>
                     {this.listGames()}
                 </select>
                 <br></br>

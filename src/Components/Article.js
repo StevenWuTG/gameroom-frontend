@@ -23,7 +23,10 @@ export class Article extends Component {
         let newTotal = total / articleRatings.length
 
         console.log("new Total:", newTotal )
-        return <h3>Ratings: {newTotal}</h3>
+        if(newTotal){
+            return <h3>Ratings: {newTotal}</h3>
+        }
+        
     }
 
     
@@ -32,7 +35,7 @@ export class Article extends Component {
         return (
             <>
                 <h2>{this.props.articleObj.title}</h2>
-                <br></br>
+                
                 {this.averageRatings()}
                 <br></br>
                 {this.props.articleObj.img_url === null | this.props.articleObj.img_url === "" ?
@@ -49,6 +52,8 @@ export class Article extends Component {
                 <button style={{"textAlign": "center"}} onClick={this.renderArticle}>Show</button>
                 </NavLink>
                 {/* <button onClick={this.renderArticle}>Details</button> */}
+                <br></br>
+                <br></br>
                 <br></br>
                 
                 
