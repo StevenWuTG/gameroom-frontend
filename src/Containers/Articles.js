@@ -29,7 +29,10 @@ export class Articles extends Component {
     
     
     renderArticles = () => {
-        return this.props.articleArray.map( article => <Article className="article-card center" key={article.id} articleObj={article}   />)
+        if(this.props.articleArray){
+
+            return this.props.articleArray.map( article => <Article className="article-card center" key={article.id} articleObj={article}   />)
+        }
     }
 
     render() {

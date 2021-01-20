@@ -1,4 +1,4 @@
-import {LOGIN, SIGNUP, LOG_OUT, REDUX_LOG_IN, REDUX_LOG_OUT,SHOW_POST} from './actionTypes'
+import {LOGIN, SIGNUP, LOG_OUT, REDUX_LOG_IN, REDUX_LOG_OUT,SHOW_POST,FETCH_ARTICLES,FETCH_GAMES} from './actionTypes'
 
 export function signupUser(userObj) {
 
@@ -63,6 +63,54 @@ export function showPost(postObj){
     
     return function(dispatch){
         dispatch({type: SHOW_POST, payload: postObj})
+        
+        
+    }
+}
+
+export function fetchArticles(articlesArray){
+    
+    return function(dispatch){
+        // fetch("http://localhost:5000/articles")
+        //   .then(r => r.json())
+        //   .then (arrayOfArticles => {
+              
+        //       if(arrayOfArticles === null ){
+        //           console.log("no data fetched")
+        //       } else {
+      
+        //           console.log("fetched array of articles", arrayOfArticles)
+        //           dispatch({type: FETCH_ARTICLES, payload: arrayOfArticles})
+        
+        //       }
+        //   })
+        //   .catch(console.log)
+        
+        dispatch({type: FETCH_ARTICLES, payload: articlesArray})
+        
+    }
+}
+
+export function fetchGames(gamesArray){
+    
+    return function(dispatch){
+
+        dispatch({type: FETCH_GAMES, payload: gamesArray})
+        
+        // fetch("http://localhost:5000/")
+        //   .then(r => r.json())
+        //   .then (arrayOfGames => {
+            
+            //       if(arrayOfGames === null ){
+                //           console.log("no data fetched")
+                //       } else {
+                    
+                    //           console.log("fetched array of articles", arrayOfGames)
+                    //           dispatch({type: FETCH_GAMES, payload: arrayOfGames})
+                    
+                    //       }
+                    //   })
+                    //   .catch(console.log)
         
         
     }

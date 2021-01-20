@@ -15,13 +15,13 @@ import Login from './Components/Login'
 import Signup from './Components/Signup'
 import { connect } from 'react-redux'
 
-import { loginUser, signupUser, returningUser} from './Redux/actions'
+import { loginUser, signupUser, returningUser, fetchArticles, fetchGames} from './Redux/actions'
 
 export class App extends Component {
 
   state = {
     gamesArray: [],
-    articleArray: []
+    // articleArray: []
   }
 
   componentDidMount(){
@@ -29,6 +29,7 @@ export class App extends Component {
 
     this.fetchGameData()
     this.fetchArticleData()
+    
   }
 
   // fetchGameData = () => {
@@ -48,6 +49,7 @@ export class App extends Component {
     .then(apiData => {
         console.log("api data",apiData)
         this.setState({gamesArray: apiData})
+        this.props.fetchGames(apiData)
     })
   }
 
@@ -62,7 +64,8 @@ export class App extends Component {
               } else {
       
                   console.log("fetched array of articles", arrayOfArticles)
-                  this.setState({articleArray: arrayOfArticles})
+                  // this.setState({articleArray: arrayOfArticles})
+                  this.props.fetchArticles(arrayOfArticles)
               }
           })
           .catch(console.log)
@@ -91,8 +94,8 @@ export class App extends Component {
         <div className="grid-body">
           <div className="center">
 
-          <Route path="/articles" render={()=> <Articles className="center" articleArray={this.state.articleArray}/>} />
-          <Route path="/games" render={()=> <GamesContainer gamesArray={this.state.gamesArray}/>} />
+          <Route path="/articles" render={()=> <Articles className="center" articleArray={this.props.articlesArray}/>} />
+          <Route path="/games" render={()=> <GamesContainer gamesArray={this.props.gamesArray}/>} />
           <Route path="/login" render={()=> <Login submitHandler={this.reduxSigninSubmitHandler}/>} />
           <Route path="/signup" render={()=> <Signup submitHandler={this.reduxSignupSubmitHandler}/>} />
           </div>
@@ -112,13 +115,20 @@ export class App extends Component {
 }
 
 function msp(state){
-  // return {current_wall: state.user.wall}
+  return {
+    articlesArray: state.articlesArray,
+    gamesArray: state.gamesArray
+  }
 }
 
 function mdp(dispatch){
   return {
     login: (userObj) => dispatch(loginUser(userObj)),
-    signup: (userObj) => dispatch(signupUser(userObj)) 
+    signup: (userObj) => dispatch(signupUser(userObj)),
+    
+    fetchArticles: (articleArray) => dispatch(fetchArticles(articleArray)),
+    fetchGames: (apiData) => dispatch(fetchGames(apiData))
+    
   }
 }
 

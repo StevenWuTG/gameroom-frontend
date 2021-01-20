@@ -32,7 +32,10 @@ export class GamesContainer extends Component {
     
     renderGames = () => {
         console.log("rendering games", this.props.gamesArray)
-        return this.props.gamesArray.map(game => <GameCard gameObj={game} />)
+        if(this.props.gamesArray){
+
+            return this.props.gamesArray.map(game => <GameCard gameObj={game} />)
+        }
         
 
     }

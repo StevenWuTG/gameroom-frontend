@@ -4,7 +4,9 @@ const defaultState = {
     user:null,
     counter:0,
     logged_in: false,
-    post: null
+    post: null,
+    gamesArray: null,
+    articlesArray: null
    
 }
 
@@ -64,10 +66,37 @@ function postReducer(prevState= defaultState.post, action){
                 }
 }
 
+function articlesArrayReducer(prevState= defaultState.articlesArray, action){
+    switch(action.type){
+        case"FETCH_ARTICLES":
+            console.log("Fetching articles in redux ", action.payload)
+            return action.payload
+        
+
+        default:
+
+            return prevState
+                }
+}
+function gamesArrayReducer(prevState= defaultState.gamesArray, action){
+    switch(action.type){
+        case"FETCH_GAMES":
+            console.log("Fetching games in redux ", action.payload)
+            return action.payload
+        
+
+        default:
+
+            return prevState
+                }
+}
+
 const rootReducer =  combineReducers({
     user: userReducer,
     logged_in: loginReducer,
-    post: postReducer
+    post: postReducer,
+    gamesArray: gamesArrayReducer,
+    articlesArray: articlesArrayReducer
 
     
    

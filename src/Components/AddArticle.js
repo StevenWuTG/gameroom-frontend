@@ -8,7 +8,7 @@ export class AddArticle extends Component {
         content: "",
         img_url: "",
         video_url: "",
-        game: "",
+        game_id: 0,
         author: ""
     }
 
@@ -28,6 +28,7 @@ export class AddArticle extends Component {
 
     articleSubmit = (e) => {
         e.preventDefault()
+        this.setState({game_id:  parseInt( e.target.game_id.value )})
         console.log("in article submit function",this.state)
         fetch("http://localhost:5000/articles", {
             method:"POST",
@@ -41,6 +42,14 @@ export class AddArticle extends Component {
         .then(newArticle => {
             console.log("created new article", newArticle)
         })
+        console.log("article submit this.state", this.state)
+        console.log("article submit e.target", e.target.game_id.value)
+    }
+
+    listGames = () => {
+        console.log("games array in addArticle form", this.props.gamesArray)
+        return this.props.gamesArray.map(game => <option value={game.id}  >{game.title}</option>)
+
     }
 
     render() {
@@ -59,13 +68,10 @@ export class AddArticle extends Component {
                 <br></br>
                 <input type="text" name="video_url"placeholder="Youtube_url" value={this.state.video_url} onChange={this.inputHandler}/>
                 <br></br>
-                <input type="text" name="game"placeholder="game" value={this.state.video_url} onChange={this.inputHandler}/>
-                <br></br>
-                <select>
-                    <option>game 1</option>
-                    <option>game 2</option>
-                    <option>game 3</option>
+                <select name="game_id"  value={this.state.game_id} onChange={this.inputHandler}>
+                    {this.listGames()}
                 </select>
+                <br></br>
                 <button type="submit">Submit</button>
                 
                 </form>
@@ -79,7 +85,8 @@ export class AddArticle extends Component {
 const msp = (state) => {
     // console.log("calling msp in addArticle")
     return {
-        currentUser: state.user
+        currentUser: state.user,
+        gamesArray: state.gamesArray
     }
 
 }
