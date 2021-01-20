@@ -4,7 +4,7 @@ import './Css/App.css';
 
 import Header from './Containers/Header'
 import Footer from './Containers/Footer'
-import Articles from './Containers/Articles'
+import ArticlesContainer from './Containers/ArticlesContainer'
 import Profile from './Containers/Profile'
 import GamesContainer from './Containers/GamesContainer'
 
@@ -94,13 +94,13 @@ export class App extends Component {
         <div className="grid-body">
           <div className="center">
 
-          <Route path="/articles" render={()=> <Articles className="center" articleArray={this.props.articlesArray}/>} />
+          <Route path="/articles" render={()=> <ArticlesContainer className="center" articleArray={this.props.articlesArray}/>} />
           <Route path="/games" render={()=> <GamesContainer gamesArray={this.props.gamesArray}/>} />
           <Route path="/login" render={()=> <Login submitHandler={this.reduxSigninSubmitHandler}/>} />
           <Route path="/signup" render={()=> <Signup submitHandler={this.reduxSignupSubmitHandler}/>} />
           </div>
-        <Route path="/show" render={()=> <ShowArticle />} />
-        <Route path="/profile" render={()=> <Profile/>} />
+        <Route path="/show" render={()=> <ShowArticle userObj={this.props.userObj} articleObj={this.props.articleObj} fetchArticleData={this.fetchArticleData} />} />
+        <Route path="/profile" render={()=> <Profile fetchArticleData={this.fetchArticleData}/>} />
         <Route path="/welcome" render={()=> <Welcome/>} />
         </div>
         <div className="grid-footer">
@@ -117,7 +117,9 @@ export class App extends Component {
 function msp(state){
   return {
     articlesArray: state.articlesArray,
-    gamesArray: state.gamesArray
+    gamesArray: state.gamesArray,
+    articleObj: state.post,
+    userObj: state.user
   }
 }
 

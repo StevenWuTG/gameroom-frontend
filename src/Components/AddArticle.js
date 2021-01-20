@@ -8,7 +8,7 @@ export class AddArticle extends Component {
         content: "",
         img_url: "",
         video_url: "",
-        game_id: 0,
+        game_id: "",
         author: ""
     }
 
@@ -28,7 +28,8 @@ export class AddArticle extends Component {
 
     articleSubmit = (e) => {
         e.preventDefault()
-        this.setState({game_id:  parseInt( e.target.game_id.value )})
+
+        this.setState({game_id:  e.target.game_id.value  })
         console.log("in article submit function",this.state)
         fetch("http://localhost:5000/articles", {
             method:"POST",
@@ -41,6 +42,7 @@ export class AddArticle extends Component {
         .then(r => r.json())
         .then(newArticle => {
             console.log("created new article", newArticle)
+            this.props.fetchArticleData()
         })
         console.log("article submit this.state", this.state)
         console.log("article submit e.target", e.target.game_id.value)
@@ -48,7 +50,10 @@ export class AddArticle extends Component {
 
     listGames = () => {
         console.log("games array in addArticle form", this.props.gamesArray)
-        return this.props.gamesArray.map(game => <option value={game.id}  >{game.title}</option>)
+        if (this.props.gamesArray){
+
+            return this.props.gamesArray.map(game => <option value={game.id}  >{game.title}</option>)
+        }
 
     }
 
@@ -69,6 +74,7 @@ export class AddArticle extends Component {
                 <input type="text" name="video_url"placeholder="Youtube_url" value={this.state.video_url} onChange={this.inputHandler}/>
                 <br></br>
                 <select name="game_id"  value={this.state.game_id} onChange={this.inputHandler}>
+                    <option value={"nil"}>Select Game</option>
                     {this.listGames()}
                 </select>
                 <br></br>

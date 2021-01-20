@@ -12,12 +12,38 @@ export class Article extends Component {
         
     }
 
+    averageRatings = () => {
+        console.log("average article ratings", this.props.articleObj.article_ratings)
+        let total = 0
+        const articleRatings = this.props.articleObj.article_ratings
+        articleRatings.forEach(rating => {
+            total += rating.star
+            
+        });
+        let newTotal = total / articleRatings.length
+
+        console.log("new Total:", newTotal )
+        return <h3>Ratings: {newTotal}</h3>
+    }
+
+    
+
     render() {
         return (
             <>
                 <h2>{this.props.articleObj.title}</h2>
+                <br></br>
+                {this.averageRatings()}
+                <br></br>
+                {this.props.articleObj.img_url === null | this.props.articleObj.img_url === "" ?
+                <>
+                <img src={"https://ca.res.keymedia.com/files/image/default(1).jpg"} alt={this.props.articleObj} width="300" height="300" />
+                </>
+                :
+                <>
                 <img  className="article-photo" src={this.props.articleObj.img_url} alt={this.props.articleObj} width="300" height="300" />
-                {/* {this.props.articleObj.content} */}
+                </>
+                }
                 <br></br>
                 <NavLink to="/show">
                 <button style={{"textAlign": "center"}} onClick={this.renderArticle}>Show</button>

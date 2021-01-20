@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import {Redirect} from 'react-router-dom'
+import {connect} from 'react-redux'
 
 export class Signup extends Component {
 
@@ -18,9 +20,11 @@ export class Signup extends Component {
     }
     submitHandler = (e) => {
         e.preventDefault()
-      
+        console.log("onsubmit redux.logged_in",this.props.logged_in)
         this.props.submitHandler(this.state)
         // this.setState({finished:true})
+
+        // return (<Redirect to="/welcome" />)
         
     }
 
@@ -44,10 +48,34 @@ export class Signup extends Component {
                 <input type="submit" value="Sign Up"/>
                 </div>
             </form>
+
+            { this.props.logged_in === true ? 
+            
+            <>
+            <Redirect to="/profile"/>
+            </>
+            :
+            <>
+            </>
+            }
             </div>
         )
     }
 }
 
-export default Signup
+const msp = (state) => {
+    return{ 
+        logged_in: state.logged_in
+    }
+
+}
+
+function mdp(dispatch){
+    return{
+
     
+    }
+    
+}
+
+export default connect(msp,mdp)(Signup)

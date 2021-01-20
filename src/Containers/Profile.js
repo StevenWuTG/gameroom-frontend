@@ -15,7 +15,7 @@ export class Profile extends Component {
     renderArticleForm = () => {
         if(this.state.articleFormClicked){
 
-            return (<AddArticle />)
+            return (<AddArticle fetchArticleData={this.props.fetchArticleData} />)
         }
 
     }

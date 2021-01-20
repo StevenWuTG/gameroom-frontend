@@ -10,7 +10,10 @@ export class GameCard extends Component {
             total += rating.star
             
         });
-        console.log("total:", total / gameRatings.length )
+        let newTotal = total / gameRatings.length
+
+        console.log("new Total:", newTotal )
+        return newTotal
     }
     render() {
         return (
@@ -26,7 +29,16 @@ export class GameCard extends Component {
 
                 </h2>
                 <br></br>
+                {this.props.gameObj.img_url === null | this.props.gameObj.img_url === "" ?  
+                <>
+
+                <img  className="game-photo" src={"https://ca.res.keymedia.com/files/image/default(1).jpg"} alt={this.props.gameObj.name} width="40%" height="40%" />
+                </>
+                :
+                <>
                 <img  className="game-photo" src={this.props.gameObj.img_url} alt={this.props.gameObj.name} width="40%" height="40%" />
+                </>
+                }
             </div>
         )
     }
