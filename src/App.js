@@ -99,7 +99,7 @@ export class App extends Component {
           <Route path="/login" render={()=> <Login submitHandler={this.reduxSigninSubmitHandler}/>} />
           <Route path="/signup" render={()=> <Signup submitHandler={this.reduxSignupSubmitHandler}/>} />
           </div>
-        <Route path="/show" render={()=> <ShowArticle userObj={this.props.userObj} articleObj={this.props.articleObj} fetchArticleData={this.fetchArticleData} />} />
+        <Route path="/showarticle" render={()=> <ShowArticle userObj={this.props.userObj} articleObj={this.props.articleObj} fetchArticleData={this.fetchArticleData} />} />
         <Route path="/profile" render={()=> <Profile fetchArticleData={this.fetchArticleData}/>} />
         <Route path="/welcome" render={()=> <Welcome/>} />
         </div>

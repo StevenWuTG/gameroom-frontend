@@ -58,7 +58,9 @@ function postReducer(prevState= defaultState.post, action){
         case"SHOW_POST":
             console.log("setting article in redux post")
             return action.payload
-        
+        case"EDIT_POST":
+            console.log("editing article in redux ")
+            return action.payload
 
         default:
 

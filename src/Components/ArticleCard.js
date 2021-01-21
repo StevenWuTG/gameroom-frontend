@@ -3,7 +3,7 @@ import {NavLink, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { showPost } from '../Redux/actions'
 
-export class Article extends Component {
+export class ArticleCard extends Component {
 
     renderArticle = () => {
         console.log("article details clicked")
@@ -29,6 +29,7 @@ export class Article extends Component {
         
     }
 
+   
     
 
     render() {
@@ -40,18 +41,21 @@ export class Article extends Component {
                 <br></br>
                 {this.props.articleObj.img_url === null | this.props.articleObj.img_url === "" ?
                 <>
-                <img src={"https://ca.res.keymedia.com/files/image/default(1).jpg"} alt={this.props.articleObj} width="300" height="300" />
+                <img  src={"https://ca.res.keymedia.com/files/image/default(1).jpg"} alt={this.props.articleObj} width="300" height="300" />
                 </>
                 :
                 <>
-                <img  className="article-photo" src={this.props.articleObj.img_url} alt={this.props.articleObj} width="300" height="300" />
+                <NavLink to="/showarticle">
+                <img onClick={this.renderArticle} className="article-photo" src={this.props.articleObj.img_url} alt={this.props.articleObj} width="300" height="300" />
+                </NavLink>
                 </>
                 }
                 <br></br>
-                <NavLink to="/show">
+
+                {/* <NavLink to="/showarticle">
                 <button style={{"textAlign": "center"}} onClick={this.renderArticle}>Show</button>
-                </NavLink>
-                {/* <button onClick={this.renderArticle}>Details</button> */}
+                </NavLink> */}
+                
                 <br></br>
                 <br></br>
                 <br></br>
@@ -76,4 +80,4 @@ function mdp(dispatch){
     
 }
 
-export default connect(msp,mdp)(Article)
+export default connect(msp,mdp)(ArticleCard)

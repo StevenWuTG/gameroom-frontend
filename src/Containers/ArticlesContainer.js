@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Article from '../Components/Article'
+import ArticleCard from '../Components/ArticleCard'
 import '../Css/Articles.css';
 
 export class ArticlesContainer extends Component {
@@ -33,7 +33,7 @@ export class ArticlesContainer extends Component {
     renderArticles = () => {
         if(this.state.articleArray){
 
-            return this.state.articleArray.map( article => <Article className="article-card center" key={article.id} articleObj={article}   />)
+            return this.state.articleArray.map( article => <ArticleCard className="article-card center" key={article.id} articleObj={article}   />)
         }
     }
 

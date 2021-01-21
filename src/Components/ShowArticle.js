@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import {connect} from "react-redux"
 import ArticleRatingForm from "./ArticleRatingForm"
+import EditArticle from "./EditArticle"
 
 export class ShowArticle extends Component {
 
     state = {
-        ratingsArray : []
+        ratingsArray : [],
+
     }
 
 
@@ -98,14 +100,19 @@ export class ShowArticle extends Component {
 
     renderEditButton = () => {
         console.log("rendering edit button",this.props.articleObj.author)
-        if(this.props.userObj.username === this.props.articleObj.author){
+        if(this.props.userObj === null ){
+            return 
+        } else if (this.props.userObj.username === this.props.articleObj.author) {
             return (
                 <>
-                    <button>Test</button>
+        
+                    <EditArticle  fetchArticleData={this.props.fetchArticleData}/>
                 </>
             )
         }
     }
+
+    
     
 
     render() {
