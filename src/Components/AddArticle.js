@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 
+import {NavLink } from 'react-router-dom'
+
 export class AddArticle extends Component {
 
     state = {
@@ -50,6 +52,15 @@ export class AddArticle extends Component {
         console.log("article submit e.target", e.target.game_id.value)
     }
 
+    listGames = () => {
+        console.log("games array in addArticle form", this.props.gamesArray)
+        if (this.props.gamesArray){
+
+            return this.props.gamesArray.map(game => <option value={game.id}  >{game.title}</option>)
+        }
+
+    }
+
    
 
     render() {
@@ -68,9 +79,17 @@ export class AddArticle extends Component {
                 <br></br>
                 <input type="text" name="video_url"placeholder="Youtube_url" value={this.state.video_url} onChange={this.inputHandler}/>
                 <br></br>
+                <select name="game_id"  value={this.state.game_id} onChange={this.inputHandler}>
+                    <option value={""}>Select Game</option>
+                    {this.listGames()}
+                    <option value={""}>No Game</option>
+                </select>
                 
                 <br></br>
+                
+                
                 <button type="submit">Submit</button>
+                
                 
                 </form>
                 

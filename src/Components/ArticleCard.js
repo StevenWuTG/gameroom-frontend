@@ -41,7 +41,9 @@ export class ArticleCard extends Component {
                 <br></br>
                 {this.props.articleObj.img_url === null | this.props.articleObj.img_url === "" ?
                 <>
-                <img  src={"https://ca.res.keymedia.com/files/image/default(1).jpg"} alt={this.props.articleObj} width="300" height="300" />
+                <NavLink to="/showarticle">
+                <img onClick={this.renderArticle} className="article-photo" src={"https://ca.res.keymedia.com/files/image/default(1).jpg"} alt={this.props.articleObj} width="300" height="300" />
+                </NavLink>
                 </>
                 :
                 <>

@@ -139,12 +139,10 @@ export class ShowArticle extends Component {
                     <img  className="article-photo" src={article.img_url} alt={this.props.articleObj.title} width="300vh" height="100%" />
                     }
 
-                <p>{article.content}</p>
                 <h4>Author: {article.author}</h4>
                 
                 {this.renderRatings()}
-                {this.renderDate()}
-                
+
                 {this.props.userObj === null ?
                 <>
                 </>
@@ -156,6 +154,10 @@ export class ShowArticle extends Component {
                 
                 </>
                 }
+
+                {this.renderDate()}
+                
+                <p>{article.content}</p>
 
                 </>
             

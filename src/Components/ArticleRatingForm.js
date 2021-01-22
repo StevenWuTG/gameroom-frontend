@@ -72,10 +72,10 @@ export class ArticleRatingForm extends Component {
     render() {
         return (
             <div>
-                Submit Your Rating:
+                Submit Your Star Rating:
                 <form onSubmit={this.articleRatingSubmit}>
 
-                -
+                
                 <select name="star" value={this.state.star} onChange={this.inputHandler}>
                     <option value={1}>1</option>
                     <option value={2}>2</option>

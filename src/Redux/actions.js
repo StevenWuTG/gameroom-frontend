@@ -113,29 +113,28 @@ export function fetchGames(gamesArray){
                     //   .catch(console.log)
                     
                     
-                }
-            }
+    }
+}
             
-            export function editArticle(articleObj){
-                return function(dispatch){
-                    console.log("in redux update",articleObj )
+export function editArticle(articleObj){
+    return function(dispatch){
+        console.log("in redux update",articleObj )
                     
-                    fetch(`http://localhost:5000/articles/${articleObj.id}`,{
-                        method:"PATCH",
-                        headers:{
-                            "Content-Type": "application/json",
-                            "Accepts": "application/json"
-                        },
-                        body:JSON.stringify(articleObj)
-                    })
-                    .then(r => r.json())
-                    .then (newArticleObj => {
-                        console.log("edited user in backend",newArticleObj)
-                        dispatch({type: EDIT_POST, payload: newArticleObj})
-            
-            
-        })
-        .catch(console.log)
-
+                fetch(`http://localhost:5000/articles/${articleObj.id}`,{
+                    method:"PATCH",
+                    headers:{
+                        "Content-Type": "application/json",
+                        "Accepts": "application/json"
+                    },
+                    body:JSON.stringify(articleObj)
+                })
+                .then(r => r.json())
+                .then (newArticleObj => {
+                    console.log("edited user in backend",newArticleObj)
+                    dispatch({type: EDIT_POST, payload: newArticleObj})
+        
+                })
+                .catch(console.log)
+                
     }
 }
