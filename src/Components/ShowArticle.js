@@ -33,26 +33,28 @@ export class ShowArticle extends Component {
     
     averageRatings = () => {
         
-        
-        let total = 0
-        const articleRatings = this.props.articleObj.article_ratings
-        articleRatings.forEach(rating => {
-            total += rating.star
+        if(this.props.articleObj.article_ratings){
+
+            let total = 0
+            const articleRatings = this.props.articleObj.article_ratings
+            articleRatings.forEach(rating => {
+                total += rating.star
+                
+            });
+            let newTotal = total / articleRatings.length
             
-        });
-        let newTotal = total / articleRatings.length
-
-        console.log("new Total:", newTotal )
-        if(newTotal){
-
-            return <h3>Ratings: {newTotal}</h3>
+            console.log("new Total:", newTotal )
+            if(newTotal){
+                
+                return <h3>Ratings: {newTotal}</h3>
+            }
         }
     }
 
     renderRatingForm = () => {
         if(this.props.articleObj && this.props.userObj){
             
-            return <ArticleRatingForm renderRatings={this.renderRatings} fetchArticleData={this.props.fetchArticleData} articleObj={this.props.articleObj} userObj={this.props.userObj} />
+            return <ArticleRatingForm renderRatings={this.renderRatings} fetchArticleData={this.props.fetchArticleData}  />
         }
 
     }

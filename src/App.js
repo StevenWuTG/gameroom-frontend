@@ -44,6 +44,7 @@ export class App extends Component {
   // }
 
   fetchGameData = () => {
+    console.log("fetching games ")
     fetch(`http://localhost:5000/games`)
     .then(r => r.json())
     .then(apiData => {

@@ -14,11 +14,11 @@ export class ArticleRatingForm extends Component {
     componentDidMount(){
         console.log("redux  props.userObj", this.props.userObj)
         console.log("redux props.articleObj", this.props.articleObj)
-        this.setState({
-            user_id: this.props.userObj.id,
-            article_id: this.props.articleObj.id,
+        // this.setState({
+        //     user_id: this.props.userObj.id,
+        //     article_id: this.props.articleObj.id,
             
-        })
+        // })
     }
 
     inputHandler = (e) => {
@@ -37,14 +37,18 @@ export class ArticleRatingForm extends Component {
         // const ratingObj = this.state
         // console.log("articleRatingSubmit ratingObj", ratingObj)
         console.log("articleRatingSubmit this.state before fetch ", this.state)
-
+        let newRating = {
+            user_id: this.props.userObj.id,
+            article_id: this.props.articleObj.id,
+            star: e.target.star.value
+        }
         fetch("http://localhost:5000/article_ratings", {
             method:"POST",
             headers:{
                 "Content-Type": "application/json",
                 "Accepts": "application/json"
             },
-            body:JSON.stringify(this.state)
+            body:JSON.stringify(newRating)
         })
         .then(r => r.json())
         .then(newArticleRating => {
@@ -56,7 +60,7 @@ export class ArticleRatingForm extends Component {
     
     resetReduxArticle = () => {
         console.log("this.state", this.state)
-        let id = this.state.article_id
+        let id = this.props.articleObj.id
         
         console.log("resetReduxArticle article id:", id)
         fetch(`http://localhost:5000/articles/${id}`)
@@ -92,10 +96,10 @@ export class ArticleRatingForm extends Component {
 }
 
 const msp = (state) => {
-    // return{ 
-    //     userObj:state.user,
-    //     articleObj: state.post
-    // }
+    return{ 
+        userObj:state.user,
+        articleObj: state.post
+    }
 
 }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-
-import {NavLink } from 'react-router-dom'
+import { Redirect} from 'react-router-dom'
+import { showPost } from '../Redux/actions'
 
 export class AddArticle extends Component {
 
@@ -11,7 +11,8 @@ export class AddArticle extends Component {
         img_url: "",
         video_url: "",
         game_id: "",
-        author: ""
+        author: "",
+        finishedSubmit: false
     }
 
     componentDidMount(){
@@ -31,25 +32,42 @@ export class AddArticle extends Component {
     articleSubmit = (e) => {
         e.preventDefault()
 
-        this.setState({game_id:  e.target.game_id.value  })
-        console.log("in article submit function",this.state)
+        // this.setState({game_id:  e.target.game_id.value  })
+        let newArticleObj = {
+            title: this.state.title,
+            content: this.state.content,
+            img_url: this.state.img_url,
+            video_url: this.state.video_url,
+            game_id: e.target.game_id.value ,
+            author: this.state.author,
+        }
+        console.log("in article submit function this.state",this.state)
+        console.log("in article submit function newArticleObj",newArticleObj)
         fetch("http://localhost:5000/articles", {
             method:"POST",
             headers:{
                 "Content-Type": "application/json",
                 "Accepts": "application/json"
             },
-            body:JSON.stringify(this.state)
+            body:JSON.stringify(newArticleObj)
         })
         .then(r => r.json())
         .then(newArticle => {
-            console.log("created new article", newArticle)
-            
-            this.props.fetchArticleData()
+            if(newArticle.errors){
+                
+                console.log("errors creating new article: ", newArticle.errors)
+                // alert("errors creating new article: ", newArticle.errors)
+            } else {
+
+                console.log("created new article", newArticle)
+                this.setState({finishedSubmit: true})
+                this.props.fetchArticleData()
+                this.props.showPost(newArticle)
+            }
         })
         
-        console.log("article submit this.state", this.state)
-        console.log("article submit e.target", e.target.game_id.value)
+        
+        
     }
 
     listGames = () => {
@@ -59,6 +77,13 @@ export class AddArticle extends Component {
             return this.props.gamesArray.map(game => <option value={game.id}  >{game.title}</option>)
         }
 
+    }
+
+    submitRedirect = () => {
+        if(this.state.finishedSubmit === true){
+            this.setState({finishedSubmit: false})
+            return <Redirect to="showarticle" />
+        }
     }
 
    
@@ -89,6 +114,7 @@ export class AddArticle extends Component {
                 
                 
                 <button type="submit">Submit</button>
+                {this.submitRedirect()}
                 
                 
                 </form>
@@ -108,6 +134,14 @@ const msp = (state) => {
 
 }
 
+const mdp = (dispatch) =>{
+    return{
+        showPost: (postObj) => dispatch(showPost(postObj)) 
+    
+    }
+    
+}
 
 
-export default connect(msp, null)(AddArticle)
+
+export default connect(msp, mdp)(AddArticle)
