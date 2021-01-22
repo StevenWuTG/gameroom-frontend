@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import {connect} from "react-redux"
 import ArticleRatingForm from "./ArticleRatingForm"
 import EditArticle from "./EditArticle"
+import ReactPlayer from "react-player"
+import '../Css/App.css'
+
+
 
 export class ShowArticle extends Component {
 
@@ -114,6 +118,18 @@ export class ShowArticle extends Component {
         }
     }
 
+    renderVideo = () => {
+        if(this.props.articleObj.video_url === null | this.props.articleObj.video_url === ""){
+            return 
+        } else {
+            return <div style={{"display": 'flex',"justify-content": "center"}} >
+                    
+                    <ReactPlayer  controls  url={this.props.articleObj.video_url}/>
+                
+                    </div>
+        }
+    }
+
     
     
 
@@ -140,6 +156,9 @@ export class ShowArticle extends Component {
                     
                     <img  className="article-photo" src={article.img_url} alt={this.props.articleObj.title} width="300vh" height="100%" />
                     }
+                
+                {this.renderVideo()}
+                
 
                 <h4>Author: {article.author}</h4>
                 
