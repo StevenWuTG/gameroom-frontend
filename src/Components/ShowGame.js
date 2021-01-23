@@ -11,19 +11,46 @@ export class ShowGame extends Component {
     }
 
     renderTitle = () => {
+      if(this.props.currentGameObj.title){
+            
+        return (
+          <>
+          <h3>{this.props.currentGameObj.title}</h3>
+          <div>By: {this.props.currentGameObj.publisher}</div>
+          </>
+
+        ) 
+      } else {
+          return
+
+      }
 
     }
 
     renderVideo = () => {
       if(this.props.currentGameObj.video_url === null | this.props.currentGameObj.video_url === ""){
+        if(this.props.currentGameObj.video_url === null | this.props.currentGameObj.video_url === ""){
+          return <img src={"https://pbs.twimg.com/media/EK6BEwbXYAA78Bw.jpg"} alt={this.props.currentGameObj.title} width="300" height="300" />
+
+        } else {
+          return <img src={this.props.currentGameObj.img_url} alt={this.props.currentGameObj.title} width="300vh" height="100%" />
+        }
           return 
       } else {
           return <div style={{"display": 'flex',"justify-content": "center"}} >
                   
-                  <ReactPlayer  controls  url={this.props.articleObj.video_url}/>
+                  <ReactPlayer  controls  url={this.props.currentGameObj.video_url}/>
               
                   </div>
       }
+  }
+
+  renderDesc = () => {
+    if(this.props.currentGameObj.description === null | this.props.currentGameObj.description === ""){
+      return
+    } else {
+      return <p>{this.props.currentGameObj.description}</p>
+    }
   }
 
 
@@ -34,7 +61,10 @@ export class ShowGame extends Component {
             <div>
                 
                 {this.renderTitle()}
-                {this.props.currentGameObj.title}
+                <br></br>
+                {this.renderVideo()}
+                {this.renderDesc()}
+                <br></br>
 
             </div>
         )

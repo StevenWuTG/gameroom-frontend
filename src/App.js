@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Route} from 'react-router-dom'
+import {Route, Redirect} from 'react-router-dom'
 import './Css/App.css';
 
 import Header from './Containers/Header'
@@ -86,17 +86,18 @@ export class App extends Component {
         <Navbar/>
         </div>
         <div className="grid-body">
-          <div className="center">
+          
 
-          <Route path="/articles" render={()=> <ArticlesContainer className="center" articleArray={this.props.articlesArray}/>} />
-          <Route path="/games" render={()=> <GamesContainer />} />
-          <Route path="/login" render={()=> <Login submitHandler={this.reduxSigninSubmitHandler}/>} />
-          <Route path="/signup" render={()=> <Signup submitHandler={this.reduxSignupSubmitHandler}/>} />
-          </div>
+        <Route path="/articles" render={()=> <ArticlesContainer className="center" articleArray={this.props.articlesArray}/>} />
+        <Route path="/games" render={()=> <GamesContainer />} />
+        <Route path="/login" render={()=> <Login submitHandler={this.reduxSigninSubmitHandler}/>} />
+        <Route path="/signup" render={()=> <Signup submitHandler={this.reduxSignupSubmitHandler}/>} />
+          
         <Route path="/showarticle" render={()=> <ShowArticle userObj={this.props.userObj} articleObj={this.props.articleObj} fetchArticleData={this.fetchArticleData} />} />
         <Route path="/showgame" render={()=> <ShowGame />} />
         <Route path="/profile" render={()=> <Profile fetchArticleData={this.fetchArticleData}/>} />
         <Route path="/welcome" render={()=> <Welcome/>} />
+        <Redirect to="/welcome"/>
         </div>
         <div className="grid-footer">
         
