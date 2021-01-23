@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {showPost} from '../Redux/actions'
+import {showArticle} from '../Redux/actions'
 
 export class ArticleRatingForm extends Component {
 
@@ -67,7 +67,7 @@ export class ArticleRatingForm extends Component {
         .then(r=>r.json())
         .then(articleObj => {
             console.log("updated article", articleObj)
-            this.props.showPost(articleObj)
+            this.props.showArticle(articleObj)
         })
         .catch(console.log)
 
@@ -98,14 +98,14 @@ export class ArticleRatingForm extends Component {
 const msp = (state) => {
     return{ 
         userObj:state.user,
-        articleObj: state.post
+        articleObj: state.article
     }
 
 }
 
 function mdp(dispatch){
     return{
-        showPost: (postObj) => dispatch(showPost(postObj)) 
+        showArticle: (postObj) => dispatch(showArticle(postObj)) 
     
     }
     

@@ -203,7 +203,7 @@ export class EditArticle extends Component {
 
 const msp = (state) => {
     return{ 
-        currentArticle: state.post
+        currentArticle: state.article
     }
 
 }

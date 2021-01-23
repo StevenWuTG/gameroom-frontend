@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import { Redirect} from 'react-router-dom'
-import { showPost } from '../Redux/actions'
+import { showArticle } from '../Redux/actions'
 
 export class AddArticle extends Component {
 
@@ -62,7 +62,7 @@ export class AddArticle extends Component {
                 console.log("created new article", newArticle)
                 this.setState({finishedSubmit: true})
                 this.props.fetchArticleData()
-                this.props.showPost(newArticle)
+                this.props.showArticle(newArticle)
             }
         })
         
@@ -136,7 +136,7 @@ const msp = (state) => {
 
 const mdp = (dispatch) =>{
     return{
-        showPost: (postObj) => dispatch(showPost(postObj)) 
+        showArticle: (postObj) => dispatch(showArticle(postObj)) 
     
     }
     

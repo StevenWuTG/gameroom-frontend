@@ -4,7 +4,8 @@ const defaultState = {
     user:null,
     counter:0,
     logged_in: false,
-    post: null,
+    article: null,
+    game: null,
     gamesArray: null,
     articlesArray: null
    
@@ -53,12 +54,26 @@ function loginReducer(prevState= defaultState.user, action){
             return prevState
                 }
 }
-function postReducer(prevState= defaultState.post, action){
+function articleReducer(prevState= defaultState.article, action){
     switch(action.type){
-        case"SHOW_POST":
+        case"SHOW_ARTICLE":
             console.log("setting article in redux post")
             return action.payload
-        case"EDIT_POST":
+        case"EDIT_ARTICLE":
+            console.log("editing article in redux ")
+            return action.payload
+
+        default:
+
+            return prevState
+                }
+}
+function gameReducer(prevState= defaultState.game, action){
+    switch(action.type){
+        case"SHOW_GAME":
+            console.log("setting article in redux post")
+            return action.payload
+        case"EDIT_GAME":
             console.log("editing article in redux ")
             return action.payload
 
@@ -96,7 +111,8 @@ function gamesArrayReducer(prevState= defaultState.gamesArray, action){
 const rootReducer =  combineReducers({
     user: userReducer,
     logged_in: loginReducer,
-    post: postReducer,
+    article: articleReducer,
+    game: gameReducer,
     gamesArray: gamesArrayReducer,
     articlesArray: articlesArrayReducer
 

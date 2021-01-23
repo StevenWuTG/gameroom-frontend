@@ -1,4 +1,4 @@
-import {LOGIN, SIGNUP, LOG_OUT, REDUX_LOG_IN, REDUX_LOG_OUT,SHOW_POST,FETCH_ARTICLES,FETCH_GAMES,EDIT_POST} from './actionTypes'
+import {LOGIN, SIGNUP, LOG_OUT, REDUX_LOG_IN, REDUX_LOG_OUT,FETCH_ARTICLES,SHOW_ARTICLE,EDIT_ARTICLE,FETCH_GAMES, SHOW_GAME} from './actionTypes'
 
 export function signupUser(userObj) {
 
@@ -59,10 +59,19 @@ export function reduxLogout(){
     
 }
 
-export function showPost(postObj){
+
+export function showArticle(postObj){
     
     return function(dispatch){
-        dispatch({type: SHOW_POST, payload: postObj})
+        dispatch({type: SHOW_ARTICLE, payload: postObj})
+        
+        
+    }
+}
+export function showGame(gameObj){
+    
+    return function(dispatch){
+        dispatch({type: SHOW_GAME, payload: gameObj})
         
         
     }
@@ -132,7 +141,7 @@ export function editArticle(articleObj){
                 .then(r => r.json())
                 .then (newArticleObj => {
                     console.log("edited user in backend",newArticleObj)
-                    dispatch({type: EDIT_POST, payload: newArticleObj})
+                    dispatch({type: EDIT_ARTICLE, payload: newArticleObj})
         
                 })
                 .catch(console.log)

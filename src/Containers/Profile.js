@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import AddArticle from '../Components/AddArticle'
+import {fetchGames} from '../Redux/actions'
 
 export class Profile extends Component {
 
@@ -10,6 +11,7 @@ export class Profile extends Component {
     componentDidMount(){
         console.log("redux userObj",this.props.userObj)
         console.log("redux loggin state :",this.props.logged_in)
+        this.props.fetchGames()
     }
 
     renderArticleForm = () => {
@@ -86,6 +88,8 @@ const msp = (state) => {
 
 function mdp(dispatch){
     return{
+
+        fetchGames: (apiData) => dispatch(fetchGames(apiData))
 
     
     }

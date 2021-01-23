@@ -191,7 +191,7 @@ export class ShowArticle extends Component {
 
 const msp = (state) => {
     return {
-        // articleObj: state.post,
+        articleObj: state.article,
         // userObj: state.user
     }
 }

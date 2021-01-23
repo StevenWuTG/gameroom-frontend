@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import {NavLink, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
-import { showPost } from '../Redux/actions'
+import { showArticle } from '../Redux/actions'
 
 export class ArticleCard extends Component {
 
     renderArticle = () => {
         console.log("article details clicked")
         console.log("articleObj", this.props.articleObj)
-        this.props.showPost(this.props.articleObj)
+        this.props.showArticle(this.props.articleObj)
         
     }
 
@@ -76,7 +76,7 @@ const msp = (state) => {
 
 function mdp(dispatch){
     return{
-        showPost: (postObj) => dispatch(showPost(postObj)) 
+        showArticle: (postObj) => dispatch(showArticle(postObj)) 
     
     }
     

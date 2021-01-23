@@ -10,6 +10,7 @@ import GamesContainer from './Containers/GamesContainer'
 
 import Navbar from './Components/Navbar'
 import ShowArticle from './Components/ShowArticle'
+import ShowGame from './Components/ShowGame'
 import Welcome from './Components/Welcome'
 import Login from './Components/Login'
 import Signup from './Components/Signup'
@@ -93,6 +94,7 @@ export class App extends Component {
           <Route path="/signup" render={()=> <Signup submitHandler={this.reduxSignupSubmitHandler}/>} />
           </div>
         <Route path="/showarticle" render={()=> <ShowArticle userObj={this.props.userObj} articleObj={this.props.articleObj} fetchArticleData={this.fetchArticleData} />} />
+        <Route path="/showgame" render={()=> <ShowGame />} />
         <Route path="/profile" render={()=> <Profile fetchArticleData={this.fetchArticleData}/>} />
         <Route path="/welcome" render={()=> <Welcome/>} />
         </div>
@@ -112,7 +114,8 @@ function msp(state){
     articlesArray: state.articlesArray,
     gamesArray: state.gamesArray,
     articleObj: state.post,
-    userObj: state.user
+
+            userObj: state.user
   }
 }
 
