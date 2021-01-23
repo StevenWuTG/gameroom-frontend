@@ -10,6 +10,7 @@ export class GamesContainer extends Component {
 
     state = {
         // gamesArray: null
+        filteredGames: ""
     }
 
     componentDidMount(){
@@ -38,16 +39,23 @@ export class GamesContainer extends Component {
     renderGames = () => {
         console.log("rendering games", this.state.gamesArray)
         if(this.props.gamesArray){
+            let desiredGames = this.props.gamesArray.filter(desiredGame => desiredGame.title.toLowerCase().includes(this.state.filteredGames.toLowerCase()))
 
-            return this.props.gamesArray.map(game => <GameCard gameObj={game} />)
+            return desiredGames.map(game => <GameCard gameObj={game} />)
         }
         
 
+    }
+
+    filterHandler = (e) => {
+        console.log(this.state.filteredGames)
+        this.setState({filteredGames: e.target.value})
     }
     
     render() {
         return (
             <div>
+                Search: <input onChange={this.filterHandler}></input>
                 {/* {this.props.gameObj.name} */}
                 {this.renderGames()}
             </div>
