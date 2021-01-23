@@ -5,7 +5,7 @@ export function signupUser(userObj) {
 
     return function (dispatch) {
         // console.log("userobj in signup",userObj)
-        fetch('http://localhost:5000/users', {
+        fetch('http://localhost:3001/users', {
             method: "POST",
             headers: {
                 "Accepts": "application/json",
@@ -28,7 +28,7 @@ export function signupUser(userObj) {
 
 export function loginUser(userObj) {
     return function(dispatch){
-        fetch('http://localhost:5000/login', {
+        fetch('http://localhost:3001/login', {
             method: "POST",
             headers: {
                 "Accepts": "application/json",
@@ -71,7 +71,7 @@ export function showPost(postObj){
 export function fetchArticles(articlesArray){
     
     return function(dispatch){
-        // fetch("http://localhost:5000/articles")
+        // fetch("http://localhost:3001/articles")
         //   .then(r => r.json())
         //   .then (arrayOfArticles => {
               
@@ -95,22 +95,23 @@ export function fetchGames(gamesArray){
     
     return function(dispatch){
 
-        dispatch({type: FETCH_GAMES, payload: gamesArray})
         
-        // fetch("http://localhost:5000/")
-        //   .then(r => r.json())
-        //   .then (arrayOfGames => {
+        fetch("http://localhost:3001/games")
+        .then(r => r.json())
+        .then (arrayOfGames => {
             
-            //       if(arrayOfGames === null ){
-                //           console.log("no data fetched")
-                //       } else {
-                    
-                    //           console.log("fetched array of articles", arrayOfGames)
-                    //           dispatch({type: FETCH_GAMES, payload: arrayOfGames})
-                    
-                    //       }
-                    //   })
-                    //   .catch(console.log)
+            if(arrayOfGames === null ){
+                console.log("no data fetched")
+            } else if (arrayOfGames.errors){
+                console.log("errors fetching games ")
+            } else { 
+                
+                dispatch({type: FETCH_GAMES, payload: arrayOfGames})
+                console.log("fetched array of games in redux", arrayOfGames)
+               
+            }
+        })
+        .catch(console.log)
                     
                     
     }
@@ -120,7 +121,7 @@ export function editArticle(articleObj){
     return function(dispatch){
         console.log("in redux update",articleObj )
                     
-                fetch(`http://localhost:5000/articles/${articleObj.id}`,{
+                fetch(`http://localhost:3001/articles/${articleObj.id}`,{
                     method:"PATCH",
                     headers:{
                         "Content-Type": "application/json",

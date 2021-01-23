@@ -10,6 +10,7 @@ export class EditArticle extends Component {
         deleteButtonClicked: false,
         title: null,
         img_url: null,
+        video_url: null,
         content: null,
         article_id: null
     }
@@ -23,6 +24,7 @@ export class EditArticle extends Component {
         this.setState({
             title: this.props.currentArticle.title,
             img_url: this.props.currentArticle.img_url,
+            video_url: this.props.currentArticle.video_url,
             content: this.props.currentArticle.content,
             article_id: this.props.currentArticle.id
         })
@@ -57,7 +59,8 @@ export class EditArticle extends Component {
             title: this.state.title,
             content: this.state.content,
             
-            img_url: this.state.img_url
+            img_url: this.state.img_url,
+            video_url: this.state.video_url
              
         }
 
@@ -69,7 +72,7 @@ export class EditArticle extends Component {
 
         
         // console.log("in article submit function",this.state)
-        // fetch("http://localhost:5000/articles", {
+        // fetch("http://localhost:3001/articles", {
         //     method:"POST",
         //     headers:{
         //         "Content-Type": "application/json",
@@ -100,7 +103,7 @@ export class EditArticle extends Component {
     confirmedDelete = () => {
         this.props.fetchArticleData()
         let article_id = this.props.currentArticle.id
-        fetch(`http://localhost:5000/articles/${article_id}`, {
+        fetch(`http://localhost:3001/articles/${article_id}`, {
             method: 'DELETE'
         })
         .then(r => r.json())
@@ -116,7 +119,14 @@ export class EditArticle extends Component {
             return <input type="text" name="img_url"placeholder={this.state.img_url} value={this.state.img_url} onChange={this.inputHandler}/>
         }
     }
-
+    
+    renderVideoInput = () => {
+        if(this.state.video_url === ""|this.state.video_url === null){
+            return <input type="text" name="video_url"placeholder={"video url"} value={this.state.video_url} onChange={this.inputHandler}/>
+        } else {
+            return <input type="text" name="video_url"placeholder={this.state.video_url} value={this.state.video_url} onChange={this.inputHandler}/>
+        }
+    }
 
     render() {
         return (
@@ -144,6 +154,8 @@ export class EditArticle extends Component {
                     <input type="text" name="content"placeholder={this.state.content}value={this.state.content} onChange={this.inputHandler}/>
                     <br></br>
                     {this.renderImageInput()}
+                    <br></br>
+                    {this.renderVideoInput()}
                     {/* <input type="text" name="img_url"placeholder={this.state.img_url} value={this.state.img_url} onChange={this.inputHandler}/> */}
                     <br></br>
                     {/* <input type="text" name="video_url"placeholder="Youtube_url" value={this.state.video_url} onChange={this.inputHandler}/> */}

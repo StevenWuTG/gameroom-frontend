@@ -42,7 +42,7 @@ export class ArticleRatingForm extends Component {
             article_id: this.props.articleObj.id,
             star: e.target.star.value
         }
-        fetch("http://localhost:5000/article_ratings", {
+        fetch("http://localhost:3001/article_ratings", {
             method:"POST",
             headers:{
                 "Content-Type": "application/json",
@@ -63,7 +63,7 @@ export class ArticleRatingForm extends Component {
         let id = this.props.articleObj.id
         
         console.log("resetReduxArticle article id:", id)
-        fetch(`http://localhost:5000/articles/${id}`)
+        fetch(`http://localhost:3001/articles/${id}`)
         .then(r=>r.json())
         .then(articleObj => {
             console.log("updated article", articleObj)

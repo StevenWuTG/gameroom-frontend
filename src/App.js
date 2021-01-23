@@ -27,7 +27,7 @@ export class App extends Component {
   componentDidMount(){
     const apiKey = process.env.REACT_APP_API_KEY
 
-    this.fetchGameData()
+    // this.fetchGameData()
     this.fetchArticleData()
     
   }
@@ -43,20 +43,12 @@ export class App extends Component {
 
   // }
 
-  fetchGameData = () => {
-    console.log("fetching games ")
-    fetch(`http://localhost:5000/games`)
-    .then(r => r.json())
-    .then(apiData => {
-        console.log("api data",apiData)
-        this.setState({gamesArray: apiData})
-        this.props.fetchGames(apiData)
-    })
-  }
+  
 
   fetchArticleData = () => {
+    //need to refractor to redux function
     console.log("Articles CDM")
-          fetch("http://localhost:5000/articles")
+          fetch("http://localhost:3001/articles")
           .then(r => r.json())
           .then (arrayOfArticles => {
               
@@ -96,7 +88,7 @@ export class App extends Component {
           <div className="center">
 
           <Route path="/articles" render={()=> <ArticlesContainer className="center" articleArray={this.props.articlesArray}/>} />
-          <Route path="/games" render={()=> <GamesContainer gamesArray={this.props.gamesArray}/>} />
+          <Route path="/games" render={()=> <GamesContainer />} />
           <Route path="/login" render={()=> <Login submitHandler={this.reduxSigninSubmitHandler}/>} />
           <Route path="/signup" render={()=> <Signup submitHandler={this.reduxSignupSubmitHandler}/>} />
           </div>

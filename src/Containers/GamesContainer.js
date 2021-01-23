@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import GameCard from '../Components/GameCard'
+import {connect} from 'react-redux'
+import {fetchGames} from '../Redux/actions'
 
 
 
@@ -7,10 +9,13 @@ import GameCard from '../Components/GameCard'
 export class GamesContainer extends Component {
 
     state = {
-        gamesArray: []
+        // gamesArray: null
     }
 
     componentDidMount(){
+        
+        this.props.fetchGames()
+
 
         
         
@@ -31,7 +36,7 @@ export class GamesContainer extends Component {
 
     
     renderGames = () => {
-        console.log("rendering games", this.props.gamesArray)
+        console.log("rendering games", this.state.gamesArray)
         if(this.props.gamesArray){
 
             return this.props.gamesArray.map(game => <GameCard gameObj={game} />)
@@ -49,5 +54,21 @@ export class GamesContainer extends Component {
         )
     }
 }
-
-export default GamesContainer
+function msp(state){
+    return {
+    
+      gamesArray: state.gamesArray
+    
+    }
+  }
+  
+  function mdp(dispatch){
+    return {
+      
+      fetchGames: (apiData) => dispatch(fetchGames(apiData))
+      
+    }
+  }
+  
+  
+  export default connect(msp, mdp)(GamesContainer);

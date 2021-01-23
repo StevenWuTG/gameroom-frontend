@@ -11,7 +11,7 @@ export class ArticlesContainer extends Component {
 
     componentDidMount(){
         console.log("Articles CDM")
-        fetch("http://localhost:5000/articles")
+        fetch("http://localhost:3001/articles")
         .then(r => r.json())
         .then (arrayOfArticles => {
             

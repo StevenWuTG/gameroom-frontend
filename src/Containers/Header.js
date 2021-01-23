@@ -4,7 +4,7 @@ export class Header extends Component {
     render() {
         return (
             <>
-                <h1 className="center">GankTank</h1>
+                <h1 className="center">GamerTank</h1>
             </>
         )
     }

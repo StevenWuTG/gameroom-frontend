@@ -57,7 +57,7 @@ export class Profile extends Component {
 
                 Post Article:
                 <br></br>
-                <h5 style={{"color": "orange"}}>working on it...</h5>
+                {/* <h5 style={{"color": "orange"}}>working on it...</h5> */}
                 <button onClick={this.formButtonHandler}>Show form</button>
 
                 {this.renderArticleForm()}

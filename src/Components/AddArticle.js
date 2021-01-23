@@ -9,7 +9,7 @@ export class AddArticle extends Component {
         title: "",
         content: "",
         img_url: "",
-        video_url: "",
+        video_url: null,
         game_id: "",
         author: "",
         finishedSubmit: false
@@ -43,7 +43,7 @@ export class AddArticle extends Component {
         }
         console.log("in article submit function this.state",this.state)
         console.log("in article submit function newArticleObj",newArticleObj)
-        fetch("http://localhost:5000/articles", {
+        fetch("http://localhost:3001/articles", {
             method:"POST",
             headers:{
                 "Content-Type": "application/json",
