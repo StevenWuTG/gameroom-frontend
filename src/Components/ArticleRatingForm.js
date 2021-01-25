@@ -5,7 +5,7 @@ import {showArticle} from '../Redux/actions'
 export class ArticleRatingForm extends Component {
 
     state = {
-        user_id: "",
+        rater_id: "",
         article_id: "",
         star: ""
 
@@ -36,12 +36,13 @@ export class ArticleRatingForm extends Component {
         // this.setState({star : e.target.form.value})
         // const ratingObj = this.state
         // console.log("articleRatingSubmit ratingObj", ratingObj)
-        console.log("articleRatingSubmit this.state before fetch ", this.state)
+        // console.log("articleRatingSubmit this.state before fetch ", this.state)
         let newRating = {
-            user_id: this.props.userObj.id,
+            rater_id: this.props.userObj.id,
             article_id: this.props.articleObj.id,
-            star: e.target.star.value
+            star: parseInt(e.target.star.value)
         }
+        console.log("newrating", newRating)
         fetch("http://localhost:3001/article_ratings", {
             method:"POST",
             headers:{

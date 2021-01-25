@@ -39,7 +39,7 @@ export function loginUser(userObj) {
             .then(r => r.json())
             .then(checkedUserObj => {
                 console.log("checkedUserObj:",checkedUserObj)
-                localStorage.setItem("token", checkedUserObj.jwt)
+                // localStorage.setItem("token", checkedUserObj.jwt)
                 dispatch({type: LOGIN, payload: checkedUserObj.user})
                 dispatch({type: REDUX_LOG_IN, payload: true})
                 

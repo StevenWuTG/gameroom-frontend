@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {connect} from "react-redux"
 import ArticleRatingForm from "./ArticleRatingForm"
 import EditArticle from "./EditArticle"
+import ArticleCommentsContainer from "../Containers/ArticleCommentsContainer"
 import ReactPlayer from "react-player"
 import '../Css/App.css'
 
@@ -18,7 +19,15 @@ export class ShowArticle extends Component {
 
     componentDidMount(){
         console.log("in /show this.props.post", this.props.articleObj)
+        // this.fetchComments()
        
+    }
+
+    fetchComments = () => {
+
+       
+ 
+
     }
 
     // averageRatings = () => {
@@ -96,7 +105,7 @@ export class ShowArticle extends Component {
             let formatedDate = rawDate.slice(0,10)
             return(
                 <>
-                    <h5>Publish Date:{formatedDate}</h5>
+                    Publish Date: {formatedDate}
                 </>
             )
                 
@@ -104,11 +113,24 @@ export class ShowArticle extends Component {
 
     }
 
+    // renderEditButton = () => {
+    //     console.log("rendering edit button",this.props.articleObj.author)
+    //     if(this.props.userObj === null ){
+    //         return 
+    //     } else if (this.props.userObj.username === this.props.articleObj.author) {
+    //         return (
+    //             <>
+        
+    //                 <EditArticle  fetchArticleData={this.props.fetchArticleData}/>
+    //             </>
+    //         )
+    //     }
+    // }
     renderEditButton = () => {
         console.log("rendering edit button",this.props.articleObj.author)
         if(this.props.userObj === null ){
             return 
-        } else if (this.props.userObj.username === this.props.articleObj.author) {
+        } else if (this.props.userObj.id=== this.props.articleObj.author.id) {
             return (
                 <>
         
@@ -140,47 +162,50 @@ export class ShowArticle extends Component {
             <div>
                 
                 {this.props.articleObj === null?
-                <>
-                no article in redux state
-                </>
-                :
-                <>
-
-                {this.renderEditButton()}
-                {this.renderTitle()}
-                {this.renderRelatedGame()}
-                <br></br>
-                    {this.props.articleObj.img_url === null | this.props.articleObj.img_url === "" ? 
-                    <img src={"https://pbs.twimg.com/media/EK6BEwbXYAA78Bw.jpg"} alt={this.props.articleObj.title} width="300" height="300" />
+                    <>
+                    no article in redux state
+                    </>
                     :
+                    //start of ShowArticle
+                    <>
                     
-                    <img  className="article-photo" src={article.img_url} alt={this.props.articleObj.title} width="300vh" height="100%" />
-                    }
-                
-                {this.renderVideo()}
-                
+                        {this.renderEditButton()}
+                        {this.renderTitle()}
+                        {this.renderRelatedGame()}
+                        <br></br>
+                            {this.props.articleObj.img_url === null | this.props.articleObj.img_url === "" ? 
+                            <img src={"https://pbs.twimg.com/media/EK6BEwbXYAA78Bw.jpg"} alt={this.props.articleObj.title} width="300" height="300" />
+                            :
+                            
+                            <img  className="article-photo" src={article.img_url} alt={this.props.articleObj.title} width="300vh" height="100%" />
+                        }
+                        
+                        {this.renderVideo()}
+                        
 
-                <h4>Author: {article.author}</h4>
-                
-                {this.renderRatings()}
+                        <h4>Author: {article.author.username}</h4>
+                        
+                        {this.renderRatings()}
 
-                {this.props.userObj === null ?
-                <>
-                </>
-                :
-                <>
-                {this.renderRatingForm()}
+                        {this.props.userObj === null ?
+                        <>
+                        </>
+                        :
+                        <>
+                        {this.renderRatingForm()}
+                        
+                        </>
+                        }
 
-                
-                
-                </>
-                }
 
-                {this.renderDate()}
-                
-                <p>{article.content}</p>
+                        <p>{article.content}</p>
 
-                </>
+                        {/* <ArticleCommentsContainer articleId={this.props.articleObj.id} comments={this.props.articleObj.article_comments}/> */}
+                        <ArticleCommentsContainer articleId={this.props.articleObj.id}/>
+                        <br></br>
+                        {this.renderDate()}
+                    </> 
+                    // end of ShowArticle
             
                 }
                 

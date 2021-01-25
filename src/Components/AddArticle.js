@@ -11,7 +11,7 @@ export class AddArticle extends Component {
         img_url: "",
         video_url: null,
         game_id: "",
-        author: "",
+        author_id: null,
         finishedSubmit: false
     }
 
@@ -20,7 +20,7 @@ export class AddArticle extends Component {
     }
 
     setAuthor = () => {
-        this.setState({author:this.props.currentUser.username})
+        this.setState({author_id:this.props.currentUser.id})
         // console.log("current user",this.props.currentUser)
     }
 
@@ -39,7 +39,7 @@ export class AddArticle extends Component {
             img_url: this.state.img_url,
             video_url: this.state.video_url,
             game_id: e.target.game_id.value ,
-            author: this.state.author,
+            author_id: this.state.author_id,
         }
         console.log("in article submit function this.state",this.state)
         console.log("in article submit function newArticleObj",newArticleObj)
