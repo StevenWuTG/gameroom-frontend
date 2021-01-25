@@ -1,4 +1,4 @@
-import {LOGIN, SIGNUP, LOG_OUT, REDUX_LOG_IN, REDUX_LOG_OUT,FETCH_ARTICLES,SHOW_ARTICLE,EDIT_ARTICLE,FETCH_GAMES, SHOW_GAME} from './actionTypes'
+import {LOGIN,GET_USER, SIGNUP, LOG_OUT, REDUX_LOG_IN, REDUX_LOG_OUT,FETCH_ARTICLES,SHOW_ARTICLE,EDIT_ARTICLE,FETCH_GAMES, SHOW_GAME} from './actionTypes'
 
 export function signupUser(userObj) {
 
@@ -39,7 +39,7 @@ export function loginUser(userObj) {
             .then(r => r.json())
             .then(checkedUserObj => {
                 console.log("checkedUserObj:",checkedUserObj)
-                // localStorage.setItem("token", checkedUserObj.jwt)
+                localStorage.setItem("token", checkedUserObj.jwt)
                 dispatch({type: LOGIN, payload: checkedUserObj.user})
                 dispatch({type: REDUX_LOG_IN, payload: true})
                 
@@ -147,4 +147,14 @@ export function editArticle(articleObj){
                 .catch(console.log)
                 
     }
+}
+
+export function returningUser(userObj) {
+    return function(dispatch){
+        dispatch({type: REDUX_LOG_IN, payload: true})
+        dispatch({type: GET_USER, payload: userObj.user})
+        
+    }
+    
+    
 }

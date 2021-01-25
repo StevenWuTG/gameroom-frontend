@@ -30,6 +30,23 @@ export class App extends Component {
 
     // this.fetchGameData()
     this.fetchArticleData()
+
+    const token = localStorage.getItem("token")
+    console.log("app started ,token: ",token)
+    if(token){
+      fetch("http://localhost:3001/profile", {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }  
+      })
+      .then(r => r.json())
+      .then(returningUser => {
+        console.log("returning User", returningUser)
+        this.props.returningUser(returningUser)
+      })
+    }
+
     
   }
 
@@ -97,7 +114,19 @@ export class App extends Component {
         <Route path="/showgame" render={()=> <ShowGame />} />
         <Route path="/profile" render={()=> <Profile fetchArticleData={this.fetchArticleData}/>} />
         <Route path="/welcome" render={()=> <Welcome/>} />
+        
+        {this.props.userObj && this.props.logged_in ? 
+        <>
+        <Redirect to="/profile"/>
+        </>
+        :
+        <>
         <Redirect to="/welcome"/>
+        </>
+
+        }
+
+
         </div>
         <div className="grid-footer">
         
@@ -115,8 +144,9 @@ function msp(state){
     articlesArray: state.articlesArray,
     gamesArray: state.gamesArray,
     articleObj: state.post,
+    userObj: state.user,
+    logged_in: state.logged_in
 
-            userObj: state.user
   }
 }
 
@@ -126,7 +156,8 @@ function mdp(dispatch){
     signup: (userObj) => dispatch(signupUser(userObj)),
     
     fetchArticles: (articleArray) => dispatch(fetchArticles(articleArray)),
-    fetchGames: (apiData) => dispatch(fetchGames(apiData))
+    fetchGames: (apiData) => dispatch(fetchGames(apiData)),
+    returningUser: (apiData) => dispatch(returningUser(apiData))
     
   }
 }
