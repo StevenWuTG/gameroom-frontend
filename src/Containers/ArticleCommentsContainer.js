@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 import ArticleComment from "../Components/ArticleComment"
+import AddComment from "../Components/AddComment"
+
 
 export class ArticleCommentsContainer extends Component {
 
     state = {
-        commentsArray: null
+        commentsArray: null,
+        userObj: null
     }
 
     componentDidMount(){
@@ -48,28 +52,44 @@ export class ArticleCommentsContainer extends Component {
 
        
     }
+
+    renderCommentButton = () => {
+        // console.log("rendering comment button this.props.userObj",this.props.userObj)
+        // if(this.props.userObj === null ){
+        //     return 
+        // } else if (this.props.userObj) {
+        //     return (
+        //         <>
+        
+        //             <AddComment  />
+        //         </>
+        //     )
+        // }
+        console.log(this.props.userObj)
+        if(this.props.userObj){
+            return <button >Button</button>
+        }
+    }
     render() {
         return (
             <>
 
                 <h3>comments:</h3>
-                {this.state.commentsArray === null  ?
-                        <>
-                        {/* no comment array */}
-                        </>
-                        :
-                        <>
-                        
-                        
-                        </>
-                        }
+                
                 {this.renderComments()} 
                 <br></br>
-                <button>comment</button>
+                {this.renderCommentButton()}
+                
 
             </>
         )
     }
 }
+const msp = (state) => {
+    return {
+    
+        userObj: state.user
+    }
+}
 
-export default ArticleCommentsContainer
+export default connect(msp,null)(ArticleCommentsContainer)
