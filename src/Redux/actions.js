@@ -1,4 +1,4 @@
-import {LOGIN,GET_USER, SIGNUP, LOG_OUT, REDUX_LOG_IN, REDUX_LOG_OUT,FETCH_ARTICLES,SHOW_ARTICLE,EDIT_ARTICLE,FETCH_GAMES, SHOW_GAME,SHOW_USER} from './actionTypes'
+import {LOGIN,GET_USER, SIGNUP, LOG_OUT, REDUX_LOG_IN, REDUX_LOG_OUT,FETCH_ARTICLES,SHOW_ARTICLE,EDIT_ARTICLE,FETCH_GAMES, SHOW_GAME,SHOW_USER,STORE_PASSWORD} from './actionTypes'
 
 export function signupUser(userObj) {
 
@@ -193,6 +193,15 @@ export function returningUser(userObj) {
     return function(dispatch){
         dispatch({type: REDUX_LOG_IN, payload: true})
         dispatch({type: GET_USER, payload: userObj.user})
+        
+    }
+    
+    
+}
+export function storePassword(password) {
+    return function(dispatch){
+        
+        dispatch({type: STORE_PASSWORD, payload:password})
         
     }
     

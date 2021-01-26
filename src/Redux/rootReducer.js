@@ -8,7 +8,8 @@ const defaultState = {
     game: null,
     gamesArray: null,
     articlesArray: null,
-    showUser:null
+    showUser:null,
+    storedPassword:null
    
 }
 
@@ -121,6 +122,18 @@ function showUserReducer(prevState= defaultState.showUser, action){
             return prevState
                 }
 }
+function passwordReducer(prevState= defaultState.storedPassword, action){
+    switch(action.type){
+        case"STORE_PASSWORD":
+            
+            return action.payload
+        
+
+        default:
+
+            return prevState
+                }
+}
 
 
 const rootReducer =  combineReducers({
@@ -130,7 +143,8 @@ const rootReducer =  combineReducers({
     game: gameReducer,
     gamesArray: gamesArrayReducer,
     articlesArray: articlesArrayReducer,
-    showUser: showUserReducer
+    showUser: showUserReducer,
+    storedPassword: passwordReducer
 
     
    

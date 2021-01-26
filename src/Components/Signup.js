@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {storePassword} from '../Redux/actions'
 
 export class Signup extends Component {
 
@@ -22,6 +23,7 @@ export class Signup extends Component {
         e.preventDefault()
         console.log("onsubmit redux.logged_in",this.props.logged_in)
         this.props.submitHandler(this.state)
+        this.props.storePassword(this.state.password)
         // this.setState({finished:true})
 
         // return (<Redirect to="/welcome" />)
@@ -73,7 +75,7 @@ const msp = (state) => {
 function mdp(dispatch){
     return{
 
-    
+        storePassword: (password) => dispatch(storePassword(password))
     }
     
 }

@@ -142,7 +142,7 @@ export class ShowArticle extends Component {
 
         // let user = 
         console.log("clicked",this.props.articleObj.author.id)
-        // this.props.reduxShowUser(this.props.articleObj.author.id)
+        this.props.reduxShowUser(this.props.articleObj.author.id)
         return
 
     }

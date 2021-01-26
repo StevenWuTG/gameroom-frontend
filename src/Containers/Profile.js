@@ -3,6 +3,9 @@ import {connect} from 'react-redux'
 import AddArticle from '../Components/AddArticle'
 import {fetchGames, reduxShowUser} from '../Redux/actions'
 import {NameLink} from '../Components/NameLink'
+import {EditUser } from '../Components/EditUser'
+import {loginUser } from '../Redux/actions'
+
 
 export class Profile extends Component {
 
@@ -42,6 +45,47 @@ export class Profile extends Component {
 
     }
 
+    resetLoggedInUser = ( userObj ) => {
+        let userParams = {
+            username: userObj.username,
+            password: this.props.loggedInPassword
+            //gotta fix after demo
+        }
+        this.props.loginUser(userParams)
+        console.log("success on updating loggedIn user",userParams)
+
+    }
+
+    renderBio = () =>{
+        if(this.props.userObj.bio){
+            return <p>{this.props.userObj.bio}</p>
+        } else {
+            return <p>need to set a bio to display here</p>
+
+        }
+        
+    }
+    
+    renderUsername = ()=> {
+        if(this.props.userObj){
+            return <h2>{this.props.userObj.username}</h2>
+        }
+
+    }
+    
+    renderAvatar = ()=> {
+        if(this.props.userObj){
+            if(this.props.userObj.avatar === null | this.props.userObj.avatar === ""){
+                return <img alt={this.props.userObj.username} style={{ maxWidth: "70vw", maxHeight: "20vh" }}src="https://twirpz.files.wordpress.com/2015/06/twitter-avi-gender-balanced-figure.png?w=640"></img>
+            } else if (this.props.userObj.avatar){
+                return <img alt={this.props.userObj.username} style={{ maxWidth: "70vw", maxHeight: "20vh" }}src={this.props.userObj.avatar}></img>
+            }
+            
+        }
+
+    }
+    
+
     render() {
         return (
             <>
@@ -51,28 +95,23 @@ export class Profile extends Component {
                 </>
                 :
                 <>
-                <h2>
-                {this.props.userObj.username}
-                </h2>         
+                <EditUser resetLoggedInUser={this.resetLoggedInUser} currentUser={this.props.userObj}/>
+                {this.renderArticleForm()}
+                    Post Article:
+                    <br></br>
+                    {/* <h5 style={{"color": "orange"}}>working on it...</h5> */}
+                    <button onClick={this.formButtonHandler}>Show form</button>
+               
+                {this.renderUsername()}    
                 <br></br>
-                {this.props.userObj.avatar ? 
-                
-                <img alt={this.props.userObj.username} style={{ maxWidth: "70vw", maxHeight: "20vh" }}src={this.props.userObj.avatar}></img>
-                :
-                <img alt={this.props.userObj.username} style={{ maxWidth: "70vw", maxHeight: "20vh" }}src="https://twirpz.files.wordpress.com/2015/06/twitter-avi-gender-balanced-figure.png?w=640"></img>
-                
-                }
+                {this.renderAvatar()}
+                {this.renderBio()}
                 <br></br>
                 Most Popular Article:
                 <br></br>
                 <h5 style={{"color": "red"}}>under construction check back later</h5>
 
-                Post Article:
-                <br></br>
-                {/* <h5 style={{"color": "orange"}}>working on it...</h5> */}
-                <button onClick={this.formButtonHandler}>Show form</button>
 
-                {this.renderArticleForm()}
                 <br></br>    
                 <br></br>    
                 Following:
@@ -95,7 +134,8 @@ export class Profile extends Component {
 const msp = (state) => {
     return{ 
         userObj: state.user,
-        logged_in: state.logged_in
+        logged_in: state.logged_in,
+        loggedInPassword: state.storedPassword
     }
 
 }
@@ -104,7 +144,8 @@ function mdp(dispatch){
     return{
 
         fetchGames: (apiData) => dispatch(fetchGames(apiData)),
-        reduxShowUser: (userId) => dispatch(reduxShowUser(userId)) 
+        reduxShowUser: (userId) => dispatch(reduxShowUser(userId)), 
+        loginUser: (userObj) => dispatch(loginUser(userObj)) 
 
     
     }

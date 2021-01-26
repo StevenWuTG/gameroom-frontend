@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
-import { updateShowArticle } from '../Redux/actions'
+import { updateShowArticle, loginUser } from '../Redux/actions'
 
 export class UserShowContainer extends Component {
 
@@ -107,11 +107,33 @@ export class UserShowContainer extends Component {
     followHandler = () => {
         if(this.props.loggedInUser){
             if(this.props.showUserId){
+                let userFollowed = this.props.loggedInUser.follows
+                let followedIds = []
+                userFollowed.map(follow => {
+                    followedIds.push(follow.id)
+                })
+                
+                let showUserId = this.props.showUserId
+                console.log(showUserId)
+                console.log(followedIds)
+                if(followedIds.includes(showUserId)){
+                    console.log("we did it")
+                    // return <button onClick={this.unFollowShowUser} >UnFollow</button>
+                }else {
 
-                return <button onClick={this.followShowUser} >Follow</button>
+                    // return <button >Follow</button>
+                    return <button onClick={this.followShowUser} >Follow</button>
+                }
+                
+
             }
+
         }
     }
+
+
+
+    
 
     followShowUser = ()=> {
         console.log("this.props.loggedInUser",this.props.loggedInUser.id)
@@ -134,7 +156,19 @@ export class UserShowContainer extends Component {
         .then(r => r.json())
         .then(followingObj => {
             console.log("following created", followingObj)
+            this.resetLoggedInUser(this.props.loggedInUser)
         })
+
+    }
+
+    resetLoggedInUser = ( userObj ) => {
+        let userParams = {
+            username: userObj.username,
+            password: this.props.loggedInPassword
+            //gotta fix after demo
+        }
+        this.props.loginUser(userParams)
+        console.log("success on updating loggedIn user")
 
     }
 
@@ -182,7 +216,8 @@ export class UserShowContainer extends Component {
 const msp = (state) => {
     return{ 
         showUserId: state.showUser,
-        loggedInUser: state.user
+        loggedInUser: state.user,
+        loggedInPassword: state.storedPassword
     } 
 
 }
@@ -191,7 +226,9 @@ function mdp(dispatch){
     return{
 
         // fetchGames: (apiData) => dispatch(fetchGames(apiData))
-        updateShowArticle: (articleId) => dispatch(updateShowArticle(articleId)) 
+        updateShowArticle: (articleId) => dispatch(updateShowArticle(articleId)),
+        loginUser: (userObj) => dispatch(loginUser(userObj))
+        
 
     
     }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import { updateShowArticle , storePassword} from '../Redux/actions'
 
 export class Login extends Component {
 
@@ -17,6 +18,8 @@ export class Login extends Component {
     submitHandler = (e) => {
         e.preventDefault()
         this.props.submitHandler(this.state)
+        // console.log("unsafe storage", this.state.password)
+        this.props.storePassword(this.state.password)
     }
 
 
@@ -59,8 +62,8 @@ const msp = (state) => {
 
 function mdp(dispatch){
     return{
-
-    
+        storePassword: (password) => dispatch(storePassword(password))
+        
     }
     
 }

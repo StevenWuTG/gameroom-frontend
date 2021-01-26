@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {NavLink, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
-import { reduxLogout } from '../Redux/actions'
+import { reduxLogout,storePassword } from '../Redux/actions'
 
 export class Navbar extends Component {
 
@@ -15,6 +15,7 @@ export class Navbar extends Component {
         localStorage.clear("token")
         this.props.reduxLogout()
         this.setState({clicked:true})
+        this.props.storePassword(null)
 
         
 
@@ -89,7 +90,8 @@ const msp = (state) => {
 
 function mdp(dispatch){
     return{
-        reduxLogout: () => dispatch(reduxLogout())
+        reduxLogout: () => dispatch(reduxLogout()),
+        storePassword: (val) => dispatch(storePassword(val))
     
     }
     
