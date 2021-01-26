@@ -115,7 +115,7 @@ export class ShowArticle extends Component {
         // console.log("rendering edit button",this.props.articleObj.author)
         if(this.props.userObj === null ){
             return 
-        } else if (this.props.userObj.id=== this.props.articleObj.author.id) {
+        } else if (this.props.userObj.id === this.props.articleObj.author.id) {
             return (
                 <>
         
@@ -142,7 +142,7 @@ export class ShowArticle extends Component {
 
         // let user = 
         console.log("clicked",this.props.articleObj.author.id)
-        this.props.reduxShowUser(this.props.articleObj.author.id)
+        // this.props.reduxShowUser(this.props.articleObj.author.id)
         return
 
     }

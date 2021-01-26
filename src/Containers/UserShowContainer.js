@@ -8,12 +8,13 @@ export class UserShowContainer extends Component {
     state = {
         updateArticleId : null,
         newestArticle:null,
-        articleArray:null
+        articleArray:null,
+        showUserObj: null
 
     }
 
     componentDidMount(){
-        console.log(this.props.showUser)
+        console.log(this.props.showUserId)
     
         this.setArticles()
     
@@ -23,41 +24,45 @@ export class UserShowContainer extends Component {
 
     setArticles = () =>{
         
-        fetch(`http://localhost:3001/users/${this.props.showUser}`)
+        fetch(`http://localhost:3001/users/${this.props.showUserId}`)
             .then(r => r.json())
             .then(userData => {
                 console.log(userData)
                 this.setState({articleArray:userData.articles})
-                console.log(this.state.articleArray)
+                this.setState({showUserObj:userData})
+                console.log(this.state)
                 this.resetNewestArticle()
             })
         
     }
     
     resetNewestArticle = () =>{
-        
-        let articles = this.state.articleArray
-        console.log(articles)
-        let sortedArticles = articles.sort((a,b) => {
-            if (a.id !== b.id) {
-                return a.id - b.id
-            }
-            if (a.name === b.name) {
-                return 0;
-            }
-            return a.name > b.name ? 1 : -1;
-            
+        if(this.state.articleArray){
 
-        })
-        sortedArticles.reverse()
-        console.log(sortedArticles)
-        this.setState({updateArticleId: sortedArticles[0].id})
-        this.setState({newestArticle: sortedArticles[0]})
+            
+            let articles = this.state.articleArray
+            console.log(articles)
+            let sortedArticles = articles.sort((a,b) => {
+                if (a.id !== b.id) {
+                    return a.id - b.id
+                }
+                if (a.name === b.name) {
+                    return 0;
+                }
+                return a.name > b.name ? 1 : -1;
+                
+                
+            })
+            sortedArticles.reverse()
+            console.log(sortedArticles)
+            this.setState({updateArticleId: sortedArticles[0].id})
+            this.setState({newestArticle: sortedArticles[0]})
+        }
     }
     
 
     clickTester = ()=> {
-        console.log(this.props.showUser)
+        console.log(this.props.showUserId)
         
     }
 
@@ -99,26 +104,60 @@ export class UserShowContainer extends Component {
 
     }
 
+    followHandler = () => {
+        if(this.props.loggedInUser){
+            if(this.props.showUserId){
+
+                return <button onClick={this.followShowUser} >Follow</button>
+            }
+        }
+    }
+
+    followShowUser = ()=> {
+        console.log("this.props.loggedInUser",this.props.loggedInUser.id)
+        console.log("this.props.showUserId",this.props.showUserId)
+
+        let newFollowing = {
+            user_id: this.props.loggedInUser.id,
+            follow_id: this.props.showUserId
+
+        }
+
+        fetch("http://localhost:3001/followings", {
+            method:"POST",
+            headers:{
+                "Content-Type": "application/json",
+                "Accepts": "application/json"
+            },
+            body:JSON.stringify(newFollowing)
+        })
+        .then(r => r.json())
+        .then(followingObj => {
+            console.log("following created", followingObj)
+        })
+
+    }
+
     render() {
         return (
             <>
                 
                 {/* <button onClick={this.clickTester}>button</button> */}
-                {this.props.showUser?
+                {this.state.showUserObj?
                 
                 <>
                     <h2>
-                    {this.props.showUser.username}
+                    {this.state.showUserObj.username}
                     </h2>
 
                     <br></br>
-                    {this.props.showUser.avatar? 
+                    {this.state.showUserObj.avatar? 
                         <>
-                        <img alt={this.props.showUser.username} style={{ maxWidth: "70vw", maxHeight: "20vh" }}src={this.props.showUser.avatar}></img>
+                        <img alt={this.state.showUserObj.username} style={{ maxWidth: "70vw", maxHeight: "20vh" }}src={this.state.showUserObj.avatar}></img>
                         </>
                         :
                         <>
-                        <img alt={this.props.showUser.username} style={{ maxWidth: "70vw", maxHeight: "20vh" }}src="https://twirpz.files.wordpress.com/2015/06/twitter-avi-gender-balanced-figure.png?w=640"></img>
+                        <img alt={this.state.showUserObj.username} style={{ maxWidth: "70vw", maxHeight: "20vh" }}src="https://twirpz.files.wordpress.com/2015/06/twitter-avi-gender-balanced-figure.png?w=640"></img>
                         </>
                     }
                     <br></br>
@@ -131,6 +170,10 @@ export class UserShowContainer extends Component {
                     no showUser in redux
                 </>
                 }
+
+                {this.followHandler()}
+
+
             </>
         )
     }
@@ -138,7 +181,8 @@ export class UserShowContainer extends Component {
 
 const msp = (state) => {
     return{ 
-        showUser: state.showUser
+        showUserId: state.showUser,
+        loggedInUser: state.user
     } 
 
 }

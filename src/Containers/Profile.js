@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import AddArticle from '../Components/AddArticle'
-import {fetchGames} from '../Redux/actions'
+import {fetchGames, reduxShowUser} from '../Redux/actions'
+import {NameLink} from '../Components/NameLink'
 
 export class Profile extends Component {
 
@@ -28,6 +29,15 @@ export class Profile extends Component {
         } else {
             this.setState({articleFormClicked: true})
             
+        }
+
+    }
+
+    renderFollowed = () => {
+        if(this.props.userObj){
+            let userFollows = this.props.userObj.follows
+            console.log("userFollows",userFollows)
+            return userFollows.map(follow =>  <NameLink reduxShowUser={this.props.reduxShowUser} linkUser={follow}/>)
         }
 
     }
@@ -63,6 +73,10 @@ export class Profile extends Component {
                 <button onClick={this.formButtonHandler}>Show form</button>
 
                 {this.renderArticleForm()}
+                <br></br>    
+                <br></br>    
+                Following:
+                {this.renderFollowed()}
 
 
 
@@ -89,7 +103,8 @@ const msp = (state) => {
 function mdp(dispatch){
     return{
 
-        fetchGames: (apiData) => dispatch(fetchGames(apiData))
+        fetchGames: (apiData) => dispatch(fetchGames(apiData)),
+        reduxShowUser: (userId) => dispatch(reduxShowUser(userId)) 
 
     
     }

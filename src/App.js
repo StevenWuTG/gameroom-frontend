@@ -105,7 +105,7 @@ export class App extends Component {
         </div>
         <div className="grid-body">
           
-
+        <Route exact path="/" component={Welcome}/>
         <Route path="/articles" render={()=> <ArticlesContainer className="center" articleArray={this.props.articlesArray}/>} />
         <Route path="/games" render={()=> <GamesContainer />} />
         <Route path="/login" render={()=> <Login submitHandler={this.reduxSigninSubmitHandler}/>} />
@@ -131,8 +131,8 @@ export class App extends Component {
 
         </div>
         <div className="grid-footer">
-        
         <Footer/> 
+        
         </div>
       </div>
 
