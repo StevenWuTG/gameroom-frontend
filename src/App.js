@@ -7,6 +7,7 @@ import Footer from './Containers/Footer'
 import ArticlesContainer from './Containers/ArticlesContainer'
 import Profile from './Containers/Profile'
 import GamesContainer from './Containers/GamesContainer'
+import UserShowContainer from './Containers/UserShowContainer'
 
 import Navbar from './Components/Navbar'
 import ShowArticle from './Components/ShowArticle'
@@ -114,14 +115,15 @@ export class App extends Component {
         <Route path="/showgame" render={()=> <ShowGame />} />
         <Route path="/profile" render={()=> <Profile fetchArticleData={this.fetchArticleData}/>} />
         <Route path="/welcome" render={()=> <Welcome/>} />
+        <Route path="/usershow" render={()=> <UserShowContainer/>} />
         
         {this.props.userObj && this.props.logged_in ? 
         <>
-        <Redirect to="/profile"/>
+        {/* <Redirect to="/profile"/> */}
         </>
         :
         <>
-        <Redirect to="/welcome"/>
+        {/* <Redirect to="/welcome"/> */}
         </>
 
         }

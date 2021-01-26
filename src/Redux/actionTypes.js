@@ -1,6 +1,7 @@
 export const LOGIN = "LOGIN"
 export const SIGNUP = "SIGNUP"
 export const GET_USER = "GET_USER"
+export const SHOW_USER = "SHOW_USER"
 export const LOG_OUT = "LOG_OUT"
 export const REDUX_LOG_IN = "REDUX_LOG_IN"
 export const REDUX_LOG_OUT = "REDUX_LOG_OUT"

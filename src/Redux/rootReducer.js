@@ -7,7 +7,8 @@ const defaultState = {
     article: null,
     game: null,
     gamesArray: null,
-    articlesArray: null
+    articlesArray: null,
+    showUser:null
    
 }
 
@@ -108,13 +109,28 @@ function gamesArrayReducer(prevState= defaultState.gamesArray, action){
                 }
 }
 
+function showUserReducer(prevState= defaultState.showUser, action){
+    switch(action.type){
+        case"SHOW_USER":
+            console.log("setting show user ", action.payload)
+            return action.payload
+        
+
+        default:
+
+            return prevState
+                }
+}
+
+
 const rootReducer =  combineReducers({
     user: userReducer,
     logged_in: loginReducer,
     article: articleReducer,
     game: gameReducer,
     gamesArray: gamesArrayReducer,
-    articlesArray: articlesArrayReducer
+    articlesArray: articlesArrayReducer,
+    showUser: showUserReducer
 
     
    

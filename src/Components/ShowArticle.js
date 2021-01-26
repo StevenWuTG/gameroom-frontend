@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import {connect} from "react-redux"
+import {NavLink, Redirect, Link} from 'react-router-dom'
 import ArticleRatingForm from "./ArticleRatingForm"
 import EditArticle from "./EditArticle"
 import ArticleCommentsContainer from "../Containers/ArticleCommentsContainer"
 import ReactPlayer from "react-player"
 import '../Css/App.css'
+import {reduxShowUser} from '../Redux/actions'
 
 
 
@@ -20,15 +22,11 @@ export class ShowArticle extends Component {
     componentDidMount(){
         // console.log("in /show this.props.post", this.props.articleObj)
         // this.fetchComments()
+        console.log(this.props)
        
     }
 
-    fetchComments = () => {
-
-       
- 
-
-    }
+    
 
     // averageRatings = () => {
     //     console.log("average article ratings", this.props.articleObj.article_ratings)
@@ -113,19 +111,6 @@ export class ShowArticle extends Component {
 
     }
 
-    // renderEditButton = () => {
-    //     console.log("rendering edit button",this.props.articleObj.author)
-    //     if(this.props.userObj === null ){
-    //         return 
-    //     } else if (this.props.userObj.username === this.props.articleObj.author) {
-    //         return (
-    //             <>
-        
-    //                 <EditArticle  fetchArticleData={this.props.fetchArticleData}/>
-    //             </>
-    //         )
-    //     }
-    // }
     renderEditButton = () => {
         // console.log("rendering edit button",this.props.articleObj.author)
         if(this.props.userObj === null ){
@@ -150,6 +135,16 @@ export class ShowArticle extends Component {
                 
                     </div>
         }
+    }
+
+    showUser = () => {
+        // e.preventDefault()
+
+        // let user = 
+        console.log("clicked",this.props.articleObj.author.id)
+        this.props.reduxShowUser(this.props.articleObj.author.id)
+        return
+
     }
 
     
@@ -182,8 +177,10 @@ export class ShowArticle extends Component {
                         
                         {this.renderVideo()}
                         
+                        <NavLink to="usershow">
 
-                        <h4>Author: {article.author.username}</h4>
+                            <h4 onClick={this.showUser}  >Author: {article.author.username}</h4>
+                        </NavLink>
                         
                         {this.renderRatings()}
 
@@ -221,4 +218,12 @@ const msp = (state) => {
     }
 }
 
-export default connect(msp,null)(ShowArticle)
+function mdp(dispatch){
+    return{
+        reduxShowUser: (userId) => dispatch(reduxShowUser(userId)) 
+    
+    }
+    
+}
+
+export default connect(msp,mdp)(ShowArticle)

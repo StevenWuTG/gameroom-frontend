@@ -1,4 +1,4 @@
-import {LOGIN,GET_USER, SIGNUP, LOG_OUT, REDUX_LOG_IN, REDUX_LOG_OUT,FETCH_ARTICLES,SHOW_ARTICLE,EDIT_ARTICLE,FETCH_GAMES, SHOW_GAME} from './actionTypes'
+import {LOGIN,GET_USER, SIGNUP, LOG_OUT, REDUX_LOG_IN, REDUX_LOG_OUT,FETCH_ARTICLES,SHOW_ARTICLE,EDIT_ARTICLE,FETCH_GAMES, SHOW_GAME,SHOW_USER} from './actionTypes'
 
 export function signupUser(userObj) {
 
@@ -68,6 +68,23 @@ export function showArticle(postObj){
         
     }
 }
+
+export function updateShowArticle(articleId){
+    
+    return function(dispatch){
+        fetch(`http://localhost:3001/articles/${articleId}`)
+        .then(r => r.json())
+        .then(articleObj => {
+            dispatch({type: SHOW_ARTICLE, payload: articleObj})
+
+        })
+        
+        console.log("updating showArticle", articleId)
+        
+        
+    }
+}
+
 export function showGame(gameObj){
     
     return function(dispatch){
@@ -180,4 +197,20 @@ export function returningUser(userObj) {
     }
     
     
+}
+
+export function reduxShowUser(userId){
+    return function(dispatch){
+        // console.log("in redux show user",userId)
+        
+        // fetch(`http://localhost:3001/users/${userId}`)
+        // .then(r => r.json())
+        // .then(userData => {
+        //     console.log(userData)
+        //     dispatch({type: SHOW_USER, payload: userData})
+        // })
+        dispatch({type: SHOW_USER, payload: userId})
+
+    }
+        // console.log("in redux show user")
 }
