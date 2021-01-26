@@ -8,39 +8,48 @@ export class ArticleCommentsContainer extends Component {
 
     state = {
         commentsArray: null,
-        userObj: null
+        userObj: null,
+        commentFormClicked: false
     }
 
     componentDidMount(){
         console.log("props in container", this.props)
+        console.log("state in container", this.state)
+        this.fetchComments()
+        
+        //fetch comments that belong to article
+    }
+    
+    fetchComments = ()=> {
+        this.setState({commentFormClicked:false})
         fetch("http://localhost:3001/article_comments")
         .then(r => r.json())
         .then(commentsData => {
             console.log("all comments ", commentsData)
-
-            let articleComments = null
-
+    
+            let articleComments = []
+    
             commentsData.map(comment => {
-                console.log("each comment",comment)
-                if(comment.article.id === this.props.articleId){
+                // console.log("each comment",comment)
+                if(comment.article.id === this.props.currentArticle.id){
                     // console.log(comment)
-                    articleComments = []
-                    if(articleComments !== null){
-
-                        articleComments.push(comment)
-                    }
+                   
+                    
+    
+                    articleComments.push(comment)
+                    
                 }
             })
+            console.log(articleComments)
             this.setState({commentsArray: articleComments})
         })
 
-        //fetch comments that belong to article
     }
 
     renderComments = () => {
         let comments = this.state.commentsArray
         console.log("in article show comments:",comments)
-        if(comments === null | comments === 0 ) {
+        if(comments === null | comments === [] ) {
             console.log("no comments")
             //  <p>no comments yet </p>
             return <>no comments </>
@@ -55,21 +64,53 @@ export class ArticleCommentsContainer extends Component {
 
     renderCommentButton = () => {
         // console.log("rendering comment button this.props.userObj",this.props.userObj)
-        // if(this.props.userObj === null ){
-        //     return 
-        // } else if (this.props.userObj) {
-        //     return (
-        //         <>
         
-        //             <AddComment  />
-        //         </>
-        //     )
-        // }
         console.log(this.props.userObj)
         if(this.props.userObj){
             return <button >Button</button>
         }
     }
+
+    commentButtonHandler = () => {
+        // if(this.state.commentFormClicked ){
+        //     this.setState({commentFormClicked: false})
+        //     console.log(this.state.commentFormClicked)
+        // } else {
+        //     this.setState({commentFormClicked: true})
+        //     console.log(this.state.commentFormClicked)
+            
+        // }
+        this.setState({commentFormClicked: !this.state.commentFormClicked })
+
+    }
+
+    renderCommentForm = () => {
+        if(this.state.commentFormClicked && this.props.userObj){
+
+            return (<AddComment fetchComments={this.fetchComments} />)
+        } 
+
+    }
+
+    showCommentButton = ()=> {
+        // if(this.state.commentFormClicked && this.props.userObj){
+        //     return <button onClick={this.commentButtonHandler}>Nevermind</button>
+        // } else if (this.state.commentFormClicked === false){
+        //     return <button onClick={this.commentButtonHandler}>Comment</button>
+        // } else {
+        //     return <button onClick={this.commentButtonHandler}>Comment</button>
+
+        // }
+        if(this.props.userObj && this.state.commentFormClicked){
+            return <button onClick={this.commentButtonHandler}>Nevermind</button>
+        } else if (this.props.userObj && !this.state.commentFormClicked ){    
+            return <button onClick={this.commentButtonHandler}>Comment</button>
+        } else {
+            return
+        }
+
+    }
+    
     render() {
         return (
             <>
@@ -78,7 +119,22 @@ export class ArticleCommentsContainer extends Component {
                 
                 {this.renderComments()} 
                 <br></br>
-                {this.renderCommentButton()}
+                {/* {this.renderCommentButton()} */}
+                {this.renderCommentForm()}
+
+                {/* {this.state.commentFormClicked && this.props.userObj? 
+                <>
+                <button onClick={this.commentButtonHandler}>Nevermind</button>
+                </>
+                :
+                <>
+
+                <button onClick={this.commentButtonHandler}>Comment</button>
+
+                </>
+                } */}
+
+                {this.showCommentButton()}
                 
 
             </>
@@ -88,7 +144,8 @@ export class ArticleCommentsContainer extends Component {
 const msp = (state) => {
     return {
     
-        userObj: state.user
+        userObj: state.user,
+        currentArticle: state.article
     }
 }
 

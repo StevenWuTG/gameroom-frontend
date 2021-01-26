@@ -17,6 +17,7 @@ export class ArticleComment extends Component {
                 <>
                 </>
                 }
+                <br></br>
             </div>
         )
     }

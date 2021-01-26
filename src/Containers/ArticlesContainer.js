@@ -6,11 +6,15 @@ export class ArticlesContainer extends Component {
     
     state = {
         articleArray: null,
-        filteredArticles: ""
+        filteredArticles: "",
+        filterParams: null
     }
 
     componentDidMount(){
         console.log("Articles CDM")
+        if(this.state.filterParams === null){
+            this.setState({filterParams:"newest"})
+        }
         fetch("http://localhost:3001/articles")
         .then(r => r.json())
         .then (arrayOfArticles => {
@@ -32,26 +36,120 @@ export class ArticlesContainer extends Component {
     
     
     renderArticles = () => {
-        if(this.state.articleArray){
+        if(this.state.articleArray && this.state.filterParams === "newest"){
             let desiredArticles = this.state.articleArray.filter(desiredArticle => desiredArticle.title.toLowerCase().includes(this.state.filteredArticles.toLowerCase()))
-            return desiredArticles.map( article => <ArticleCard className="article-card center" key={article.id} articleObj={article}   />)
+            console.log(this.state.articleArray)
+            let sortedArticles = desiredArticles.sort((a, b) => {
+                
+                if (a.id !== b.id) {
+                    return a.id - b.id
+                }
+                if (a.name === b.name) {
+                    return 0;
+                }
+                return a.name > b.name ? 1 : -1;
+            })
+            return sortedArticles.reverse().map( article => <ArticleCard className="article-card center" key={article.id} articleObj={article}   />)
+        } else if(this.state.articleArray && this.state.filterParams === "highest-rated"){
+            console.log("highest rated selected",this.state.articleArray)
+            let desiredArticles = this.state.articleArray.filter(desiredArticle => desiredArticle.title.toLowerCase().includes(this.state.filteredArticles.toLowerCase()))
+            
+            let sortingArray = [] 
+            desiredArticles.map(article => {
+                if(article.article_ratings.length !== 0){
+                    sortingArray.push(article)
+                }
+            })
+
+            console.log("sorting array",sortingArray)
+            // let sorted = sortingArray.sort(function(a, b) {
+                
+            // })
+            let sorted = []
+            function average(ratings){
+                let total = 0
+                const articleRatings = ratings
+                articleRatings.forEach(rating => {
+                    if(rating.star){
+            
+                        total += rating.star
+                    }
+                    
+                });
+                let newTotal = total / articleRatings.length
+            
+                console.log("new Total:", newTotal )
+                if(newTotal){
+                    return newTotal
+                }
+                
+            }
+
+            sortingArray.map( article => {
+                sorted.push({
+                    article:article,
+                    averageRatings: average(article.article_ratings)
+                })
+            })
+            console.log("sorted",sorted)
+            let finalSorted = sorted.sort(function(a,b) {
+                // return parseFloat(a.averageRatings) - parseFloat(b.averageRatings);
+                if(a.averageRatings >  b.averageRatings){
+                    return -1
+                } else if (a.averageRatings < b.averageRatings){
+                    return 1
+                } else {
+                    return 0
+                }
+            })
+            
+            console.log("final sorted",finalSorted)
+
+            
+            
+            return finalSorted.map( sortedArticle => <ArticleCard  key={sortedArticle.article.id} articleObj={sortedArticle.article}   />)
+            
         }
     }
+    
 
-    filterHandler = (e) => {
+    
+
+    
+
+    searchFilterHandler = (e) => {
         console.log(this.state.filteredArticles)
         this.setState({filteredArticles: e.target.value})
     }
 
+    sortArticles = (e) => {
+        e.preventDefault()
+
+        
+        this.setState({filterParams:e.target.sortby.value})
+        console.log("article filter params",this.state.filterParams)
+    }
+
     render() {
         return (
-            <div>
+            <>
                 
-                Search: <input onChange={this.filterHandler}></input>
+                Search: <input onChange={this.searchFilterHandler}></input> 
+                <br></br>
+                Sort by:
+                <form onSubmit={this.sortArticles}>
+                    <select name="sortby">
+                        <option value="newest">newest</option>
+                        <option value="highest-rated">highest rated</option>
+
+                    </select> 
+
+                    <button type="submit">sort</button>
+                </form>
 
                 {this.renderArticles()}
                 {this.showArticle}
-            </div>
+            </>
         )
     }
 }
