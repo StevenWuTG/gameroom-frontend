@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export class ArticleComment extends Component {
     componentDidMount(){
-        console.log("article comment CDM", this.props.commentObj)
+        // console.log("article comment CDM", this.props.commentObj)
     }
     render() {
         return (

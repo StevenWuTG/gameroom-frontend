@@ -26,7 +26,7 @@ export class AddArticle extends Component {
 
     inputHandler = (e) => {
         this.setState({[e.target.name]: e.target.value})
-        console.log(e.target.value)
+        // console.log(e.target.value)
     }
 
     articleSubmit = (e) => {
@@ -41,8 +41,8 @@ export class AddArticle extends Component {
             game_id: e.target.game_id.value ,
             author_id: this.state.author_id,
         }
-        console.log("in article submit function this.state",this.state)
-        console.log("in article submit function newArticleObj",newArticleObj)
+        // console.log("in article submit function this.state",this.state)
+        // console.log("in article submit function newArticleObj",newArticleObj)
         fetch("http://localhost:3001/articles", {
             method:"POST",
             headers:{
@@ -71,7 +71,7 @@ export class AddArticle extends Component {
     }
 
     listGames = () => {
-        console.log("games array in addArticle form", this.props.gamesArray)
+        // console.log("games array in addArticle form", this.props.gamesArray)
         if (this.props.gamesArray){
 
             return this.props.gamesArray.map(game => <option value={game.id}  >{game.title}</option>)

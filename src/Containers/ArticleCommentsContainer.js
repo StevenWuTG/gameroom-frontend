@@ -13,8 +13,8 @@ export class ArticleCommentsContainer extends Component {
     }
 
     componentDidMount(){
-        console.log("props in container", this.props)
-        console.log("state in container", this.state)
+        // console.log("props in container", this.props)
+        // console.log("state in container", this.state)
         this.fetchComments()
         
         //fetch comments that belong to article
@@ -25,7 +25,7 @@ export class ArticleCommentsContainer extends Component {
         fetch("http://localhost:3001/article_comments")
         .then(r => r.json())
         .then(commentsData => {
-            console.log("all comments ", commentsData)
+            // console.log("all comments ", commentsData)
     
             let articleComments = []
     
@@ -40,7 +40,7 @@ export class ArticleCommentsContainer extends Component {
                     
                 }
             })
-            console.log(articleComments)
+            // console.log(articleComments)
             this.setState({commentsArray: articleComments})
         })
 
@@ -48,9 +48,9 @@ export class ArticleCommentsContainer extends Component {
 
     renderComments = () => {
         let comments = this.state.commentsArray
-        console.log("in article show comments:",comments)
+        // console.log("in article show comments:",comments)
         if(comments === null | comments === [] ) {
-            console.log("no comments")
+            // console.log("no comments")
             //  <p>no comments yet </p>
             return <>no comments </>
         } else if(comments ) {

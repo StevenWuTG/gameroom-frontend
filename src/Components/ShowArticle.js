@@ -18,7 +18,7 @@ export class ShowArticle extends Component {
 
 
     componentDidMount(){
-        console.log("in /show this.props.post", this.props.articleObj)
+        // console.log("in /show this.props.post", this.props.articleObj)
         // this.fetchComments()
        
     }
@@ -56,7 +56,7 @@ export class ShowArticle extends Component {
             });
             let newTotal = total / articleRatings.length
             
-            console.log("new Total:", newTotal )
+            // console.log("new Total:", newTotal )
             if(newTotal){
                 
                 return <h3>Ratings: {newTotal}</h3>
@@ -127,7 +127,7 @@ export class ShowArticle extends Component {
     //     }
     // }
     renderEditButton = () => {
-        console.log("rendering edit button",this.props.articleObj.author)
+        // console.log("rendering edit button",this.props.articleObj.author)
         if(this.props.userObj === null ){
             return 
         } else if (this.props.userObj.id=== this.props.articleObj.author.id) {

@@ -6,14 +6,14 @@ import { showArticle } from '../Redux/actions'
 export class ArticleCard extends Component {
 
     renderArticle = () => {
-        console.log("article details clicked")
-        console.log("articleObj", this.props.articleObj)
+        // console.log("article details clicked")
+        // console.log("articleObj", this.props.articleObj)
         this.props.showArticle(this.props.articleObj)
         
     }
 
     averageRatings = () => {
-        console.log("average article ratings", this.props.articleObj.article_ratings)
+        // console.log("average article ratings", this.props.articleObj.article_ratings)
         let total = 0
         const articleRatings = this.props.articleObj.article_ratings
         articleRatings.forEach(rating => {
@@ -22,7 +22,7 @@ export class ArticleCard extends Component {
         });
         let newTotal = total / articleRatings.length
 
-        console.log("new Total:", newTotal )
+        // console.log("new Total:", newTotal )
         if(newTotal){
             return <h3>Ratings: {newTotal}</h3>
         }

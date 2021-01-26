@@ -32,7 +32,7 @@ export class App extends Component {
     this.fetchArticleData()
 
     const token = localStorage.getItem("token")
-    console.log("app started ,token: ",token)
+    // console.log("app started ,token: ",token)
     if(token){
       fetch("http://localhost:3001/profile", {
         method: "GET",
@@ -42,7 +42,7 @@ export class App extends Component {
       })
       .then(r => r.json())
       .then(returningUser => {
-        console.log("returning User", returningUser)
+        // console.log("returning User", returningUser)
         this.props.returningUser(returningUser)
       })
     }
@@ -65,16 +65,16 @@ export class App extends Component {
 
   fetchArticleData = () => {
     //need to refractor to redux function
-    console.log("Articles CDM")
+    // console.log("Articles CDM")
           fetch("http://localhost:3001/articles")
           .then(r => r.json())
           .then (arrayOfArticles => {
               
               if(arrayOfArticles === null ){
-                  console.log("no data fetched")
+                  // console.log("no data fetched")
               } else {
       
-                  console.log("fetched array of articles", arrayOfArticles)
+                  // console.log("fetched array of articles", arrayOfArticles)
                   // this.setState({articleArray: arrayOfArticles})
                   this.props.fetchArticles(arrayOfArticles)
               }

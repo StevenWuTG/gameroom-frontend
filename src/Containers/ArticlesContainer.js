@@ -38,7 +38,7 @@ export class ArticlesContainer extends Component {
     renderArticles = () => {
         if(this.state.articleArray && this.state.filterParams === "newest"){
             let desiredArticles = this.state.articleArray.filter(desiredArticle => desiredArticle.title.toLowerCase().includes(this.state.filteredArticles.toLowerCase()))
-            console.log(this.state.articleArray)
+            // console.log(this.state.articleArray)
             let sortedArticles = desiredArticles.sort((a, b) => {
                 
                 if (a.id !== b.id) {
@@ -51,46 +51,60 @@ export class ArticlesContainer extends Component {
             })
             return sortedArticles.reverse().map( article => <ArticleCard className="article-card center" key={article.id} articleObj={article}   />)
         } else if(this.state.articleArray && this.state.filterParams === "highest-rated"){
-            console.log("highest rated selected",this.state.articleArray)
+            // console.log("highest rated selected",this.state.articleArray)
             let desiredArticles = this.state.articleArray.filter(desiredArticle => desiredArticle.title.toLowerCase().includes(this.state.filteredArticles.toLowerCase()))
             
             let sortingArray = [] 
             desiredArticles.map(article => {
-                if(article.article_ratings.length !== 0){
-                    sortingArray.push(article)
-                }
+                // if(article.article_ratings.length !== 0){
+                //     sortingArray.push(article)
+                // }
+                // if(article.article_ratings.length === 0){
+                //     sortingArray.push(article)
+                // }
+                sortingArray.push(article)
             })
 
-            console.log("sorting array",sortingArray)
-            // let sorted = sortingArray.sort(function(a, b) {
-                
-            // })
-            let sorted = []
+            // console.log("sorting array",sortingArray)
+            
             function average(ratings){
                 let total = 0
                 const articleRatings = ratings
                 articleRatings.forEach(rating => {
                     if(rating.star){
-            
+                        
                         total += rating.star
                     }
                     
                 });
                 let newTotal = total / articleRatings.length
-            
-                console.log("new Total:", newTotal )
+                
+                // console.log("new Total:", newTotal )
                 if(newTotal){
                     return newTotal
                 }
                 
             }
-
+            
+            let sorted = []
             sortingArray.map( article => {
-                sorted.push({
-                    article:article,
-                    averageRatings: average(article.article_ratings)
-                })
+                // if(article.article_ratings){
+                if(article.article_ratings.length !== 0){
+                    sorted.push({
+                        article:article,
+                        averageRatings: average(article.article_ratings)
+                    })
+                    
+                }  
+                if (article.article_ratings.length === 0 ){
+                    sorted.push({
+                        article:article,
+                        averageRatings: 0
+                    })
+
+                }
             })
+            console.log("sorting",sortingArray)
             console.log("sorted",sorted)
             let finalSorted = sorted.sort(function(a,b) {
                 // return parseFloat(a.averageRatings) - parseFloat(b.averageRatings);

@@ -40,7 +40,7 @@ export class AddComment extends Component {
             // console.log(newArticleComment)
             if(newArticleComment.errors){
                 console.log("errors creating new comment", newArticleComment.errors)
-                console.log("this.state.finishedSubmit", this.state.finishedSubmit)
+                // console.log("this.state.finishedSubmit", this.state.finishedSubmit)
             } else {
                 console.log(newArticleComment)
                 this.setState({finishedSubmit: true})
