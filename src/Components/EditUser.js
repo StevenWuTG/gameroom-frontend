@@ -93,11 +93,11 @@ export class EditUser extends Component {
                     {
                     this.state.avatar === null | this.state.avatar === ""? 
 
-                    <input type="text" name="avatar" placeholder={"Avatar Url"} value={this.state.value} onChange={this.inputHandler}/>
+                    <input type="text" name="avatar" placeholder={"Avatar Url"} value={this.state.avatar} onChange={this.inputHandler}/>
                     
                     :
                     
-                    <input type="text" name="avatar" placeholder={this.state.avatar} value={this.state.value} onChange={this.inputHandler}/>
+                    <input type="text" name="avatar" placeholder={this.state.avatar} value={this.state.avatar} onChange={this.inputHandler}/>
                     }
                     <br></br>
                     Bio:

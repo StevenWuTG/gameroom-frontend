@@ -149,9 +149,9 @@ export class ArticlesContainer extends Component {
             <>
                 
                 Search: <input onChange={this.searchFilterHandler}></input> 
-                <br></br>
-                Sort by:
+                {/* <br></br> */}
                 <form onSubmit={this.sortArticles}>
+                    Sort by:
                     <select name="sortby">
                         <option value="newest">newest</option>
                         <option value="highest-rated">highest rated</option>

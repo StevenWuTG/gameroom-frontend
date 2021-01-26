@@ -57,11 +57,14 @@ export class Profile extends Component {
     }
 
     renderBio = () =>{
-        if(this.props.userObj.bio){
-            return <p>{this.props.userObj.bio}</p>
-        } else {
-            return <p>need to set a bio to display here</p>
+        if(this.props.userObj){
 
+            if(this.props.userObj.bio){
+                return <p>{this.props.userObj.bio}</p>
+            } else {
+                return <p>need to set a bio to display here</p>
+                
+            }
         }
         
     }
@@ -107,9 +110,9 @@ export class Profile extends Component {
                 {this.renderAvatar()}
                 {this.renderBio()}
                 <br></br>
-                Most Popular Article:
+                {/* Most Popular Article:
                 <br></br>
-                <h5 style={{"color": "red"}}>under construction check back later</h5>
+                <h5 style={{"color": "red"}}>under construction check back later</h5> */}
 
 
                 <br></br>    

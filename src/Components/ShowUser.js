@@ -3,13 +3,14 @@ import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { updateShowArticle, loginUser } from '../Redux/actions'
 
-export class UserShowContainer extends Component {
+export class ShowUser extends Component {
 
     state = {
         updateArticleId : null,
         newestArticle:null,
         articleArray:null,
-        showUserObj: null
+        showUserObj: null,
+        showUserArticles:null
 
     }
 
@@ -18,8 +19,32 @@ export class UserShowContainer extends Component {
     
         this.setArticles()
     
-            
+        this.fetchUserArticles()    
         
+    }
+
+    fetchUserArticles = () => {
+        let userArticles = []
+
+        if(this.props.showUserId){
+
+            let showUserId = this.props.showUserId
+            fetch(`http://localhost:3001/articles`)
+            .then(r => r.json())
+            .then(articlesArr => {
+               console.log("fetched users articles", articlesArr)
+               articlesArr.map( article =>{
+                   if(article.author.id === showUserId){
+                    //    console.log("belows to user", article)
+                       userArticles.push(article)
+                   }
+               })
+               this.setState({showUserArticles: userArticles})
+    
+            })
+            
+
+        }
     }
 
     setArticles = () =>{
@@ -74,7 +99,7 @@ export class UserShowContainer extends Component {
 
             <h4>
                 Newest Article:
-                <NavLink to="/showarticle" onClick={this.updateArticleShow}>
+                <NavLink to="/showarticle" onClick={this.updateNewestArticleShow}>
                     <div>
                     {this.state.newestArticle? 
                     <>
@@ -97,9 +122,16 @@ export class UserShowContainer extends Component {
         
     }
 
-    updateArticleShow = () =>{
+    
+    updateNewestArticleShow = () =>{
         console.log("updatedArticle Show")
         this.props.updateShowArticle(this.state.newestArticle.id)
+
+
+    }
+    updateHighestratedArticleShow = (id) =>{
+        console.log("updatedArticle Show")
+        this.props.updateShowArticle(id)
 
 
     }
@@ -172,6 +204,73 @@ export class UserShowContainer extends Component {
 
     }
 
+    averageRatings = (articleRatingObj) => {
+        // console.log("average article ratings", this.props.articleObj.article_ratings)
+        let total = 0
+        const articleRatings = articleRatingObj
+        articleRatings.forEach(rating => {
+            total += rating.star
+            
+        });
+        let newTotal = total / articleRatings.length
+
+        console.log("new Total:", newTotal )
+        return newTotal
+        // if(newTotal){
+        //     return <h3>Ratings: {newTotal}</h3>
+        // }
+        
+    }
+
+    renderHighestArticle = () => {
+        let sortedUserArticles = []
+        if(this.state.showUserArticles){
+            let showUserArticles = this.state.showUserArticles
+
+            showUserArticles.map(article => { 
+                console.log("articles average rating", article ) 
+                sortedUserArticles.push({
+                    articleObj:article,
+                    averageRating:this.averageRatings(article.article_ratings)
+                })
+
+            })
+            function compare(a,b) {
+                if (a.averageRating < b.averageRating)
+                   return -1;
+                if (a.averageRating > b.averageRating)
+                  return 1;
+                return 0;
+            }
+
+            console.log("before user articles",sortedUserArticles)
+            sortedUserArticles.sort(compare).reverse()  
+
+            console.log("sorted user articles",sortedUserArticles)
+
+            console.log(" highest sorted user article",sortedUserArticles[0])
+            
+            return (
+                <>
+                <h4>Highest Rated Article:
+                    <br></br>
+                    <NavLink to="/showarticle" onClick={this.updateHighestratedArticleShow(sortedUserArticles[0].articleObj.id)}>
+                        
+                    {sortedUserArticles[0].articleObj.title}
+                        
+                        
+                        
+                    </NavLink>
+                    
+                </h4>
+                </>
+            )
+        }
+        
+
+
+    }
+
     render() {
         return (
             <>
@@ -196,6 +295,7 @@ export class UserShowContainer extends Component {
                     }
                     <br></br>
                     {this.renderLatestArticle()}
+                    {this.renderHighestArticle()}
 
                     
                 </>
@@ -217,7 +317,8 @@ const msp = (state) => {
     return{ 
         showUserId: state.showUser,
         loggedInUser: state.user,
-        loggedInPassword: state.storedPassword
+        loggedInPassword: state.storedPassword,
+        showUserId: state.showUser
     } 
 
 }
@@ -234,4 +335,4 @@ function mdp(dispatch){
     }
     
 }
-export default connect(msp,mdp)(UserShowContainer)
+export default connect(msp,mdp)(ShowUser)

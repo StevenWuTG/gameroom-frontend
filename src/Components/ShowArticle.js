@@ -177,7 +177,7 @@ export class ShowArticle extends Component {
                         
                         {this.renderVideo()}
                         
-                        <NavLink to="usershow">
+                        <NavLink to="showuser">
 
                             <h4 onClick={this.showUser}  >Author: {article.author.username}</h4>
                         </NavLink>

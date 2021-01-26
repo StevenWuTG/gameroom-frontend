@@ -23,7 +23,7 @@ export class NameLink extends Component {
         return (
             <div>
                 -
-                <NavLink to="/usershow">
+                <NavLink to="/showuser">
                     <div onClick={this.showUser}>
                         {this.props.linkUser.username}
                     </div>

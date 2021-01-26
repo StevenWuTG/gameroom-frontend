@@ -11,4 +11,5 @@ export const SHOW_ARTICLE = "SHOW_ARTICLE"
 export const EDIT_ARTICLE = "EDIT_ARTICLE"
 export const SHOW_GAME = "SHOW_GAME"
 export const EDIT_GAME = "EDIT_GAME"
+
 export const STORE_PASSWORD = "STORE_PASSWORD"
