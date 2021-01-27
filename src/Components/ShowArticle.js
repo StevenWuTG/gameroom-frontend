@@ -171,8 +171,16 @@ export class ShowArticle extends Component {
                             {this.props.articleObj.img_url === null | this.props.articleObj.img_url === "" ? 
                             <img src={"https://pbs.twimg.com/media/EK6BEwbXYAA78Bw.jpg"} alt={this.props.articleObj.title} width="300" height="300" />
                             :
-                            
+                            <>
+                            {this.props.articleObj.video_url?
+                            <>
+                            </>
+                            :
+                            <>
                             <img  className="article-photo" src={article.img_url} alt={this.props.articleObj.title} width="300vh" height="100%" />
+                            </>
+                            }
+                            </>
                         }
                         
                         {this.renderVideo()}
@@ -227,3 +235,4 @@ function mdp(dispatch){
 }
 
 export default connect(msp,mdp)(ShowArticle)
+

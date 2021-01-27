@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import styled from 'styled-components'
 
 export class EditUser extends Component {
 
@@ -110,7 +111,7 @@ export class EditUser extends Component {
                     }
                     <br></br>
                     
-                    <button type="submit"> Submit</button>
+                    <NewButton type="submit"> Submit </NewButton>
                 </form>
                 
             )
@@ -120,13 +121,14 @@ export class EditUser extends Component {
     render() {
         return (
             <div>
+                
                 {this.state.editClicked? 
                 <>
-                <button onClick={this.editClickHandler}>NeverMind</button>
+                <NewButton onClick={this.editClickHandler}>NeverMind </NewButton>
                 </>
                 :
                 <>
-                <button onClick={this.editClickHandler}>Edit</button>
+                <NewButton onClick={this.editClickHandler}>Edit User </NewButton>
                 </>
                 }
 
@@ -155,3 +157,32 @@ function mdp(dispatch){
     
 }
 export default connect(msp,mdp)(EditUser)
+
+const NewButton = styled.button`
+position:relative;
+  width: auto;
+  display:inline-block;
+  color:#ecf0f1;
+  text-decoration:none;
+  border-radius:5px;
+  border:solid 1px #f39c12;
+  background:#e67e22;
+  text-align:center;
+  margin: 12px;
+  
+  -webkit-transition: all 0.1s;
+	-moz-transition: all 0.1s;
+	transition: all 0.1s;
+	
+  -webkit-box-shadow: 0px 6px 0px #d35400;
+  -moz-box-shadow: 0px 6px 0px #d35400;
+  box-shadow: 0px 6px 0px #d35400;
+
+  :active{
+    -webkit-box-shadow: 0px 2px 0px #d35400;
+    -moz-box-shadow: 0px 2px 0px #d35400;
+    box-shadow: 0px 2px 0px #d35400;
+    position:relative;
+    top:4px;
+}
+`

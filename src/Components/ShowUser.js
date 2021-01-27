@@ -243,7 +243,7 @@ export class ShowUser extends Component {
                 return 0;
             }
 
-            console.log("before user articles",sortedUserArticles)
+            console.log("before user article s",sortedUserArticles)
             sortedUserArticles.sort(compare).reverse()  
 
             console.log("sorted user articles",sortedUserArticles)

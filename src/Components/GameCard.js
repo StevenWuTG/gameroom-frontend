@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {connect } from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import {showGame} from '../Redux/actions'
+import styled from 'styled-components'
 
 export class GameCard extends Component {
 
@@ -29,32 +30,37 @@ export class GameCard extends Component {
 
     render() {
         return (
-            <div>
-                
+            <>
+                <Card>
                 <h2>
                 {this.props.gameObj.title}
 
                 </h2>
                 <h2>
-                   
                 Rating: {this.averageRatings()}
-
                 </h2>
-                <br></br>
+    
                 {this.props.gameObj.img_url === null | this.props.gameObj.img_url === "" ?  
                 <>
+                    
                 <NavLink to="/showgame">
-                <img onClick={this.renderGame}  className="game-photo" src={"https://ca.res.keymedia.com/files/image/default(1).jpg"} alt={this.props.gameObj.name} width="40%" height="40%" />
+                <Photo onClick={this.renderGame} src={"https://ca.res.keymedia.com/files/image/default(1).jpg"} alt={this.props.gameObj.name}/>
+                {/* <img onClick={this.renderGame} className="article-photo" src={"https://ca.res.keymedia.com/files/image/default(1).jpg"} alt={this.props.gameObj.name} /> */}
                 </NavLink>
+                
                 </>
                 :
                 <>
+
                 <NavLink to="/showgame">
-                <img onClick={this.renderGame}  className="game-photo" src={this.props.gameObj.img_url} alt={this.props.gameObj.name} width="40%" height="40%" />
+                
+                <Photo onClick={this.renderGame} className="article-photo" src={this.props.gameObj.img_url} alt={this.props.gameObj.name}/>
+                
                 </NavLink>
                 </>
                 }
-            </div>
+                </Card>  
+            </>
         )
     }
 }
@@ -76,3 +82,18 @@ function mdp(dispatch){
 
 export default connect(msp,mdp)(GameCard)
 
+const Card = styled.div`
+display:flex;
+flex-direction: column;
+align-items:center;
+width:300px;
+height:300px;
+`
+const Photo = styled.img`
+display:flex;
+flex-direction: column;
+align-items:center;
+width:150px;
+height:auto;
+object-fit:contain
+`

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import styled from 'styled-components'
 import {Route, Redirect} from 'react-router-dom'
 import './Css/App.css';
 
@@ -98,43 +99,53 @@ export class App extends Component {
 
   render() {
     return (
-      <div className="grid">
-        <div className="grid-header">
-        <Header/>
-        <Navbar/>
-        </div>
-        <div className="grid-body">
-          
-        <Route exact path="/" component={Welcome}/>
-        <Route path="/articles" render={()=> <ArticlesContainer className="center" articleArray={this.props.articlesArray}/>} />
-        <Route path="/games" render={()=> <GamesContainer />} />
-        <Route path="/login" render={()=> <Login submitHandler={this.reduxSigninSubmitHandler}/>} />
-        <Route path="/signup" render={()=> <Signup submitHandler={this.reduxSignupSubmitHandler}/>} />
-          
-        <Route path="/showarticle" render={()=> <ShowArticle userObj={this.props.userObj} articleObj={this.props.articleObj} fetchArticleData={this.fetchArticleData} />} />
-        <Route path="/showgame" render={()=> <ShowGame />} />
-        <Route path="/profile" render={()=> <Profile fetchArticleData={this.fetchArticleData}/>} />
-        <Route path="/welcome" render={()=> <Welcome/>} />
-        <Route path="/showuser" render={()=> <ShowUser/>} />
+      <Wrapper>
         
-        {this.props.userObj && this.props.logged_in ? 
-        <>
-        {/* <Redirect to="/profile"/> */}
-        </>
-        :
-        <>
-        {/* <Redirect to="/welcome"/> */}
-        </>
+        <HeaderWrapper>
+          <Header/>
+          <NavBarWrapper>
 
-        }
-
-
-        </div>
-        <div className="grid-footer">
-        <Footer/> 
+            <Navbar/>
+          </NavBarWrapper>
+          
+        </HeaderWrapper>
         
-        </div>
-      </div>
+        
+        
+        <BodyWrapper>
+
+            
+          <Route exact path="/" component={Welcome}/>
+          <Route path="/articles" render={()=> <ArticlesContainer className="center" articleArray={this.props.articlesArray}/>} />
+          <Route path="/games" render={()=> <GamesContainer />} />
+          <Route path="/login" render={()=> <Login submitHandler={this.reduxSigninSubmitHandler}/>} />
+          <Route path="/signup" render={()=> <Signup submitHandler={this.reduxSignupSubmitHandler}/>} />
+            
+          <Route path="/showarticle" render={()=> <ShowArticle userObj={this.props.userObj} articleObj={this.props.articleObj} fetchArticleData={this.fetchArticleData} />} />
+          <Route path="/showgame" render={()=> <ShowGame />} />
+          <Route path="/profile" render={()=> <Profile fetchArticleData={this.fetchArticleData}/>} />
+          <Route path="/welcome" render={()=> <Welcome/>} />
+          <Route path="/showuser" render={()=> <ShowUser/>} />
+          
+          {this.props.userObj && this.props.logged_in ? 
+          <>
+          {/* <Redirect to="/profile"/> */}
+          </>
+          :
+          <>
+          {/* <Redirect to="/welcome"/> */}
+          </>
+
+          }
+
+          <FooterWrapper>
+
+          <Footer/> 
+          </FooterWrapper>
+        </BodyWrapper>
+        
+        
+      </Wrapper>
 
 
     )
@@ -166,3 +177,65 @@ function mdp(dispatch){
 
 
 export default connect(msp, mdp)(App);
+
+
+
+const Wrapper = styled.div`
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color:grey
+  
+  `;
+const BodyWrapper = styled.div`
+margin:0;
+height: 100%;
+width: 100vw;
+overflow: auto;
+display: flex;
+flex-direction: column;
+align-items: center;
+
+
+
+
+
+`;
+const HeaderWrapper = styled.div`
+  top:0;
+  border-top:2px solid black;
+  border-bottom:2px solid black;
+  height: 20%;
+  width: 100vw;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("https://d1lss44hh2trtw.cloudfront.net/assets/article/2020/10/20/cyberpunk-2077-build-header_feature.jpg");
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  
+  
+  `
+  const NavBarWrapper = styled.div`
+  
+  display: flex;
+  align-items: center;
+  
+  `
+  const FooterWrapper = styled.div`
+  
+  padding:5px 0;
+  position:auto;
+  width:100%;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  background-color: grey;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+`

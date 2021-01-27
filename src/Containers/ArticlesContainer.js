@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ArticleCard from '../Components/ArticleCard'
 import '../Css/Articles.css';
+import styled from 'styled-components'
 
 export class ArticlesContainer extends Component {
     
@@ -147,7 +148,8 @@ export class ArticlesContainer extends Component {
     render() {
         return (
             <>
-                
+                <SearchWrapper>
+
                 Search: <input onChange={this.searchFilterHandler}></input> 
                 {/* <br></br> */}
                 <form onSubmit={this.sortArticles}>
@@ -158,14 +160,62 @@ export class ArticlesContainer extends Component {
 
                     </select> 
 
-                    <button type="submit">sort</button>
+                    <NewButton type="submit"> sort </NewButton>
                 </form>
+                </SearchWrapper>
+                <ArticlesWrapper>
+
 
                 {this.renderArticles()}
                 {this.showArticle}
+                </ArticlesWrapper>
             </>
         )
     }
 }
 
 export default ArticlesContainer
+
+const SearchWrapper = styled.div`
+  
+display: flex;
+align-items: center;
+
+`
+
+const ArticlesWrapper = styled.div`
+  
+display: flex;
+align-items: center;
+object-fit:contain;
+flex-wrap: wrap;
+
+`
+const NewButton = styled.button`
+position:relative;
+  width: auto;
+  display:inline-block;
+  color:#ecf0f1;
+  text-decoration:none;
+  border-radius:5px;
+  border:solid 1px #f39c12;
+  background:#e67e22;
+  text-align:center;
+  margin: 12px;
+  
+  -webkit-transition: all 0.1s;
+	-moz-transition: all 0.1s;
+	transition: all 0.1s;
+	
+  -webkit-box-shadow: 0px 6px 0px #d35400;
+  -moz-box-shadow: 0px 6px 0px #d35400;
+  box-shadow: 0px 6px 0px #d35400;
+
+  :active{
+    -webkit-box-shadow: 0px 2px 0px #d35400;
+    -moz-box-shadow: 0px 2px 0px #d35400;
+    box-shadow: 0px 2px 0px #d35400;
+    position:relative;
+    top:4px;
+}
+`

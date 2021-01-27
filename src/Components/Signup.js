@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {storePassword} from '../Redux/actions'
-
+import styled from 'styled-components'
 export class Signup extends Component {
 
     state = {
@@ -33,13 +33,13 @@ export class Signup extends Component {
 
     render() {
         return (
-            <div class="login-box">
+            <Wrapper class="login-box">
 
             Enter your credentials
             <br></br>
             <br></br>
             <form onSubmit = {this.submitHandler} >
-            <div class="user-box">
+            <div style={{"align-items":"center"}}>
                 
                 <input type="text" name="username" placeholder="Username" value={this.state.username} onChange={this.inputHandler} /> <br></br>
                 <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.inputHandler}/> <br></br>
@@ -47,7 +47,7 @@ export class Signup extends Component {
                 <input type="text" name="email" placeholder="Email" value={this.state.email} onChange={this.inputHandler}/> <br></br>
                 <input type="text" name="bio" placeholder="Quick Bio" value={this.state.bio} onChange={this.inputHandler}/> <br></br>
                 
-                <input type="submit" value="Sign Up"/>
+                <NewButton type="submit">Signup</NewButton>
                 </div>
             </form>
 
@@ -60,7 +60,7 @@ export class Signup extends Component {
             <>
             </>
             }
-            </div>
+            </Wrapper>
         )
     }
 }
@@ -81,3 +81,35 @@ function mdp(dispatch){
 }
 
 export default connect(msp,mdp)(Signup)
+
+const NewButton = styled.button`
+position:relative;
+  width: auto;
+  display:inline-block;
+  color:#ecf0f1;
+  text-decoration:none;
+  border-radius:5px;
+  border:solid 1px #f39c12;
+  background:#e67e22;
+  text-align:center;
+  
+  -webkit-transition: all 0.1s;
+	-moz-transition: all 0.1s;
+	transition: all 0.1s;
+	
+  -webkit-box-shadow: 0px 6px 0px #d35400;
+  -moz-box-shadow: 0px 6px 0px #d35400;
+  box-shadow: 0px 6px 0px #d35400;
+
+  :active{
+    -webkit-box-shadow: 0px 2px 0px #d35400;
+    -moz-box-shadow: 0px 2px 0px #d35400;
+    box-shadow: 0px 2px 0px #d35400;
+    position:relative;
+    top:4px;
+}
+`
+const Wrapper = styled.div`
+    text-align:center;
+    object-fit:contain
+`

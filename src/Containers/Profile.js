@@ -5,6 +5,7 @@ import {fetchGames, reduxShowUser} from '../Redux/actions'
 import {NameLink} from '../Components/NameLink'
 import {EditUser } from '../Components/EditUser'
 import {loginUser } from '../Redux/actions'
+import styled from 'styled-components'
 
 
 export class Profile extends Component {
@@ -92,6 +93,8 @@ export class Profile extends Component {
     render() {
         return (
             <>
+                <Wrapper>
+
                 {this.props.logged_in === false || this.props.logged_in === null ? 
                 <>
                 <h1>Please log in</h1>
@@ -103,7 +106,7 @@ export class Profile extends Component {
                     Post Article:
                     <br></br>
                     {/* <h5 style={{"color": "orange"}}>working on it...</h5> */}
-                    <button onClick={this.formButtonHandler}>Show form</button>
+                    <NewButton onClick={this.formButtonHandler}>Show form </NewButton>
                
                 {this.renderUsername()}    
                 <br></br>
@@ -112,7 +115,7 @@ export class Profile extends Component {
                 <br></br>
                 {/* Most Popular Article:
                 <br></br>
-                <h5 style={{"color": "red"}}>under construction check back later</h5> */}
+            <h5 style={{"color": "red"}}>under construction check back later</h5> */}
 
 
                 <br></br>    
@@ -129,6 +132,7 @@ export class Profile extends Component {
                 </>
                 }
 
+                </Wrapper>
             </>
         )
     }
@@ -155,3 +159,41 @@ function mdp(dispatch){
     
 }
 export default connect(msp,mdp)(Profile)
+
+const Wrapper = styled.div`
+  
+  
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+
+`
+
+const NewButton = styled.button`
+position:relative;
+  width: auto;
+  display:inline-block;
+  color:#ecf0f1;
+  text-decoration:none;
+  border-radius:5px;
+  border:solid 1px #f39c12;
+  background:#e67e22;
+  text-align:center;
+  margin: 12px;
+  
+  -webkit-transition: all 0.1s;
+	-moz-transition: all 0.1s;
+	transition: all 0.1s;
+	
+  -webkit-box-shadow: 0px 6px 0px #d35400;
+  -moz-box-shadow: 0px 6px 0px #d35400;
+  box-shadow: 0px 6px 0px #d35400;
+
+  :active{
+    -webkit-box-shadow: 0px 2px 0px #d35400;
+    -moz-box-shadow: 0px 2px 0px #d35400;
+    box-shadow: 0px 2px 0px #d35400;
+    position:relative;
+    top:4px;
+}
+`

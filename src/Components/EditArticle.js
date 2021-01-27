@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
+import styled from 'styled-components'
 import {editArticle} from '../Redux/actions'
 
 export class EditArticle extends Component {
@@ -131,7 +132,7 @@ export class EditArticle extends Component {
     render() {
         return (
             <div>
-                <button onClick={this.clickHandler}>Edit</button>
+                <NewButton onClick={this.clickHandler}>Edit </NewButton>
                 {this.state.editButtonClicked?
                 // editButtonClicked = true
                 <>
@@ -161,7 +162,7 @@ export class EditArticle extends Component {
                     {/* <input type="text" name="video_url"placeholder="Youtube_url" value={this.state.video_url} onChange={this.inputHandler}/> */}
                     <br></br>
                     
-                    <button type="submit">Submit</button>
+                    <NewButton type="submit">Submit </NewButton>
 
                     </form>
                     </>
@@ -171,14 +172,14 @@ export class EditArticle extends Component {
                     <>
                     </>
                     :
-                    <button  onClick={this.deleteHandler} >Delete</button>
+                    <NewButton  onClick={this.deleteHandler} >Delete </NewButton>
                 }
                 {this.state.deleteButtonClicked? 
 
                     <>
                     <NavLink to="/articles">
                     
-                    <button onClick={this.confirmedDelete} >DELETE FOREVER</button>
+                    <NewButton onClick={this.confirmedDelete} >DELETE FOREVER </NewButton>
                     </NavLink>
                     </>
                     :
@@ -217,3 +218,32 @@ function mdp(dispatch){
   }
 
 export default connect(msp,mdp)(EditArticle)
+
+const NewButton = styled.button`
+position:relative;
+  width: auto;
+  display:inline-block;
+  color:#ecf0f1;
+  text-decoration:none;
+  border-radius:5px;
+  border:solid 1px #f39c12;
+  background:#e67e22;
+  text-align:center;
+  margin: 12px;
+  
+  -webkit-transition: all 0.1s;
+	-moz-transition: all 0.1s;
+	transition: all 0.1s;
+	
+  -webkit-box-shadow: 0px 6px 0px #d35400;
+  -moz-box-shadow: 0px 6px 0px #d35400;
+  box-shadow: 0px 6px 0px #d35400;
+
+  :active{
+    -webkit-box-shadow: 0px 2px 0px #d35400;
+    -moz-box-shadow: 0px 2px 0px #d35400;
+    box-shadow: 0px 2px 0px #d35400;
+    position:relative;
+    top:4px;
+}
+`

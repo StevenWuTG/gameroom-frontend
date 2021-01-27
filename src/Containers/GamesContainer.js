@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import GameCard from '../Components/GameCard'
 import {connect} from 'react-redux'
 import {fetchGames} from '../Redux/actions'
+import styled from 'styled-components'
 
 
 
@@ -54,11 +55,18 @@ export class GamesContainer extends Component {
     
     render() {
         return (
-            <div>
+            <>
+                <SearchWrapper>
+
                 Search: <input onChange={this.filterHandler}></input>
+                </SearchWrapper>
+                <GamesWrapper>
+
                 {/* {this.props.gameObj.name} */}
                 {this.renderGames()}
-            </div>
+                </GamesWrapper>
+            
+            </>
         )
     }
 }
@@ -70,13 +78,32 @@ function msp(state){
     }
   }
   
-  function mdp(dispatch){
+function mdp(dispatch){
     return {
       
       fetchGames: (apiData) => dispatch(fetchGames(apiData))
       
     }
-  }
+}
   
   
-  export default connect(msp, mdp)(GamesContainer);
+export default connect(msp, mdp)(GamesContainer);
+
+
+const SearchWrapper = styled.div`
+  
+  display: flex;
+  align-items: center;
+  
+`
+  
+const GamesWrapper = styled.div`
+    
+  display: flex;
+  align-items: center;
+  object-fit:contain;
+  flex-wrap: wrap;
+  
+`
+  
+  

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import ArticleComment from "../Components/ArticleComment"
+import styled from 'styled-components'
 import AddComment from "../Components/AddComment"
 
 
@@ -67,19 +68,11 @@ export class ArticleCommentsContainer extends Component {
         
         console.log(this.props.userObj)
         if(this.props.userObj){
-            return <button >Button</button>
+            return <NewButton > Button</NewButton>
         }
     }
 
     commentButtonHandler = () => {
-        // if(this.state.commentFormClicked ){
-        //     this.setState({commentFormClicked: false})
-        //     console.log(this.state.commentFormClicked)
-        // } else {
-        //     this.setState({commentFormClicked: true})
-        //     console.log(this.state.commentFormClicked)
-            
-        // }
         this.setState({commentFormClicked: !this.state.commentFormClicked })
 
     }
@@ -93,18 +86,11 @@ export class ArticleCommentsContainer extends Component {
     }
 
     showCommentButton = ()=> {
-        // if(this.state.commentFormClicked && this.props.userObj){
-        //     return <button onClick={this.commentButtonHandler}>Nevermind</button>
-        // } else if (this.state.commentFormClicked === false){
-        //     return <button onClick={this.commentButtonHandler}>Comment</button>
-        // } else {
-        //     return <button onClick={this.commentButtonHandler}>Comment</button>
-
-        // }
+        
         if(this.props.userObj && this.state.commentFormClicked){
-            return <button onClick={this.commentButtonHandler}>Nevermind</button>
+            return <NewButton onClick={this.commentButtonHandler}>Nevermind </NewButton>
         } else if (this.props.userObj && !this.state.commentFormClicked ){    
-            return <button onClick={this.commentButtonHandler}>Comment</button>
+            return <NewButton onClick={this.commentButtonHandler}>Comment </NewButton>
         } else {
             return
         }
@@ -122,17 +108,6 @@ export class ArticleCommentsContainer extends Component {
                 {/* {this.renderCommentButton()} */}
                 {this.renderCommentForm()}
 
-                {/* {this.state.commentFormClicked && this.props.userObj? 
-                <>
-                <button onClick={this.commentButtonHandler}>Nevermind</button>
-                </>
-                :
-                <>
-
-                <button onClick={this.commentButtonHandler}>Comment</button>
-
-                </>
-                } */}
 
                 {this.showCommentButton()}
                 
@@ -150,3 +125,32 @@ const msp = (state) => {
 }
 
 export default connect(msp,null)(ArticleCommentsContainer)
+
+const NewButton = styled.button`
+position:relative;
+  width: auto;
+  display:inline-block;
+  color:#ecf0f1;
+  text-decoration:none;
+  border-radius:5px;
+  border:solid 1px #f39c12;
+  background:#e67e22;
+  text-align:center;
+  margin: 12px;
+  
+  -webkit-transition: all 0.1s;
+	-moz-transition: all 0.1s;
+	transition: all 0.1s;
+	
+  -webkit-box-shadow: 0px 6px 0px #d35400;
+  -moz-box-shadow: 0px 6px 0px #d35400;
+  box-shadow: 0px 6px 0px #d35400;
+
+  :active{
+    -webkit-box-shadow: 0px 2px 0px #d35400;
+    -moz-box-shadow: 0px 2px 0px #d35400;
+    box-shadow: 0px 2px 0px #d35400;
+    position:relative;
+    top:4px;
+}
+`

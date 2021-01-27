@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {NavLink, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { showArticle } from '../Redux/actions'
-
+import styled from 'styled-components'
 export class ArticleCard extends Component {
 
     renderArticle = () => {
@@ -34,24 +34,26 @@ export class ArticleCard extends Component {
 
     render() {
         return (
-            <>
+            
+            <Card>
+
                 <h2>{this.props.articleObj.title}</h2>
                 
-                {this.averageRatings()}
                 <br></br>
                 {this.props.articleObj.img_url === null | this.props.articleObj.img_url === "" ?
                 <>
                 <NavLink to="/showarticle">
-                <img onClick={this.renderArticle} className="article-photo" src={"https://ca.res.keymedia.com/files/image/default(1).jpg"} alt={this.props.articleObj} width="300" height="300" />
+                <Photo onClick={this.renderArticle}src={"https://ca.res.keymedia.com/files/image/default(1).jpg"} alt={this.props.articleObj} />
                 </NavLink>
                 </>
                 :
                 <>
                 <NavLink to="/showarticle">
-                <img onClick={this.renderArticle} className="article-photo" src={this.props.articleObj.img_url} alt={this.props.articleObj} width="300" height="300" />
+                <Photo onClick={this.renderArticle} src={this.props.articleObj.img_url} alt={this.props.articleObj} />
                 </NavLink>
                 </>
                 }
+                {this.averageRatings()}
                 <br></br>
 
                 {/* <NavLink to="/showarticle">
@@ -63,7 +65,8 @@ export class ArticleCard extends Component {
                 <br></br>
                 
                 
-            </>
+            </Card>
+            
         )
     }
 }
@@ -83,3 +86,22 @@ function mdp(dispatch){
 }
 
 export default connect(msp,mdp)(ArticleCard)
+
+
+
+const Card = styled.div`
+display:flex;
+flex-direction: column;
+align-items:center;
+width:300px;
+height:300px;
+object-fit:contain;
+`
+const Photo = styled.img`
+display:flex;
+flex-direction: column;
+align-items:center;
+width:150px;
+height:auto;
+object-fit:contain
+`
