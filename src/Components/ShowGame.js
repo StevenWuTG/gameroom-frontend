@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 
 import ReactPlayer from "react-player"
+import styled from 'styled-components'
 
 export class ShowGame extends Component {
 
@@ -58,7 +59,7 @@ export class ShowGame extends Component {
 
     render() {
         return (
-            <div>
+            <Wrapper>
                 
                 {this.renderTitle()}
                 <br></br>
@@ -66,7 +67,7 @@ export class ShowGame extends Component {
                 {this.renderDesc()}
                 <br></br>
 
-            </div>
+            </Wrapper>
         )
     }
 }
@@ -94,3 +95,13 @@ function msp(state){
   
   
   export default connect(msp, mdp)(ShowGame);
+
+  const Wrapper = styled.div`
+  
+  
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  min-height:600px;
+
+`

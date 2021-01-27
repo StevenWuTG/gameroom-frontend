@@ -3,6 +3,11 @@ import {NavLink, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { showArticle } from '../Redux/actions'
 import styled from 'styled-components'
+import icon1 from '../Images/icon1.png';
+import icon2 from '../Images/icon2.png';
+import icon3 from '../Images/icon3.png';
+import icon4 from '../Images/icon4.png';
+
 export class ArticleCard extends Component {
 
     renderArticle = () => {
@@ -43,7 +48,8 @@ export class ArticleCard extends Component {
                 {this.props.articleObj.img_url === null | this.props.articleObj.img_url === "" ?
                 <>
                 <NavLink to="/showarticle">
-                <Photo onClick={this.renderArticle}src={"https://ca.res.keymedia.com/files/image/default(1).jpg"} alt={this.props.articleObj} />
+                {/* <Photo onClick={this.renderArticle}src={"https://ca.res.keymedia.com/files/image/default(1).jpg"} alt={this.props.articleObj} /> */}
+                <Photo onClick={this.renderArticle}src={icon1} alt={this.props.articleObj} />
                 </NavLink>
                 </>
                 :

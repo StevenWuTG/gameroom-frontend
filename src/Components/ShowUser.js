@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { updateShowArticle, loginUser } from '../Redux/actions'
+import styled from 'styled-components'
+
 
 export class ShowUser extends Component {
 
@@ -33,7 +35,7 @@ export class ShowUser extends Component {
             .then(r => r.json())
             .then(articlesArr => {
                console.log("fetched users articles", articlesArr)
-               articlesArr.map( article =>{
+               articlesArr.map( article => {
                    if(article.author.id === showUserId){
                     //    console.log("belows to user", article)
                        userArticles.push(article)
@@ -274,6 +276,7 @@ export class ShowUser extends Component {
     render() {
         return (
             <>
+            <Wrapper>
                 
                 {/* <button onClick={this.clickTester}>button</button> */}
                 {this.state.showUserObj?
@@ -308,6 +311,7 @@ export class ShowUser extends Component {
                 {this.followHandler()}
 
 
+            </Wrapper>
             </>
         )
     }
@@ -336,3 +340,11 @@ function mdp(dispatch){
     
 }
 export default connect(msp,mdp)(ShowUser)
+
+const Wrapper = styled.div` 
+flex-direction: column;
+display: flex;
+align-items: center;
+min-height:600px;
+
+`

@@ -186,7 +186,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color:grey
+  background-color:white
   
   `;
 const BodyWrapper = styled.div`
@@ -205,8 +205,6 @@ align-items: center;
 `;
 const HeaderWrapper = styled.div`
   top:0;
-  border-top:2px solid black;
-  border-bottom:2px solid black;
   height: 20%;
   width: 100vw;
   display: flex;
@@ -231,10 +229,10 @@ const HeaderWrapper = styled.div`
   padding:5px 0;
   position:auto;
   width:100%;
-  flex-direction: column;
+  flex-direction: row;
   display: flex;
   align-items: center;
-  background-color: grey;
+  background-color: white;
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;

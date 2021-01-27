@@ -138,6 +138,7 @@ position:relative;
   text-align:center;
   margin: 12px;
   
+  
   -webkit-transition: all 0.1s;
 	-moz-transition: all 0.1s;
 	transition: all 0.1s;

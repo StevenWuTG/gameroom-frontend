@@ -8,6 +8,9 @@ import ReactPlayer from "react-player"
 import '../Css/App.css'
 import {reduxShowUser} from '../Redux/actions'
 
+import icon3 from '../Images/icon3.png';
+import styled from 'styled-components'
+
 
 
 export class ShowArticle extends Component {
@@ -154,7 +157,7 @@ export class ShowArticle extends Component {
         
         const article = this.props.articleObj
         return (
-            <div>
+            <Wrapper>
                 
                 {this.props.articleObj === null?
                     <>
@@ -169,7 +172,7 @@ export class ShowArticle extends Component {
                         {this.renderRelatedGame()}
                         <br></br>
                             {this.props.articleObj.img_url === null | this.props.articleObj.img_url === "" ? 
-                            <img src={"https://pbs.twimg.com/media/EK6BEwbXYAA78Bw.jpg"} alt={this.props.articleObj.title} width="300" height="300" />
+                            <img src={icon3} alt={this.props.articleObj.title} width="200" height="200" />
                             :
                             <>
                             {this.props.articleObj.video_url?
@@ -214,7 +217,7 @@ export class ShowArticle extends Component {
             
                 }
                 
-            </div>
+            </Wrapper>
         )
     }
 }
@@ -235,4 +238,12 @@ function mdp(dispatch){
 }
 
 export default connect(msp,mdp)(ShowArticle)
+
+const Wrapper = styled.div` 
+flex-direction: column;
+display: flex;
+align-items: center;
+min-height:600px;
+
+`
 

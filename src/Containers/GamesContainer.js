@@ -100,6 +100,8 @@ const SearchWrapper = styled.div`
 const GamesWrapper = styled.div`
     
   display: flex;
+  min-height:600px;
+
   align-items: center;
   object-fit:contain;
   flex-wrap: wrap;

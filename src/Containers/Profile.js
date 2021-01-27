@@ -166,6 +166,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   display: flex;
   align-items: center;
+  min-height:600px;
 
 `
 

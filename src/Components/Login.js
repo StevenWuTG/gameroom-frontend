@@ -102,6 +102,11 @@ position:relative;
 }
 `
 const Wrapper = styled.div`
-    text-align:center;
-    object-fit:contain
+  
+  
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  min-height:600px;
+
 `

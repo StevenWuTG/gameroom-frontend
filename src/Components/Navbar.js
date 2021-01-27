@@ -29,7 +29,7 @@ export class Navbar extends Component {
 
     render() {
         return (
-            <>
+            <Wrapper>
             {this.props.logged_in? 
             <>
             <NavLink to="/welcome">
@@ -76,7 +76,7 @@ export class Navbar extends Component {
             </>
             }
                 
-            </>
+            </Wrapper>
         )
     }
 }
@@ -100,6 +100,15 @@ function mdp(dispatch){
 
 
 export default connect(msp,mdp)(Navbar)
+
+const Wrapper = styled.div`
+  
+  
+  flex-direction: flex;
+  display: flex;
+  align-items: center;
+  object-fit: contain;  
+`
 
 const NewButton = styled.button`
 position:relative;

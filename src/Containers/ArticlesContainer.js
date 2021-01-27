@@ -189,6 +189,7 @@ display: flex;
 align-items: center;
 object-fit:contain;
 flex-wrap: wrap;
+min-height:600px;
 
 `
 const NewButton = styled.button`
