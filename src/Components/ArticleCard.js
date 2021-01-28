@@ -3,6 +3,9 @@ import {NavLink, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { showArticle } from '../Redux/actions'
 import styled from 'styled-components'
+
+import {FaStar} from 'react-icons/fa'
+import StarRating from './StarRating'
 import icon1 from '../Images/icon1.png';
 import icon2 from '../Images/icon2.png';
 import icon3 from '../Images/icon3.png';
@@ -29,7 +32,9 @@ export class ArticleCard extends Component {
 
         // console.log("new Total:", newTotal )
         if(newTotal){
-            return <h3>Ratings: {newTotal}</h3>
+            // return <h3>Ratings: {parseInt(newTotal)}</h3>
+            return <h3>Ratings: {newTotal.toFixed(2)}</h3>
+            
         }
         
     }
@@ -60,6 +65,7 @@ export class ArticleCard extends Component {
                 </>
                 }
                 {this.averageRatings()}
+                
                 <br></br>
 
                 {/* <NavLink to="/showarticle">

@@ -43,3 +43,8 @@
 .center {
   text-align: center;
 }
+
+.star {
+  cursor:pointer;
+  transition: color 200ms;
+}
