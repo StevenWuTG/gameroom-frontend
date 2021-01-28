@@ -134,7 +134,7 @@ export class ShowArticle extends Component {
         } else {
             return <div style={{"display": 'flex',"justify-content": "center"}} >
                     
-                    <ReactPlayer width={"50vw"} height={"50vh"}  controls  url={this.props.articleObj.video_url}/>
+                    <ReactPlayer playing={true}  muted={true} width={"50vw"} height={"50vh"}  controls  url={this.props.articleObj.video_url}/>
                 
                     </div>
         }

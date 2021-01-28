@@ -36,9 +36,9 @@ export class GameCard extends Component {
                 {this.props.gameObj.title}
 
                 </h2>
-                <h2>
+                {/* <h2>
                 Rating: {this.averageRatings()}
-                </h2>
+                </h2> */}
     
                 {this.props.gameObj.img_url === null | this.props.gameObj.img_url === "" ?  
                 <>

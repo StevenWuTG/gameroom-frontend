@@ -40,7 +40,7 @@ export class ShowGame extends Component {
       } else {
           return <div style={{"display": 'flex',"justify-content": "center"}} >
                   
-                  <ReactPlayer height={"50vh"} width={"50vw"}  controls  url={this.props.currentGameObj.video_url}/>
+                  <ReactPlayer playing={true} muted={true} height={"50vh"} width={"50vw"}  controls  url={this.props.currentGameObj.video_url}/>
               
                   </div>
       }
