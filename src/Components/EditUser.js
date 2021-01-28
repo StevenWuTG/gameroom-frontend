@@ -120,7 +120,7 @@ export class EditUser extends Component {
     }
     render() {
         return (
-            <div>
+            <div style={{"text-align":"center"}}>
                 
                 {this.state.editClicked? 
                 <>

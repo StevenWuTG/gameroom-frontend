@@ -37,8 +37,8 @@ function userReducer(prevState= defaultState.user, action){
 
 
         default:
-
             return prevState
+            
                 }
 }
 

@@ -102,11 +102,9 @@ function mdp(dispatch){
 export default connect(msp,mdp)(Navbar)
 
 const Wrapper = styled.div`
+;
   
   
-  flex-direction: flex;
-  display: flex;
-  object-fit: contain;  
 `
 
 // const NewButton = styled.button`
@@ -142,10 +140,8 @@ const Wrapper = styled.div`
 const NewButton = styled.button`
     background-color: #ff7043;
     color:white;
-    display: inline-block;
     margin: 0.3em;
     padding: 1.2em 5em;
-    overflow: hidden;
     position: relative;
     text-decoration: none;
     text-transform: uppercase;

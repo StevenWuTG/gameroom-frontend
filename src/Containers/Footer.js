@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import {NavLink, Redirect} from 'react-router-dom'
 import styled from 'styled-components'
+import githubsmall from '../Images/githubsmall.png';
+import linkedinicon from '../Images/linkedinicon.png';
+import mediumicon from '../Images/mediumicon.png';
 
 export class Footer extends Component {
 
@@ -15,11 +18,19 @@ export class Footer extends Component {
                
 
                 
-                <Link href={""} >Github</Link >
+                <Link href={"https://github.com/StevenWuTG"} >
+                    <Icon src={githubsmall}/>
+                </Link >
                 
-                <Link href={""} >LinkedIn</Link >
+                <Link href={"https://www.linkedin.com/in/steven-wu-914568205/"} >
+                    <Icon src={linkedinicon}/>
+                    
+                </Link >
                 
-                <Link href={""} >footer</Link >
+                <Link href={"https://stevenwu91.medium.com/"} >
+                    <Icon src={mediumicon}/>
+                    
+                </Link >
                 
             </Wrapper>
         )
@@ -38,4 +49,10 @@ const Wrapper = styled.div`
 `
 
 const Link = styled.a`
+`
+
+const Icon = styled.img`
+    max-height: 36px;
+    max-width: 36px;
+
 `

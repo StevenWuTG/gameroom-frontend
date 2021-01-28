@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { updateShowArticle , storePassword} from '../Redux/actions'
 import styled from "styled-components"
+import TextField from '@material-ui/core/TextField';
+
 
 export class Login extends Component {
 
@@ -32,9 +34,9 @@ export class Login extends Component {
                 <br></br>
             <form onSubmit = {this.submitHandler}>
             <div class="user-box">
-            <input type="text" name="username" placeholder="username" value={this.state.username} onChange={this.inputHandler} /> 
+            <TextField type="text" name="username" placeholder="username" value={this.state.username} onChange={this.inputHandler} /> 
             <br></br>
-            <input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.inputHandler}/>
+            <TextField type="password" name="password" placeholder="password" value={this.state.password} onChange={this.inputHandler}/>
             <br></br> 
             <NewButton type="submit">
                 Login
@@ -106,7 +108,7 @@ const Wrapper = styled.div`
   
   flex-direction: column;
   display: flex;
-  align-items: center;
+  text-align: center;
   min-height:600px;
 
 `

@@ -166,8 +166,8 @@ const Wrapper = styled.div`
   flex-direction: column;
   display: flex;
   align-items: center;
-  min-height:600px;
-
+  height:100%;
+  max-width: 35%;
 `
 
 const NewButton = styled.button`
@@ -189,7 +189,6 @@ position:relative;
   -webkit-box-shadow: 0px 6px 0px #d35400;
   -moz-box-shadow: 0px 6px 0px #d35400;
   box-shadow: 0px 6px 0px #d35400;
-
   :active{
     -webkit-box-shadow: 0px 2px 0px #d35400;
     -moz-box-shadow: 0px 2px 0px #d35400;

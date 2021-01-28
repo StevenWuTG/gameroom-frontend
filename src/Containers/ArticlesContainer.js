@@ -2,8 +2,13 @@ import React, { Component } from 'react'
 import ArticleCard from '../Components/ArticleCard'
 import '../Css/Articles.css';
 import styled from 'styled-components'
+import Button from '@material-ui/core/Button'
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
 export class ArticlesContainer extends Component {
+
+    
     
     state = {
         articleArray: null,
@@ -150,9 +155,9 @@ export class ArticlesContainer extends Component {
             <>
                 <SearchWrapper>
 
-                Search: <input onChange={this.searchFilterHandler}></input> 
+                Search: <TextField onChange={this.searchFilterHandler}></TextField> 
                 {/* <br></br> */}
-                <form onSubmit={this.sortArticles}>
+                <form style={{"height":"40px"}} onSubmit={this.sortArticles}>
                     Sort by:
                     <select name="sortby">
                         <option value="newest">newest</option>

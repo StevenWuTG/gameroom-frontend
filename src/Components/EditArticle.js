@@ -131,7 +131,7 @@ export class EditArticle extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{"text-align":"center"}}>
                 <NewButton onClick={this.clickHandler}>Edit </NewButton>
                 {this.state.editButtonClicked?
                 // editButtonClicked = true

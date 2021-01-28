@@ -40,7 +40,7 @@ export class ShowGame extends Component {
       } else {
           return <div style={{"display": 'flex',"justify-content": "center"}} >
                   
-                  <ReactPlayer  controls  url={this.props.currentGameObj.video_url}/>
+                  <ReactPlayer height={"50vh"} width={"50vw"}  controls  url={this.props.currentGameObj.video_url}/>
               
                   </div>
       }
@@ -146,5 +146,6 @@ const Wrapper = styled.div`
   align-items: center;
   min-height:600px;
   width:100%;
+  max-width:40%;
 
 `

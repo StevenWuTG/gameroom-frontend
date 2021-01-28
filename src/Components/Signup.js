@@ -3,6 +3,9 @@ import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {storePassword} from '../Redux/actions'
 import styled from 'styled-components'
+
+import TextField from '@material-ui/core/TextField';
+
 export class Signup extends Component {
 
     state = {
@@ -39,13 +42,13 @@ export class Signup extends Component {
             <br></br>
             <br></br>
             <form onSubmit = {this.submitHandler} >
-            <div style={{"align-items":"center"}}>
+            <div >
                 
-                <input type="text" name="username" placeholder="Username" value={this.state.username} onChange={this.inputHandler} /> <br></br>
-                <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.inputHandler}/> <br></br>
-                <input type="text" name="avatar" placeholder="Avatar" value={this.state.avatar} onChange={this.inputHandler}/> <br></br>
-                <input type="text" name="email" placeholder="Email" value={this.state.email} onChange={this.inputHandler}/> <br></br>
-                <input type="text" name="bio" placeholder="Quick Bio" value={this.state.bio} onChange={this.inputHandler}/> <br></br>
+                <TextField type="text" name="username" placeholder="Username" value={this.state.username} onChange={this.inputHandler} /> <br></br>
+                <TextField type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.inputHandler}/> <br></br>
+                <TextField type="text" name="avatar" placeholder="Avatar" value={this.state.avatar} onChange={this.inputHandler}/> <br></br>
+                <TextField type="text" name="email" placeholder="Email" value={this.state.email} onChange={this.inputHandler}/> <br></br>
+                <TextField type="text" name="bio" placeholder="Quick Bio" value={this.state.bio} onChange={this.inputHandler}/> <br></br>
                 
                 <NewButton type="submit">Signup</NewButton>
                 </div>
@@ -111,10 +114,12 @@ position:relative;
 `
 const Wrapper = styled.div`
   
-  
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-  min-height:600px;
+    height:100%;  
+    width:100%;  
+    border:2px solid black;
+    flex-direction: column;
+    display: column;
+    justify-content: center;
+    text-align:center;
 
 `

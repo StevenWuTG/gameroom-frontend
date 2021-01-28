@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {fetchGames} from '../Redux/actions'
 import styled from 'styled-components'
 
+import TextField from '@material-ui/core/TextField';
 
 
 
@@ -58,7 +59,7 @@ export class GamesContainer extends Component {
             <>
                 <SearchWrapper>
 
-                Search: <input onChange={this.filterHandler}></input>
+                Search: <TextField onChange={this.filterHandler}></TextField>
                 </SearchWrapper>
                 <GamesWrapper>
 

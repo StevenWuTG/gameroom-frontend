@@ -93,7 +93,7 @@ export class ShowArticle extends Component {
     renderTitle = ()  => {
         if(this.props.articleObj.title){
             
-            return <h3>{this.props.articleObj.title}</h3>
+            return <h1>{this.props.articleObj.title}</h1>
         } else {
             return <div></div>
 
@@ -134,7 +134,7 @@ export class ShowArticle extends Component {
         } else {
             return <div style={{"display": 'flex',"justify-content": "center"}} >
                     
-                    <ReactPlayer  controls  url={this.props.articleObj.video_url}/>
+                    <ReactPlayer width={"50vw"} height={"50vh"}  controls  url={this.props.articleObj.video_url}/>
                 
                     </div>
         }
@@ -180,7 +180,7 @@ export class ShowArticle extends Component {
                             </>
                             :
                             <>
-                            <img  className="article-photo" src={article.img_url} alt={this.props.articleObj.title} width="300vh" height="100%" />
+                            <img  className="article-photo" src={article.img_url} alt={this.props.articleObj.title} width="80%" height="100%" />
                             </>
                             }
                             </>
@@ -195,6 +195,7 @@ export class ShowArticle extends Component {
                         
                         {this.renderRatings()}
 
+                        <p>{article.content}</p>
                         {this.props.userObj === null ?
                         <>
                         </>
@@ -206,7 +207,6 @@ export class ShowArticle extends Component {
                         }
 
 
-                        <p>{article.content}</p>
 
                         {/* <ArticleCommentsContainer articleId={this.props.articleObj.id} comments={this.props.articleObj.article_comments}/> */}
                         <ArticleCommentsContainer articleId={this.props.articleObj.id}/>
@@ -244,6 +244,6 @@ flex-direction: column;
 display: flex;
 align-items: center;
 min-height:600px;
-
+max-width:35%;
 `
 

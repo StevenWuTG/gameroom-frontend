@@ -70,7 +70,7 @@ export class AddComment extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{"text-align":"center"}}>
                 <br></br>
                 AddComment
                 

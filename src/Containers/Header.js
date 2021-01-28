@@ -32,19 +32,29 @@ export default Header
 
 const Wrapper = styled.div`
 
-  height: 20%;
-  justify-content:space-around;
-  width: 100vw;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background-image: url("https://d1lss44hh2trtw.cloudfront.net/assets/article/2020/10/20/cyberpunk-2077-build-header_feature.jpg");
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
-  
+    height: 20%;
+    justify-content:space-around;
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
     
-    `
+`
 const Name = styled.h1`
     
     font-weight:bold;

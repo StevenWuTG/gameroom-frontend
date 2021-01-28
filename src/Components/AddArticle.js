@@ -90,7 +90,7 @@ export class AddArticle extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{"text-align":"center"}}>
                 Article Form
 
                 <br></br>
