@@ -44,7 +44,7 @@ export class ShowGame extends Component {
               
                   </div>
       }
-  }
+    }
 
   renderDesc = () => {
     if(this.props.currentGameObj.description === null | this.props.currentGameObj.description === ""){
@@ -53,11 +53,49 @@ export class ShowGame extends Component {
       return <p>{this.props.currentGameObj.description}</p>
     }
   }
+  renderGenre = () => {
+    if(this.props.currentGameObj.genre === null | this.props.currentGameObj.genre === ""){
+      return
+    } else {
+      return (
+        <>
+        
+          Genre: {this.props.currentGameObj.genre}
+        </>
+      )
+    }
+
+  }
+  renderPubliser = () => {
+    if(this.props.currentGameObj.publisher === null | this.props.currentGameObj.publisher === ""){
+      return
+    } else {
+      return (
+        <>
+        
+          Publisher: {this.props.currentGameObj.publisher}
+        </>
+      )
+    }
+
+  }
+  renderReleased = () => {
+    if(this.props.currentGameObj.release_date === null | this.props.currentGameObj.release_date === ""){
+      return
+    } else {
+      return (
+        <>
+        
+          Release Date: {this.props.currentGameObj.release_date}
+        </>
+      )
+    }
+
+  }
 
 
 
-
-    render() {
+  render() {
         return (
             <Wrapper>
                 
@@ -65,11 +103,16 @@ export class ShowGame extends Component {
                 <br></br>
                 {this.renderVideo()}
                 {this.renderDesc()}
+                {this.renderGenre()}
+                <br></br>
+                {this.renderPubliser()}
+                <br></br>
+                {this.renderReleased()}
                 <br></br>
 
             </Wrapper>
         )
-    }
+  }
 }
 
 function msp(state){
@@ -93,15 +136,15 @@ function msp(state){
     }
   }
   
-  
-  export default connect(msp, mdp)(ShowGame);
+export default connect(msp, mdp)(ShowGame);
 
-  const Wrapper = styled.div`
+const Wrapper = styled.div`
   
   
   flex-direction: column;
   display: flex;
   align-items: center;
   min-height:600px;
+  width:100%;
 
 `

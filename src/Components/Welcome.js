@@ -4,7 +4,16 @@ export class Welcome extends Component {
     render() {
         return (
             <WelcomeWrapper>
-                Welcome to my bullshite webshite , we got games and tings???
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <h3>
+                  Welcome to my bullshite webshite , we got games and tings???
+                </h3>
+                <br></br>
+                <br></br>
+                <br></br>
                 <br></br>
                 <img src="
                 https://www.healthecareers.com/binaries/content/gallery/healthecareers-us-en/article-features/december-2016/welcome-new-doctor.jpg" height="300px"></img>

@@ -99,7 +99,7 @@ export class ArticleCommentsContainer extends Component {
     
     render() {
         return (
-            <>
+            <Wrapper>
 
                 <h3>comments:</h3>
                 
@@ -112,7 +112,7 @@ export class ArticleCommentsContainer extends Component {
                 {this.showCommentButton()}
                 
 
-            </>
+            </Wrapper>
         )
     }
 }
@@ -126,6 +126,11 @@ const msp = (state) => {
 
 export default connect(msp,null)(ArticleCommentsContainer)
 
+
+const Wrapper = styled.div`
+border:2px black;
+align-items: center;
+`
 const NewButton = styled.button`
 position:relative;
   width: auto;

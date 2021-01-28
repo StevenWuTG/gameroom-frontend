@@ -106,36 +106,61 @@ const Wrapper = styled.div`
   
   flex-direction: flex;
   display: flex;
-  align-items: center;
   object-fit: contain;  
 `
 
-const NewButton = styled.button`
-position:relative;
-  width: auto;
-  display:inline-block;
-  color:#ecf0f1;
-  text-decoration:none;
-  border-radius:5px;
-  border:solid 1px #f39c12;
-  background:#e67e22;
-  text-align:center;
-  padding:14px;
-  margin: 12px;
+// const NewButton = styled.button`
+// position:relative;
+//   width: auto;
+//   display:inline-block;
+//   color:#ecf0f1;
+//   text-decoration:none;
+//   border-radius:5px;
+//   border:solid 1px #f39c12;
+//   background:#e67e22;
+//   text-align:center;
+//   padding:14px;
+//   margin: 12px;
   
-  -webkit-transition: all 0.1s;
-	-moz-transition: all 0.1s;
-	transition: all 0.1s;
+//   -webkit-transition: all 0.1s;
+// 	-moz-transition: all 0.1s;
+// 	transition: all 0.1s;
 	
-  -webkit-box-shadow: 0px 6px 0px #d35400;
-  -moz-box-shadow: 0px 6px 0px #d35400;
-  box-shadow: 0px 6px 0px #d35400;
+//   -webkit-box-shadow: 0px 6px 0px #d35400;
+//   -moz-box-shadow: 0px 6px 0px #d35400;
+//   box-shadow: 0px 6px 0px #d35400;
 
-  :active{
-    -webkit-box-shadow: 0px 2px 0px #d35400;
-    -moz-box-shadow: 0px 2px 0px #d35400;
-    box-shadow: 0px 2px 0px #d35400;
-    position:relative;
-    top:4px;
-}
-`
+//   :active{
+//     -webkit-box-shadow: 0px 2px 0px #d35400;
+//     -moz-box-shadow: 0px 2px 0px #d35400;
+//     box-shadow: 0px 2px 0px #d35400;
+//     position:relative;
+//     top:4px;
+// }
+// `
+
+const NewButton = styled.button`
+    background-color: #ff7043;
+    color:white;
+    display: inline-block;
+    margin: 0.3em;
+    padding: 1.2em 5em;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 3px;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    border: none; 
+    font-size: 15px;
+    text-align: center;
+    :hover {
+        box-shadow: 1px 6px 15px rgba(0,0,0,0.5);
+      }
+      
+  `

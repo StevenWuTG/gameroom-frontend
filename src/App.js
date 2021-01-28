@@ -101,14 +101,11 @@ export class App extends Component {
     return (
       <Wrapper>
         
-        <HeaderWrapper>
           <Header/>
-          <NavBarWrapper>
+        {/* <HeaderWrapper>
 
-            <Navbar/>
-          </NavBarWrapper>
           
-        </HeaderWrapper>
+        </HeaderWrapper> */}
         
         
         
@@ -138,11 +135,11 @@ export class App extends Component {
 
           }
 
-          <FooterWrapper>
+        </BodyWrapper>
+          {/* <FooterWrapper> */}
 
           <Footer/> 
-          </FooterWrapper>
-        </BodyWrapper>
+          {/* </FooterWrapper> */}
         
         
       </Wrapper>
@@ -181,7 +178,7 @@ export default connect(msp, mdp)(App);
 
 
 const Wrapper = styled.div`
-  height: 100%;
+  height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -206,10 +203,10 @@ align-items: center;
 const HeaderWrapper = styled.div`
   top:0;
   height: 20%;
+  justify-content:space-around;
   width: 100vw;
   display: flex;
-  overflow: hidden;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   background-image: url("https://d1lss44hh2trtw.cloudfront.net/assets/article/2020/10/20/cyberpunk-2077-build-header_feature.jpg");
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
@@ -228,6 +225,7 @@ const HeaderWrapper = styled.div`
   
   padding:5px 0;
   position:auto;
+  height:100%;
   width:100%;
   flex-direction: row;
   display: flex;

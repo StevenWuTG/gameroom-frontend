@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from "styled-components"
+import Navbar from '../Components/Navbar'
 
 import {NavLink, Redirect} from 'react-router-dom'
 import icon3 from '../Images/icon3.png';
@@ -9,23 +10,16 @@ export class Header extends Component {
         return (
             <>
             <Wrapper>
-                <HeaderLeft>
                     <NavLink to={"./welcome"}>
 
                     <Photo src={icon3}/>
                     </NavLink>
-                </HeaderLeft>
-                <HeaderMiddle>
                 <Name>
-                    
                     Game Room
+                    
                 </Name>
-
-                </HeaderMiddle>
-                <HeaderRight>
-
-                </HeaderRight>
-
+                <Navbar/>
+                
                 
             </Wrapper>
             </>
@@ -37,42 +31,49 @@ export default Header
 
 
 const Wrapper = styled.div`
-    width 100vh;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    object-fit:contain;
+
+  height: 20%;
+  justify-content:space-around;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-image: url("https://d1lss44hh2trtw.cloudfront.net/assets/article/2020/10/20/cyberpunk-2077-build-header_feature.jpg");
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  
+    
     `
-    const Name = styled.h1`
-    border: 1px black;
+const Name = styled.h1`
+    
     font-weight:bold;
     font-family: Courier;
-    font-size:40px;
+    font-size:60px;
     width:33%;
-    height:100%;
-    align-items: center;
+    align-items: left;
     color:white;
     justify-content:center;
     `
-    const HeaderLeft = styled.div`
-    display: flex;
-    flex-direction: row;
-    left:0;
-    align-items: center;
-    width:50%;
-    `
-    const HeaderMiddle = styled.div`
+//     const HeaderLeft = styled.div`
+//     display: flex;
+//     flex-direction: row;
+//     left:0;
+//     align-items: center;
+//     width:50%;
+//     `
+//     const HeaderMiddle = styled.div`
     
-    align-items: center;
-    width:33%;
-    float:none;
-    justify-content:center;
-    `
-    const HeaderRight = styled.div`
-    align-items: center;
-    width:33vh;
-    float:right;
-`
+//     align-items: center;
+//     width:33%;
+//     float:none;
+//     justify-content:center;
+//     `
+//     const HeaderRight = styled.div`
+//     align-items: center;
+//     width:33vh;
+//     float:right;
+// `
 const Photo = styled.img`
 display:flex;
 flex-direction: column;

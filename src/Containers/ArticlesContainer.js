@@ -184,7 +184,6 @@ align-items: center;
 `
 
 const ArticlesWrapper = styled.div`
-  
 display: flex;
 align-items: center;
 object-fit:contain;

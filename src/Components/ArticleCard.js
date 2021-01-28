@@ -109,5 +109,8 @@ flex-direction: column;
 align-items:center;
 width:150px;
 height:auto;
-object-fit:contain
+object-fit:contain;
+:hover {
+    box-shadow: 1px 6px 15px rgba(0,0,0,0.5);
+  }
 `
