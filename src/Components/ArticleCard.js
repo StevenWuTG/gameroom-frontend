@@ -47,7 +47,7 @@ export class ArticleCard extends Component {
             
             <Card>
 
-                <h2>{this.props.articleObj.title}</h2>
+                <h2 style={{"max-width": "200px", "text-align": "center"}}>{this.props.articleObj.title}</h2>
                 
                 <br></br>
                 {this.props.articleObj.img_url === null | this.props.articleObj.img_url === "" ?

@@ -106,6 +106,7 @@ export class ShowUser extends Component {
                     {this.state.newestArticle? 
                     <>
                     {this.state.newestArticle.title}
+                    
                     </>
                     :
                     <>
@@ -156,7 +157,7 @@ export class ShowUser extends Component {
                 }else {
 
                     // return <button >Follow</button>
-                    return <button onClick={this.followShowUser} >Follow</button>
+                    return <NewButton onClick={this.followShowUser} >Follow </NewButton>
                 }
                 
 
@@ -297,6 +298,9 @@ export class ShowUser extends Component {
                         </>
                     }
                     <br></br>
+                    <h5 style={{"margin": "0" }}>Bio:</h5>
+                    {<p style={{"max-width": "34%"}}>{this.state.showUserObj.bio}</p>}
+                    <br></br>
                     {this.renderLatestArticle()}
                     {this.renderHighestArticle()}
 
@@ -348,3 +352,27 @@ align-items: center;
 min-height:600px;
 
 `
+
+const NewButton = styled.button`
+    background-color: #ff7043;
+    color:white;
+    margin: 0.3em;
+    padding: 1.2em 5em;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 3px;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    border: none; 
+    font-size: 15px;
+    text-align: center;
+    :hover {
+        box-shadow: 1px 6px 15px rgba(0,0,0,0.5);
+      }
+      
+  `

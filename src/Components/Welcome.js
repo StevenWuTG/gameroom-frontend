@@ -8,15 +8,20 @@ export class Welcome extends Component {
                 <br></br>
                 <br></br>
                 <br></br>
-                <h3>
-                  Welcome to my bullshite webshite , we got games and tings???
-                </h3>
+                <h1 style={{"max-width": "40vw", "line-height": "60px","font-family": "Verdana", "font-size": "36px" }}>
+                  Welcome to The Game Room , a place where you can post articles about your favorite games and check out our personal game database.
+                  <br></br>
+                  <br></br>
+                  <br></br>
+                  If you enjoyed the website you can check out my contact links down below.
+
+                </h1>
                 <br></br>
                 <br></br>
                 <br></br>
                 <br></br>
-                <img src="
-                https://www.healthecareers.com/binaries/content/gallery/healthecareers-us-en/article-features/december-2016/welcome-new-doctor.jpg" height="300px"></img>
+                {/* <img src="
+                https://www.healthecareers.com/binaries/content/gallery/healthecareers-us-en/article-features/december-2016/welcome-new-doctor.jpg" height="300px"></img> */}
             </WelcomeWrapper>
         )
     }

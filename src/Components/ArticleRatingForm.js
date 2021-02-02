@@ -78,7 +78,7 @@ export class ArticleRatingForm extends Component {
     render() {
         return (
             <div>
-                Submit Your Star Rating:
+                Submit Your  Rating:
                 <form onSubmit={this.articleRatingSubmit}>
 
                 

@@ -60,7 +60,7 @@ export class ShowArticle extends Component {
             // console.log("new Total:", newTotal )
             if(newTotal){
                 
-                return <h3>Ratings: {newTotal}</h3>
+                return <h3>Ratings: {newTotal.toFixed(2)}</h3>
             }
         }
     }
@@ -180,7 +180,7 @@ export class ShowArticle extends Component {
                             </>
                             :
                             <>
-                            <img  className="article-photo" src={article.img_url} alt={this.props.articleObj.title} width="80%" height="100%" />
+                            <img  className="article-photo" src={article.img_url} alt={this.props.articleObj.title} width="" height="80%" />
                             </>
                             }
                             </>
