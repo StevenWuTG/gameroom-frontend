@@ -32,9 +32,9 @@ export class Navbar extends Component {
             <Wrapper>
             {this.props.logged_in? 
             <>
-            <NavLink to="/welcome">
+            {/* <NavLink to="/welcome">
                 <NewButton> Welcome </NewButton>
-            </NavLink>
+            </NavLink> */}
             <NavLink to="/articles">
                 <NewButton>Articles</NewButton>
             </NavLink>
@@ -55,9 +55,9 @@ export class Navbar extends Component {
             <NavLink to="/games">
                 <NewButton>Games</NewButton>
             </NavLink>
-            <NavLink to="/welcome">
+            {/* <NavLink to="/welcome">
                 <NewButton>Welcome</NewButton>
-            </NavLink>
+            </NavLink> */}
             <NavLink to="/signup">
                 <NewButton>Signup</NewButton>
             </NavLink>

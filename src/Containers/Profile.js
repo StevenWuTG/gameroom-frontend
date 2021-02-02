@@ -101,22 +101,22 @@ export class Profile extends Component {
                 </>
                 :
                 <>
-                <EditUser resetLoggedInUser={this.resetLoggedInUser} currentUser={this.props.userObj}/>
-                {this.renderArticleForm()}
-                    Post Article:
-                    <br></br>
-                    {/* <h5 style={{"color": "orange"}}>working on it...</h5> */}
-                    <NewButton onClick={this.formButtonHandler}>Show form </NewButton>
                
                 {this.renderUsername()}    
                 <br></br>
                 {this.renderAvatar()}
+                <EditUser resetLoggedInUser={this.resetLoggedInUser} currentUser={this.props.userObj}/>
                 {this.renderBio()}
                 <br></br>
                 {/* Most Popular Article:
                 <br></br>
             <h5 style={{"color": "red"}}>under construction check back later</h5> */}
 
+                Post Article:
+                <br></br>
+                {/* <h5 style={{"color": "orange"}}>working on it...</h5> */}
+                <NewButton onClick={this.formButtonHandler}>Show form </NewButton>
+                {this.renderArticleForm()}
 
                 <br></br>    
                 <br></br>    

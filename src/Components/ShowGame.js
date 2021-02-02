@@ -60,7 +60,7 @@ export class ShowGame extends Component {
       return (
         <>
         
-          Genre: {this.props.currentGameObj.genre}
+          Genre: {this.props.currentGameObj.genre} 
         </>
       )
     }
@@ -73,7 +73,7 @@ export class ShowGame extends Component {
       return (
         <>
         
-          Publisher: {this.props.currentGameObj.publisher}
+           Publisher: {this.props.currentGameObj.publisher}
         </>
       )
     }
@@ -99,16 +99,34 @@ export class ShowGame extends Component {
         return (
             <Wrapper>
                 
+                
                 {this.renderTitle()}
-                <br></br>
+                
                 {this.renderVideo()}
                 {this.renderDesc()}
-                {this.renderGenre()}
                 <br></br>
+                <br></br>
+             
+
+                <InfoBox>
+                <div>
+                {this.renderGenre()} 
+                  
+                </div>
+                <div>
                 {this.renderPubliser()}
-                <br></br>
+
+                </div>
+                <div>
                 {this.renderReleased()}
-                <br></br>
+
+                </div>
+                
+                
+               
+                </InfoBox>
+                
+                
 
             </Wrapper>
         )
@@ -140,12 +158,21 @@ export default connect(msp, mdp)(ShowGame);
 
 const Wrapper = styled.div`
   
-  
+font-family: Verdana, sans-serif;
   flex-direction: column;
   display: flex;
   align-items: center;
   min-height:600px;
   width:100%;
-  max-width:40%;
+  max-width:50vw;
+  padding: 20px;
+
+`
+const InfoBox = styled.div`
+  width: 50vw;
+  display:flex;
+  flex-direction: row;
+  justify-content:space-between;
+  
 
 `

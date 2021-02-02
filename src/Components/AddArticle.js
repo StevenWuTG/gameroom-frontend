@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import { Redirect} from 'react-router-dom'
 import { showArticle } from '../Redux/actions'
+import styled from 'styled-components'
 
 export class AddArticle extends Component {
 
@@ -95,25 +96,25 @@ export class AddArticle extends Component {
 
                 <br></br>
                 <form onSubmit={this.articleSubmit}>
-
-                <input type="text" name="title"placeholder="Title" value={this.state.title} onChange={this.inputHandler}/>
-                <br></br>
-                <input type="text" name="content"placeholder="Content" value={this.state.content} onChange={this.inputHandler}/>
-                <br></br>
-                <input type="text" name="img_url"placeholder="Image_url" value={this.state.img_url} onChange={this.inputHandler}/>
-                <br></br>
-                <input type="text" name="video_url"placeholder="Youtube_url" value={this.state.video_url} onChange={this.inputHandler}/>
-                <br></br>
                 <select name="game_id"  value={this.state.game_id} onChange={this.inputHandler}>
                     <option value={""}>Select Game</option>
                     {this.listGames()}
                     <option value={""}>No Game</option>
                 </select>
+                <br></br>
+
+                <input type="text" name="title"placeholder="Title" value={this.state.title} onChange={this.inputHandler}/>
+                <br></br>
+                <input type="text" name="img_url"placeholder="Image_url" value={this.state.img_url} onChange={this.inputHandler}/>
+                <br></br>
+                <input type="text" name="video_url"placeholder="Youtube_url" value={this.state.video_url} onChange={this.inputHandler}/>
+                <br></br>
+                <input type="text" name="content"placeholder="Content" value={this.state.content} onChange={this.inputHandler}/>
                 
                 <br></br>
                 
                 
-                <button type="submit">Submit</button>
+                <NewButton type="submit">Submit</NewButton>
                 {this.submitRedirect()}
                 
                 
@@ -145,3 +146,34 @@ const mdp = (dispatch) =>{
 
 
 export default connect(msp, mdp)(AddArticle)
+
+
+const NewButton = styled.button`
+position:relative;
+  width: auto;
+  display:inline-block;
+  color:#ecf0f1;
+  text-decoration:none;
+  border-radius:5px;
+  border:solid 1px #f39c12;
+  background:#e67e22;
+  text-align:center;
+  margin: 12px;
+  
+  -webkit-transition: all 0.1s;
+	-moz-transition: all 0.1s;
+	transition: all 0.1s;
+	
+  -webkit-box-shadow: 0px 6px 0px #d35400;
+  -moz-box-shadow: 0px 6px 0px #d35400;
+  box-shadow: 0px 6px 0px #d35400;
+
+  :active{
+    -webkit-box-shadow: 0px 2px 0px #d35400;
+    -moz-box-shadow: 0px 2px 0px #d35400;
+    box-shadow: 0px 2px 0px #d35400;
+    position:relative;
+    top:4px;
+}
+`
+

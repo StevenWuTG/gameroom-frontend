@@ -37,22 +37,32 @@ export class Signup extends Component {
     render() {
         return (
             <Wrapper class="login-box">
-
-            Enter your credentials
-            <br></br>
-            <br></br>
-            <form onSubmit = {this.submitHandler} >
-            <div >
-                
-                <TextField type="text" name="username" placeholder="Username" value={this.state.username} onChange={this.inputHandler} /> <br></br>
-                <TextField type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.inputHandler}/> <br></br>
-                <TextField type="text" name="avatar" placeholder="Avatar" value={this.state.avatar} onChange={this.inputHandler}/> <br></br>
-                <TextField type="text" name="email" placeholder="Email" value={this.state.email} onChange={this.inputHandler}/> <br></br>
-                <TextField type="text" name="bio" placeholder="Quick Bio" value={this.state.bio} onChange={this.inputHandler}/> <br></br>
-                
-                <NewButton type="submit">Signup</NewButton>
+             <div className="login">
+                <div className="login-message">
+                    <h1>Signup Form </h1>
                 </div>
-            </form>
+                
+                <form className="login-form" onSubmit={this.submitHandler}>
+
+                    <div className="control-group">
+                        <input className="login-field" type="text" name="username" placeholder="username" value={this.state.username} onChange={this.inputHandler} ></input>
+                    </div>
+
+                    <div className="control-group">
+                        <input type="password" class="login-field"  name="password" placeholder="password" value={this.state.password} onChange={this.inputHandler}></input>   
+                    </div>
+                    <div className="control-group">
+                        <input type="text" name="email" placeholder="email" value={this.state.email} onChange={this.inputHandler}></input>   
+                    </div>
+                    
+
+                    <button class="btn btn-primary btn-large btn-block" href="#">signup</button>
+
+                </form>
+                <br></br>
+                <br></br>
+
+            </div>
 
             { this.props.logged_in === true ? 
             
@@ -114,12 +124,43 @@ position:relative;
 `
 const Wrapper = styled.div`
   
-    height:100%;  
-    width:100%;  
-    border:2px solid black;
-    flex-direction: column;
-    display: column;
-    justify-content: center;
-    text-align:center;
+flex-direction: column;
+display: flex;
+text-align: center;
+height: 100%;
+width:100%;
+
+background-position: 0px 0px;
+width: 100%;
+height: 100%;
+background: url(http://i.imgur.com/7RaHlPr.gif), url(http://i.imgur.com/IN5uXk1.gif);
+padding: 5px;
+box-sizing: border-box;
+
+  -moz-animation: animatedBackground 4s linear infinite;
+  -webkit-animation: animatedBackground 4s linear infinite;
+  -ms-animation: animatedBackground 4s linear infinite;
+  -o-animation: animatedBackground 4s linear infinite;
+animation: animatedBackground 6s linear infinite;
+@keyframes animatedBackground {
+  0% { background-position: 0 0, 0 0; rotate: 0deg;}
+  100% { background-position: 300px -100px, 600px -100px;}
+}
+@-moz-keyframes animatedBackground {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: -300px 100px, -600px 100px; }
+}
+@-webkit-keyframes animatedBackground {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: -300px 100px, -600px 100px; }
+}
+@-ms-keyframes animatedBackground {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: -300px 100px, -600px 100px; }
+}
+@-o-keyframes animatedBackground {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: -300px 100px, -600px 100px; }
+}
 
 `

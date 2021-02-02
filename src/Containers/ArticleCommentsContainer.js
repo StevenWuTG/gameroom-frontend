@@ -130,6 +130,9 @@ export default connect(msp,null)(ArticleCommentsContainer)
 const Wrapper = styled.div`
 border:2px black;
 align-items: center;
+display:flex;
+flex-direction: column;
+justify-content: center;
 `
 const NewButton = styled.button`
 position:relative;

@@ -193,9 +193,8 @@ export class ShowArticle extends Component {
                             <h4 onClick={this.showUser}  >Author: {article.author.username}</h4>
                         </NavLink>
                         
-                        {this.renderRatings()}
 
-                        <p>{article.content}</p>
+                        {this.renderRatings()}
                         {this.props.userObj === null ?
                         <>
                         </>
@@ -206,6 +205,7 @@ export class ShowArticle extends Component {
                         </>
                         }
 
+                        <p>{article.content}</p>
 
 
                         {/* <ArticleCommentsContainer articleId={this.props.articleObj.id} comments={this.props.articleObj.article_comments}/> */}
@@ -245,5 +245,6 @@ display: flex;
 align-items: center;
 min-height:600px;
 max-width:35%;
+font-family: Verdana, sans-serif;
 `
 

@@ -80,7 +80,6 @@ export class EditUser extends Component {
             return (
                 
                 <form onSubmit={this.userSubmit}>
-                    Email:
                     {
                     this.state.email === null | this.state.email === ""? 
 
@@ -90,7 +89,6 @@ export class EditUser extends Component {
                     
                     }
                     <br></br>
-                    Avatar Url:
                     {
                     this.state.avatar === null | this.state.avatar === ""? 
 
@@ -101,7 +99,6 @@ export class EditUser extends Component {
                     <input type="text" name="avatar" placeholder={this.state.avatar} value={this.state.avatar} onChange={this.inputHandler}/>
                     }
                     <br></br>
-                    Bio:
                     {
                     this.state.bio === null | this.state.bio === ""? 
                     

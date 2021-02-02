@@ -5,6 +5,9 @@ import styled from 'styled-components'
 import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
 
 export class ArticlesContainer extends Component {
 
@@ -150,6 +153,11 @@ export class ArticlesContainer extends Component {
         console.log("article filter params",this.state.filterParams)
     }
 
+    handleChange = (e) => {
+        this.setState({})
+    }
+
+
     render() {
         return (
             <>
@@ -159,11 +167,11 @@ export class ArticlesContainer extends Component {
                 {/* <br></br> */}
                 <form style={{"height":"40px"}} onSubmit={this.sortArticles}>
                     Sort by:
-                    <select name="sortby">
-                        <option value="newest">newest</option>
-                        <option value="highest-rated">highest rated</option>
+                    <Select width={"100px"} name="sortby">
+                        <MenuItem value="newest">newest</MenuItem>
+                        <MenuItem value="highest-rated">highest rated</MenuItem>
 
-                    </select> 
+                    </Select> 
 
                     <NewButton type="submit"> sort </NewButton>
                 </form>

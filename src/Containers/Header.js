@@ -15,7 +15,7 @@ export class Header extends Component {
                     <Photo src={icon3}/>
                     </NavLink>
                 <Name>
-                    GameRoom
+                    Game Room
                     
                 </Name>
                 <Navbar/>

@@ -72,7 +72,6 @@ export class AddComment extends Component {
         return (
             <div style={{"text-align":"center"}}>
                 <br></br>
-                AddComment
                 
                 <form onSubmit={this.commentSubmit}>
 
