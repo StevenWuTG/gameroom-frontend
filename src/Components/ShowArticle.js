@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import {connect} from "react-redux"
+import '../Css/App.css'
 import {NavLink, Redirect, Link} from 'react-router-dom'
 import ArticleRatingForm from "./ArticleRatingForm"
 import EditArticle from "./EditArticle"
+import StarRating from './StarRating'
 import ArticleCommentsContainer from "../Containers/ArticleCommentsContainer"
 import ReactPlayer from "react-player"
-import '../Css/App.css'
 import {reduxShowUser} from '../Redux/actions'
 
 import icon3 from '../Images/icon3.png';
@@ -201,6 +202,8 @@ export class ShowArticle extends Component {
                         :
                         <>
                         {this.renderRatingForm()}
+
+                        <StarRating/>
                         
                         </>
                         }
