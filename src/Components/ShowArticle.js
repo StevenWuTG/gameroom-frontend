@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {connect} from "react-redux"
 import '../Css/App.css'
 import {NavLink, Redirect, Link} from 'react-router-dom'
-import ArticleRatingForm from "./ArticleRatingForm"
+// import ArticleRatingForm from "./ArticleRatingForm"
 import EditArticle from "./EditArticle"
 import StarRating from './StarRating'
 import ArticleCommentsContainer from "../Containers/ArticleCommentsContainer"
@@ -69,7 +69,10 @@ export class ShowArticle extends Component {
     renderRatingForm = () => {
         if(this.props.articleObj && this.props.userObj){
             
-            return <ArticleRatingForm renderRatings={this.renderRatings} fetchArticleData={this.props.fetchArticleData}  />
+            // return <ArticleRatingForm renderRatings={this.renderRatings} fetchArticleData={this.props.fetchArticleData}  />
+
+            return <StarRating/>
+
         }
 
     }
@@ -151,6 +154,10 @@ export class ShowArticle extends Component {
 
     }
 
+    starSubmit = () => {
+        console.log("star rating clicked")
+    }
+
     
     
 
@@ -203,7 +210,6 @@ export class ShowArticle extends Component {
                         <>
                         {this.renderRatingForm()}
 
-                        <StarRating/>
                         
                         </>
                         }
@@ -228,7 +234,7 @@ export class ShowArticle extends Component {
 const msp = (state) => {
     return {
         articleObj: state.article,
-        // userObj: state.user
+        userObj: state.user
     }
 }
 

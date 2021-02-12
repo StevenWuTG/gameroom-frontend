@@ -3,6 +3,9 @@ import {connect} from 'react-redux'
 import styled from 'styled-components'
 import {showArticle} from '../Redux/actions'
 
+
+//refractored to StarRating.js
+
 export class ArticleRatingForm extends Component {
 
     state = {

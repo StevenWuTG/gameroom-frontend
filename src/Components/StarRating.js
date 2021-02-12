@@ -1,47 +1,71 @@
 import React,{useState} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
 import styled from 'styled-components'
 import {FaStar} from 'react-icons/fa'
+import {showArticle} from '../Redux/actions'
 import '../Css/App.css';
 
 const StarRating = () => {
 
     const [rating,setRating] = useState(null)
     const [hover,setHover] = useState(null)
+    const currentUser = useSelector(state => state.user)
+    const currentArticle = useSelector(state => state.article)
+    const dispatch = useDispatch()
 
     const submitRating = () => {
         if(rating === null){
             console.log("ya don goofed")
             return
         }
-        console.log("submit clicked!", rating)
+        console.log("submit clicked", rating)
     }
 
     const articleRatingSubmit = (e) => {
         e.preventDefault()
+
+        // console.log("currentUser", currentUser)
         
         
         let newRating = {
-            rater_id: this.props.userObj.id,
-            article_id: this.props.articleObj.id,
+            rater_id: currentUser.id,
+            article_id: currentArticle.id,
             star: parseInt(rating)
         }
 
         console.log("newRating:", newRating)
+
+        // console.log(dispatch(showArticle()))
         
-        // fetch("http://localhost:3001/article_ratings", {
-        //     method:"POST",
-        //     headers:{
-        //         "Content-Type": "application/json",
-        //         "Accepts": "application/json"
-        //     },
-        //     body:JSON.stringify(newRating)
-        // })
-        // .then(r => r.json())
-        // .then(newArticleRating => {
-        //     console.log("created new article rating", newArticleRating)
-        //     this.resetReduxArticle()
-        // })
+        fetch("http://localhost:3001/article_ratings", {
+            method:"POST",
+            headers:{
+                "Content-Type": "application/json",
+                "Accepts": "application/json"
+            },
+            body:JSON.stringify(newRating)
+        })
+        .then(r => r.json())
+        .then(newArticleRating => {
+            console.log("created new article rating", newArticleRating)
+            resetReduxArticle()
+        })
         
+    }
+
+    const resetReduxArticle = () => {
+        // console.log("this.state", this.state)
+        let id = currentArticle.id
+        
+        // console.log("resetReduxArticle article id:", id)
+        fetch(`http://localhost:3001/articles/${id}`)
+        .then(r=>r.json())
+        .then(articleObj => {
+            console.log("updated article", articleObj)
+            dispatch(showArticle(articleObj))
+        })
+        .catch(console.log)
+
     }
 
     
@@ -82,6 +106,9 @@ const StarRating = () => {
         </form>
     )
 }
+
+
+
 export default StarRating
 
 
